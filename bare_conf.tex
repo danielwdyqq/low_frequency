@@ -728,19 +728,31 @@ First, a false positive of \emph{BF} means an element in $A$ not appearing in $S
 \end{IEEEproof}
 
 \begin{theorem}\label{thm:2}
-Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{BFSS} is no more than
-\begin{equation}
-	M(1-(1-\frac{1}{K})^{HM})^H + \frac{1}{\phi}
+Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{BFSS}, denoted as $E(\#FPs)$, satisfies:
+\begin{equation}\label{eq:7}
+E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \frac{1}{\phi}
 \end{equation}
 \end{theorem}
 
 \begin{IEEEproof}
-We denote the expectation of the number of \emph{FPs} in the output of \emph{BFSS} as $E(\#FPs)$. From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) false positives of \emph{BF}; ii) elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.
-
-
+From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output.\par
+For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.\par 
+For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\frac{1}{\phi}$. From above, due to the linear properties of expectation, we can get:
+\begin{equation}\label{eq:8}
+E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\frac{1}{\phi}\\
+\end{equation}
+\indent In addition, $M'\leq M$, so inequation \ref{eq:7} can be easily derived from inequation \ref{eq:8}.
 \end{IEEEproof}
 
+\begin{theorem}\label{thm:3}
+	\begin{equation}\label{eq:9}
+	E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \frac{1}{\phi}
+	\end{equation}
+\end{theorem}
 
+\begin{IEEEproof}
+
+\end{IEEEproof}
 
 \subsubsection{}
 Subsubsection text here.

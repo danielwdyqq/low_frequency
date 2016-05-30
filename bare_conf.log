@@ -380,9 +380,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [3] [4]
 \c@theorem=\count118
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 877.
+(Font)              <8> on input line 889.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 877.
+(Font)              <6> on input line 889.
 
 
 ** Conference Paper **
@@ -397,10 +397,10 @@ Before submitting the final camera ready copy, remember to:
 
 [5] (bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 4172 strings out of 493335
- 65384 string characters out of 3130230
- 144965 words of memory out of 3000000
- 7657 multiletter control sequences out of 15000+200000
+ 4176 strings out of 493335
+ 65409 string characters out of 3130230
+ 144997 words of memory out of 3000000
+ 7661 multiletter control sequences out of 15000+200000
  42067 words of font info for 75 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,9n,39p,1065b,680s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -420,7 +420,7 @@ Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><D:/Users/dayan/AppD
 ata/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><D:/Users/dayan
 /AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><D:/Users/d
 ayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (5 pages, 184174 bytes).
+Output written on bare_conf.pdf (5 pages, 184894 bytes).
 PDF statistics:
  72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
