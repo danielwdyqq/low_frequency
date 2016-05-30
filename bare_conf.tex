@@ -565,7 +565,7 @@ Two algorithms are proposed for updating and outputting final result separately.
 	\label{alg:bfss}
 \begin{algorithmic}[1]
 	\REQUIRE Stream $S$, support threshold $\phi$
-	\STATE $N=0,c=0,C=1/\phi,K=\lambda,H=\mu$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda$ and $\mu$ will be discussed in detail later.}
+	\STATE $N=0,c=0,C=\lceil 1/\phi\rceil,K=\lambda,H=\mu$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda$ and $\mu$ will be discussed in detail later.}
 	\STATE Initially synopsis $D$ has $M$ empty counters, each with the form $(e,f(e),\Delta(e))$
 	\FOR{$i=0$ to $K-1$}
 	\STATE $BF[i]=0$
@@ -702,7 +702,7 @@ We only hava to prove that the elements we don't output contain no low-frequency
 \end{IEEEproof}
 
 \subsubsection{\textbf{Anysis of FPs}}
-In this section, we will give a theoretically strict bound of expectation of number of \emph{FPs} in output of \emph{BFSS} regardless of data distribution of $S$, and a tighter bound can be derived for data stream under power law distribution.
+In this section, we will give a theoretically strict bound of expectation of number of \emph{FPs} in output of \emph{BFSS} regardless of data distribution of $S$, and a tighter bound can be derived for data stream under Pareto distribution [].
 
 \begin{lemma}\label{lem:6}
 	 Any element $e$ with $f_S(e)>2\lfloor \phi N\rfloor$, must not be output.
@@ -744,13 +744,18 @@ E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\frac{1}{\phi}\\
 \indent In addition, $M'\leq M$, so inequation \ref{eq:7} can be easily derived from inequation \ref{eq:8}.
 \end{IEEEproof}
 
+However, from the derivation above, we can see that $\frac{1}{\phi}$ is a loose bound of the second case because elements with $f_S(e)>2\lfloor \phi N\rfloor$ can not be output, and we count them in. So if we make an assumption of the distribution of $S$, we will get a relatively tighter bound of the second case.
+
 \begin{theorem}\label{thm:3}
-	\begin{equation}\label{eq:9}
-	E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \frac{1}{\phi}
-	\end{equation}
+Assuming noiseless Pareto data with parameter $\alpha$ and $\beta$, we have:
+\begin{eqnarray}\label{eq:9}
+	E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + T\\
+	T=min(\frac{1}{\phi}, \alpha(1-2^\beta)(\lfloor \phi N\rfloor)^\beta M)
+\end{eqnarray}
 \end{theorem}
 
 \begin{IEEEproof}
+The Pareto distribution has the following property: $Pr(f_S(e)>y)=\alpha y^\beta$, where $\alpha (\alpha \leq 1)$ and $\beta(\beta  <0)$ are parameters of the Pareto distribution. So $Pr(f_S(e)>\lfloor \phi N\rfloor)=\alpha (\lfloor \phi N\rfloor)^\beta$, and the expectation of the number of the elements with $f_S(e)>\lfloor \phi N\rfloor$ is $(\alpha\lfloor \phi N\rfloor)^\beta M'$. In this way, the expectation of the number of the elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ is $\alpha(1-2^\beta)(\lfloor \phi N\rfloor)^\beta M'$. So the
 
 \end{IEEEproof}
 
