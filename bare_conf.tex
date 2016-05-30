@@ -735,7 +735,7 @@ Assuming no specific data distribution, the expectation of the number of \emph{F
 \end{theorem}
 
 \begin{IEEEproof}
-We denote the expectation of the number of \emph{FPs} in the output of \emph{BFSS} as $E(\#FPs)$. From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) false positives of \emph{BF}; ii) elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$. gfg
+We denote the expectation of the number of \emph{FPs} in the output of \emph{BFSS} as $E(\#FPs)$. From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) false positives of \emph{BF}; ii) elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.
 
 
 \end{IEEEproof}
