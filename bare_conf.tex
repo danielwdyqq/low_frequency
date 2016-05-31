@@ -486,7 +486,7 @@ This section presents the problem statement and some representative algorithms s
 
 \begin{table}
 	
-    \caption{Major Notation Used in the Paper}
+    \caption{Major Notation Used in the Paper.}
 	\begin{tabular}{ll}
 		\hline
 		Notation  & Meaning\\ 
@@ -701,7 +701,7 @@ From Lemma \ref{lem:3}, we can easily get $f(e)\leq f(e)-\Delta(e)+min$. $f(e)-\
 We only hava to prove that the elements we don't output contain no low-frequency elements. From Algorithm 1, only two kinds of elements are not ouput: i) elements filtered out by the \emph{BF}. ii) elements monitored in $D$ with $f(e)-\Delta(e)>\lfloor \phi N\rfloor$. The first kind of elements are obviously not low-frequency elements because they never appeared in $S$. From Lemma \ref{lem:5}, we know that the elements monitored in $D$ with $f(e)-\Delta(e)>\lfloor \phi N\rfloor$, must satisfy $f_S(e)>\lfloor \phi N\rfloor$. 
 \end{IEEEproof}
 
-\subsubsection{\textbf{Anysis of FPs}}
+\subsubsection{\textbf{Analysis of FPs}}
 In this section, we will give a theoretically strict bound of expectation of number of \emph{FPs} in output of \emph{BFSS} regardless of data distribution of $S$, and a tighter bound can be derived for data stream under Pareto distribution [].
 
 \begin{lemma}\label{lem:6}
@@ -747,22 +747,70 @@ E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\frac{1}{\phi}\\
 However, from the derivation above, we can see that $\frac{1}{\phi}$ is a loose bound of the second case because elements with $f_S(e)>2\lfloor \phi N\rfloor$ can not be output, and we count them in. So if we make an assumption of the distribution of $S$, we will get a relatively tighter bound of the second case.
 
 \begin{theorem}\label{thm:3}
-Assuming noiseless Pareto data with parameter $\alpha$ and $\beta$, we have:
-\begin{eqnarray}\label{eq:9}
+Assuming noiseless Pareto data with parameter $\alpha$ and $f_S(e_m)$, where $\alpha (\alpha >0)$ and $e_m$ denotes the element with the lowest freqeuncy, we have:
+\begin{eqnarray}\label{eq:10}
 	E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + T\\
-	T=min(\frac{1}{\phi}, \alpha(1-2^\beta)(\lfloor \phi N\rfloor)^\beta M)
+	T=min(\frac{1}{\phi},(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M)
 \end{eqnarray}
 \end{theorem}
 
 \begin{IEEEproof}
-The Pareto distribution has the following property: $Pr(f_S(e)>y)=\alpha y^\beta$, where $\alpha (\alpha \leq 1)$ and $\beta(\beta  <0)$ are parameters of the Pareto distribution. So $Pr(f_S(e)>\lfloor \phi N\rfloor)=\alpha (\lfloor \phi N\rfloor)^\beta$, and the expectation of the number of the elements with $f_S(e)>\lfloor \phi N\rfloor$ is $(\alpha\lfloor \phi N\rfloor)^\beta M'$. In this way, the expectation of the number of the elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ is $\alpha(1-2^\beta)(\lfloor \phi N\rfloor)^\beta M'$. So the
-
+The Pareto distribution has the following property: If $X$ is a random variable with a Pareto distribution, then the probability that $X$ is greater than some number $x$, i.e. the survival function is given by:
+$$Pr(X>x)=
+\begin{cases}
+(\frac{x_m}{x}) & x\geq x_m\\
+1 & x<x_m
+\end{cases}$$
+where $x_m$ is the minimum possible value of $X$, and $\alpha$ is a positive parameter. So In such a case, the expected value of the number of the elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor\phi N\rfloor$ is $(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M'$.
 \end{IEEEproof}
+We may not calculate the exact value of $T$ because we can't get the exact value of $f_S(e_m)$, however, once a query comes, the parameters are confirmed and so is the value of $T$, furthermore, the upper bound of $E(\#FPs)$ is confirmed as well. In this sense, it is meaningful to give the expression of $T$.\par
+From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, and our goal is to minimize $E(\#FPs)$ by selecting the appropriate values of them. In addtion, the value of $K$ directly influence the space complexity of \emph{BFSS}, so we will make some analysis of the values of $K$ and $H$ then.
+\subsubsection{\textbf{Analysis of the space complexity}}
+In this section, we will give some analysis of the space complexity of \emph{BFSS} including how to choose the appropriate values of $H$ and $K$.
 
-\subsubsection{}
-Subsubsection text here.
-
-
+\textbf{Choosing the appropriate values of $H$ and $K$}. Our goal is to minimize $E(\#FPs)$, and from Algorithm \ref{alg:bfss}, we see that the values of $M$ and $\phi$ are confirmed at the very beginning before our algorithm. In this way, our task is to minimize the value of $(1-(1-\frac{1}{K})^{HM})^H$, denoted as $F$, by calculating the appropriate values of $H$ and $K$, and we have:
+\begin{equation}\label{eq:11}
+F\approx(1-e^{-\frac{HM}{K}})^H=e^{H\ln (1-e^{-\frac{HM}{K}})}
+\end{equation}
+Let $P=e^{-\frac{HM}{K}}$ and $G=H\ln (1-e^{-\frac{HM}{K}})$, and in order to minimize $F$, we only have to minimize $G$:
+\begin{equation}\label{eq:12}
+G=(-\frac{K}{M})\ln(P)\ln(1-P)
+\end{equation}
+The first derivative of $G$ with respect to $P$,denoted as $G'$, is:
+\begin{equation}\label{eq:13}
+G'=\frac{K}{M}(\frac{1}{1-P}\ln(P)-\frac{1}{P}\ln(1-P))
+\end{equation}
+From Equation \ref{eq:13}, we can easily observe that when $P=\frac{1}{2}$, $G$ reaches its minimum value. In this case, we have:
+\begin{equation}\label{eq:14}
+H=\frac{K}{M}\times\ln 2
+\end{equation}
+Combined with Equation \ref{eq:11} and Equation \ref{eq:14}, we have:
+\begin{equation}\label{eq:15}
+F\approx(1-e^{-\frac{HM}{K}})^H=(\frac{1}{2})^H\approx(0.6185)^{\frac{K}{M}}
+\end{equation}
+From above, we know that once the value of $\frac{K}{M}$ is confirmed, we can get an appropriate $H$ to minimize $F$.
+\begin{table}
+	\centering
+	\caption{The value of $F$ under various $\frac{K}{M}$ and $H$ combinations.}
+   \begin{tabular}{|c|c|c|c|c|c|c|}
+   	\hline
+   	$K/M$ & $H$& $H=8$ & $H=9$ & $H=10$ & $H=11$ & $H=12$\\ 
+   	\hline
+   	13&9.01&0.00199&0.00194&0.00198&0.0021\\
+   	\hline
+   	14&9.7&0.00129&0.00121&0.0012&0.00124\\
+   	\hline
+   	15&10.4&0.000852&0.000775&0.000744&0.000747&0.000778\\
+   	\hline
+   	16&11.1&0.000574&0.000505&0.00047&0.000459&0.000466\\
+   	\hline
+   	17&11.8&0.000394&0.000335&0.000302&0.000287&0.000284\\
+   	\hline
+   	18&12.5&0.000275&0.000226&0.000198&0.000183&0.000176\\
+   	\hline
+   \end{tabular}
+    
+\end{table}
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
