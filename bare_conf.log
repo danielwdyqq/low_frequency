@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  31 MAY 2016 18:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  1 JUN 2016 17:56
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -348,7 +348,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 477.
 
-Overfull \hbox (23.60602pt too wide) in paragraph at lines 490--517
+Overfull \hbox (23.60602pt too wide) in paragraph at lines 490--518
 [][]
  []
 
@@ -362,14 +362,14 @@ Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 568.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 569.
 
 
 ("D:\Users\dayan\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 568.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 569.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -379,11 +379,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 \c@lemma=\count117
 [3] [4]
 \c@theorem=\count118
- [5]
+ [5] [6]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 942.
+(Font)              <8> on input line 972.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 942.
+(Font)              <6> on input line 972.
 
 
 ** Conference Paper **
@@ -396,14 +396,14 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[6
+[7
 
 ] (bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 4181 strings out of 493335
- 65445 string characters out of 3130230
- 145042 words of memory out of 3000000
- 7666 multiletter control sequences out of 15000+200000
+ 4185 strings out of 493335
+ 65477 string characters out of 3130230
+ 145085 words of memory out of 3000000
+ 7670 multiletter control sequences out of 15000+200000
  42067 words of font info for 75 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,9n,39p,1065b,680s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -423,9 +423,9 @@ cal/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><D:/Users/dayan/AppDat
 a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><D:/Users/dayan/A
 ppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><D:/Users/day
 an/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (6 pages, 199845 bytes).
+Output written on bare_conf.pdf (7 pages, 206092 bytes).
 PDF statistics:
- 75 PDF objects out of 1000 (max. 8388607)
+ 80 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

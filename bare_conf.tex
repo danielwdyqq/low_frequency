@@ -501,7 +501,8 @@ This section presents the problem statement and some representative algorithms s
 		$D$ & The synopsis used in \emph{Space-Saving}\\
 		\emph{BF}  &The Bloom filter used in \emph{BFSS}\\
 		$K$ & The size of \emph{BF}\\
-		$C$ & The number of counters in $D$\\
+		$C$ & The maximum number of counters in $D$\\
+		$m$ & The number of counters used in $D$\\
 		$N$ & The number of elements in the input stream\\
 	    $H$ & The number of hash functions\\
 	    $h_i$ & The $ith$ hash function\\
@@ -565,7 +566,7 @@ Two algorithms are proposed for updating and outputting final result separately.
 	\label{alg:bfss}
 \begin{algorithmic}[1]
 	\REQUIRE Stream $S$, support threshold $\phi$
-	\STATE $N=0,c=0,C=\lceil 1/\phi\rceil,K=\lambda,H=\mu$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda$ and $\mu$ will be discussed in detail later.}
+	\STATE $N=0,c=0,C=\lceil 1/\phi\rceil,K=\lambda',H=\mu'$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda'$ and $\mu'$ will be discussed in detail later.}
 	\STATE Initially synopsis $D$ has $M$ empty counters, each with the form $(e,f(e),\Delta(e))$
 	\FOR{$i=0$ to $K-1$}
 	\STATE $BF[i]=0$
@@ -620,7 +621,7 @@ Algorithm \ref{alg:output} checks and outputs the element with frequency less th
 \end{algorithm}
 
 \subsection{Analysis of BFSS}
-In this section, we present a theoretical analysis of \emph{BFSS} described in Section \ref{sec:bfss}. We analyze the \emph{FNs} and \emph{FPs}, space complexity, and time complexity.\par
+In this section, we present a theoretical analysis of \emph{BFSS} described in Section \ref{sec:bfss}. We analyze the \emph{FNs} and \emph{FPs}, space complexity, and time complexity. At last, we will identify the existing problems in \emph{BFSS}. \par
 
 
 \subsubsection{\textbf{Analysis of FNs}}
@@ -730,16 +731,16 @@ First, a false positive of \emph{BF} means an element in $A$ not appearing in $S
 \begin{theorem}\label{thm:2}
 Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{BFSS}, denoted as $E(\#FPs)$, satisfies:
 \begin{equation}\label{eq:7}
-E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \frac{1}{\phi}
+E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lfloor\frac{1}{\phi}\rfloor
 \end{equation}
 \end{theorem}
 
 \begin{IEEEproof}
 From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output.\par
 For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.\par 
-For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\frac{1}{\phi}$. From above, due to the linear properties of expectation, we can get:
+For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\lfloor\frac{1}{\phi}\rfloor$. From above, due to the linear properties of expectation, we can get:
 \begin{equation}\label{eq:8}
-E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\frac{1}{\phi}\\
+E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\lfloor\frac{1}{\phi}\rfloor\\
 \end{equation}
 \indent In addition, $M'\leq M$, so inequation \ref{eq:7} can be easily derived from inequation \ref{eq:8}.
 \end{IEEEproof}
@@ -763,9 +764,9 @@ $$Pr(X>x)=
 \end{cases}$$
 where $x_m$ is the minimum possible value of $X$, and $\alpha$ is a positive parameter. So In such a case, the expected value of the number of the elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor\phi N\rfloor$ is $(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M'$.
 \end{IEEEproof}
-We may not calculate the exact value of $T$ because we can't get the exact value of $f_S(e_m)$, however, once a query comes, the parameters are confirmed and so is the value of $T$, furthermore, the upper bound of $E(\#FPs)$ is confirmed as well. In this sense, it is meaningful to give the expression of $T$.\par
-From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, and our goal is to minimize $E(\#FPs)$ by selecting the appropriate values of them. In addtion, the value of $K$ directly influence the space complexity of \emph{BFSS}, so we will make some analysis of the values of $K$ and $H$ then.
-\subsubsection{\textbf{Analysis of the space complexity}}
+We may not calculate the exact value of $T$ because we can't get the exact value of $f_S(e_m)$, however, once a query comes, the parameters are confirmed and so is the value of $T$, furthermore, the upper bound of the value of $E(\#FPs)$ is confirmed as well. In this sense, it is meaningful to give the expression of $T$.\par
+From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, and our goal is to minimize the value of  $E(\#FPs)$ by choosing the appropriate values. In addtion, the value of $K$ directly influence the space complexity of \emph{BFSS}, so we will make some analysis of the values of $K$ and $H$ then.
+\subsubsection{\textbf{Analysis of the space complexity}}\label{sec:space}
 In this section, we will give some analysis of the space complexity of \emph{BFSS} including how to choose the appropriate values of $H$ and $K$.
 
 \textbf{Choosing the appropriate values of $H$ and $K$}. Our goal is to minimize $E(\#FPs)$, and from Algorithm \ref{alg:bfss}, we see that the values of $M$ and $\phi$ are confirmed at the very beginning before our algorithm. In this way, our task is to minimize the value of $(1-(1-\frac{1}{K})^{HM})^H$, denoted as $F$, by calculating the appropriate values of $H$ and $K$, and we have:
@@ -776,7 +777,7 @@ Let $P=e^{-\frac{HM}{K}}$ and $G=H\ln (1-e^{-\frac{HM}{K}})$, and in order to mi
 \begin{equation}\label{eq:12}
 G=(-\frac{K}{M})\ln(P)\ln(1-P)
 \end{equation}
-The first derivative of $G$ with respect to $P$,denoted as $G'$, is:
+The first derivative of $G$ with respect to $P$, denoted as $G'$, is:
 \begin{equation}\label{eq:13}
 G'=\frac{K}{M}(\frac{1}{1-P}\ln(P)-\frac{1}{P}\ln(1-P))
 \end{equation}
@@ -788,17 +789,17 @@ Combined with Equation \ref{eq:11} and Equation \ref{eq:14}, we have:
 \begin{equation}\label{eq:15}
 F\approx(1-e^{-\frac{HM}{K}})^H=(\frac{1}{2})^H\approx(0.6185)^{\frac{K}{M}}
 \end{equation}
-From above, we know that once the value of $\frac{K}{M}$ is confirmed, we can get an appropriate $H$ to minimize $F$.
-\begin{table}
+From the above derivation, we know that once the value of $\frac{K}{M}$ is confirmed, we can get the appropriate value of $H$ to minimize the value of $F$. For example, if the value of $\frac{K}{M}$ is set to 13, the appropriate value of $H$ is $\frac{K}{M}\times\ln 2\approx9.1$, because the value of $H$ is an integer, we set it to $9$. Considering the length limit, we give a small fraction of the value of $F$ under various $\frac{K}{M}$ and $H$ combinations in Table \ref{tab:2}.\par
+\begin{table} 
 	\centering
 	\caption{The value of $F$ under various $\frac{K}{M}$ and $H$ combinations.}
    \begin{tabular}{|c|c|c|c|c|c|c|}
    	\hline
    	$K/M$ & $H$& $H=8$ & $H=9$ & $H=10$ & $H=11$ & $H=12$\\ 
    	\hline
-   	13&9.01&0.00199&0.00194&0.00198&0.0021&\\
+   	13&9.01&0.00199&0.00194&0.00198&0.0021&0.0023\\
    	\hline
-   	14&9.7&0.00129&0.00121&0.0012&0.00124&\\
+   	14&9.7&0.00129&0.00121&0.0012&0.00124&0.00132\\
    	\hline
    	15&10.4&0.000852&0.000775&0.000744&0.000747&0.000778\\
    	\hline
@@ -806,11 +807,40 @@ From above, we know that once the value of $\frac{K}{M}$ is confirmed, we can ge
    	\hline
    	17&11.8&0.000394&0.000335&0.000302&0.000287&0.000284\\
    	\hline
-   	18&12.5&0.000275&0.000226&0.000198&0.000183&0.000176\\
-   	\hline
    \end{tabular}
-    
+    	\label{tab:2}
 \end{table}
+From Equation \ref{eq:15}, we notice that the larger the value of $H$ is, the smaller the value of $F$ is. However, the value of $K$ increases monotonically with the increasing value of $H$ once the value of $M$ is confirmed which can be observed from Equation \ref{eq:14}, in other words, in order to decrease the value of $E(\#FPs)$, we have to increase the size of \emph{BF}, i.e. $K$.\par 
+
+For example, if the value of $M$ is 1M and the value of $\phi$ is 0.001. From Table \ref{tab:2}, we see that if the value of $K$ is 16M, the appropriate value of $H$ should be $11$, therefore the value of $F$ is 0.000459, and the upper bound of the value of $E(\#FPs)$ ,calculated by Inequation \ref{eq:7}, is $1M\times0.000459+1/0.001=1459$. Meanwhile, if the value of $K$ is 17M, the corresponding values of $H$ and $F$ are 12 and 0.000284, therefore the upper bound of the value of $E(\#FPs)$ is 1284. From the proof of Theorem \ref{thm:2}, we know that in order to caculate the exact upper bound of the value of $E(\#FPs)$, the bound given in Inequation \ref{eq:7} is not so tight, in fact, the experimental results indicate a much better performence.\par
+
+\begin{theorem}\label{thm:4}
+The space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\phi}\rceil,M))$, where $\lambda\in N^*$, the value of which is discussed detaily above. 
+\end{theorem}
+
+\begin{IEEEproof}
+The space complexity of \emph{BFSS} includes two part: i) the size of \emph{BF}, i.e. $K$. ii) the number of counters used in $D$, i.e. $m$. In order to get the minimum value of $E(\#FPs)$, the value of $K$ should be multiple times of the value of $M$, i.e. $K=\lambda M(\lambda\in N^*)$. From Algorithm \ref{alg:output}, we have $m\leq min(\lceil\frac{1}{\phi}\rceil,M)$. So the space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\phi}\rceil,M))$.
+\end{IEEEproof}
+
+In conclusion, there exists a trade off between the number of \emph{FPs} and the space consumption of \emph{BFSS}. Theoretically, once the value of $M$ is confirmed, the larger the value of $\lambda$, the smaller the number of \emph{FPs} should be, and the larger the value of $K$ should be.\par
+Furthermore, consider a naive method to solve $\phi$\emph{-Bounded Low-Frequency Elements}: we simply allocate each element in $A$ a counter, and update the corresponding counter for each element in $S$, when a query comes, we just output the elements with $f_S(e)\leq\lfloor \phi N\rfloor$. Obviously the method can maintain the low-frequency elements precisely, and the space complexity of the method is $O(M)$. \emph{BFSS} has no advantage over the naive method in space complexity considering big O though, \emph{BFSS} needs not to store the exact value or the fingerprint of each element which may consume much space in total especially when the value is long string, URL etc. The experimental results indicate \emph{BFSS} is much more space efficient too.
+\subsubsection{\textbf{Analysis of the time complexity}}
+In this section, we will discuss the time complexity of \emph{BFSS}.
+
+\begin{theorem}\label{thm:5}
+Processing each data stream element needs $O(1)$ time, independent of the size of space and the stream.
+\end{theorem}
+
+\begin{IEEEproof}
+From Algorithm \ref{alg:bfss}, we know the processing time for each element consists two part: i) the time spent hasing each element into \emph{BF}. ii) the time spent updating the corresponding counter in $D$. Due to $H$ is constant, time spent hashing each element into \emph{BF} is constant too. Consider two cases in updating the corresponding counter in $D$: i) element $e$ is monitored in $D$, and we only have to update the corresponding counter. ii) element $e$ is not monitored in $D$, and we need to first locate the counter with the minimum $f(e)$, then update it. Obviously, the time spent for any case is constant because $\lceil \frac{1}{\phi}\rceil$ is constant. Therefore, processing each element needs only $O(1)$ time in total.
+\end{IEEEproof}
+
+\subsubsection{\textbf{Analysis of the existing problems }}
+In this section, we will identify the existing problems in \emph{BFSS}.\par
+From the analysis in section \ref{sec:space} , we observe that $K$ should increase monotonically with $M$ in order to keep a small number of \emph{FPs}, however, what if $M$ is extremely large? Consider such a case: 
+
+
+
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
