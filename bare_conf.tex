@@ -416,7 +416,7 @@ Fax: (888) 555--1212}}
 %\boldmath
 We propose an one-pass algorithm, called BFSS, which can identify items in a data stream with frequencies less than a user specified
 support. Our algorithm is simple and have provably small memory footprints related to domain of data streams. Although the output is approximate, we can guarantee no false negatives and provably few false positives. Given a little modification, algorithm BFSS can be improved to
-SBFSS, which can handle low-frequency items detection over data streams form large domain with acceptable and bounded false negatives and false positives using a proper space.
+SBFSS, which can handle low-frequency items detection over data streams from large domain with acceptable and bounded false negatives and false positives using a proper space.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -487,32 +487,45 @@ This section presents the problem statement and some representative algorithms s
 \begin{table}
 	
     \caption{Major Notation Used in the Paper.}
+   
 	\begin{tabular}{ll}
+		\hline	Notation  & Meaning\\ 
 		\hline
-		Notation  & Meaning\\ 
-		\hline
-		\emph{BFSS} & The name of our first algorithm\\
-		\emph{SBFSS} & The name of our second algorithm\\		
+		\emph{BFSS} & Our first algorithm\\
+		\emph{SBFSS} & Our second algorithm\\	
 		$S$ & The input data stream\\
 		$A$ & The domain of $S$\\
 		$M$ & The size of $A$\\
 		$M'$ & The number of distinct elements in $S$\\
 		$\phi$ & The user specified support threshold\\
-		$D$ & The synopsis used in \emph{Space-Saving}\\
-		\emph{BF}  &The Bloom filter used in \emph{BFSS}\\
-		$K$ & The size of \emph{BF}\\
+		$D$ & The synopsis used in \emph{BFSS} and \emph{SBFSS}\\
+	    $(e,f(e),\Delta(e))$ & The form of each counter in $D$\\ 
+		$E$ & The set of elements monitored in $D$\\
+		$min$ & The minimum value of $f(e)$ in $D$\\
 		$C$ & The maximum number of counters in $D$\\
 		$m$ & The number of counters used in $D$\\
 		$N$ & The number of elements in the input stream\\
-	    $H$ & The number of hash functions\\
-	    $h_i$ & The $ith$ hash function\\
-	    $f_S(e)$ & The frequency of element $e$ in $S$\\ 
-	    \emph{FPs} &The elements in $S$ with frequency no less than $\lfloor \phi N\rfloor$ wrongly output\\
-	    \emph{FNs} & The elements in $S$ with frequency less than $\lfloor \phi N\rfloor$ wrongly neglected\\
-	    $(e,f(e),\Delta(e))$ & The form of each counter in $D$\\ 
-	    $E$ & The set of elements monitored in $D$\\
-	    $min$ & The minimum value of $f(e)$ in $D$\\
+		$H$ & The number of hash functions used in \emph{BFSS} and \emph{SBFSS}\\
+		$f_S(e)$ & The frequency of element $e$ in $S$\\ 
+		\emph{FPs} &The elements in $S$ with frequency no less than $\lfloor \phi N\rfloor$\\& wrongly output\\
+		\emph{FNs} & The elements in $S$ with frequency less than $\lfloor \phi N\rfloor$ \\&wrongly neglected\\
+		\hline \multicolumn{2}{l}{notation specially used in \emph{BFSS}}\\
+		\hline
+		\emph{BF}  &The Bloom filter used in \emph{BFSS}\\
+		$K$ & The size of \emph{BF}\\
         \hline
+       \multicolumn{2}{l}{notation specially used in \emph{SBFSS}}\\
+       \hline
+       \emph{SBF} &The Stable Bloom filter used in \emph{SBFSS}\\
+        $K'$ & The size of \emph{SBF}\\
+        $k$  &  Number of cells used in \emph{SBF}\\
+        $d$  & Number of bits allocated per cell\\
+        $max$ & The value a cell is set to\\
+        $P$ &  Number of cells we pick to decrement by 1 in each iteration\\
+        $p$ &  The probability that a cell is picked to be decremented by 1 \\
+        &in each iteration\\
+        $p'$ &  The probability that a cell is set in each iteration\\
+       \hline
 	\end{tabular}
 \label{tab:list}
 
@@ -566,8 +579,8 @@ Two algorithms are proposed for updating and outputting final result separately.
 	\label{alg:bfss}
 \begin{algorithmic}[1]
 	\REQUIRE Stream $S$, support threshold $\phi$
-	\STATE $N=0,c=0,C=\lceil 1/\phi\rceil,K=\lambda',H=\mu'$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda'$ and $\mu'$ will be discussed in detail later.}
-	\STATE Initially synopsis $D$ has $M$ empty counters, each with the form $(e,f(e),\Delta(e))$
+	\STATE $N=0,m=0,C=\lceil 1/\phi\rceil,K=\lambda',H=\mu'$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda'$ and $\mu'$ will be discussed in detail later.}
+	\STATE The form of the counters in $D$ is $(e,f(e),\Delta(e))$
 	\FOR{$i=0$ to $K-1$}
 	\STATE $BF[i]=0$
 	\ENDFOR
@@ -577,9 +590,9 @@ Two algorithms are proposed for updating and outputting final result separately.
 	\ENDFOR
 	\IF{$e$ is monitored in $D$}
 	\STATE $f(e)=f(e)+1$;
-	\ELSIF{$c<C$}
+	\ELSIF{$m<C$}
 	\STATE Assign a new counter $(e,1,0)$ to it
-	\STATE $c=c+1$
+	\STATE $m=m+1$
 	\ELSE
 	\STATE Let $e_m$ be the element with least hits, $min$
 	\STATE Replace $e_m$ with $e$ in $D$
@@ -596,32 +609,31 @@ Algorithm \ref{alg:output} checks and outputs the element with frequency less th
 	\caption{BFSS Query Algorithm}
 	\label{alg:output}
 	\begin{algorithmic}[1]
-		\REQUIRE \emph{BF}, $D$, $\phi$, $A$, $N$ \COMMENT{$A$: domain of stream}
+		\REQUIRE \emph{BF}, $D$, $\phi$, $A$, $N$, $M$
 		\ENSURE low-frequency elements with threshold $\phi$
-		\STATE $V=|A|$, $flag=true$; \COMMENT{$V$: size of $A$; \emph{flag}: indicate whether an element is in \emph{BF} or not}
-		\FOR{$i=0$ to $V-1$}
+		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an element is in \emph{BF} or not}
+		\FOR{$i=0$ to $M-1$}
 		\STATE $flag=true$
 		\FOR{$j=1$ to $H$}
 		\IF{$BF[h_j(A[i])]==0$}
 		\STATE $flag=false$
 		\STATE break;
-	    \ENDIF
-	    \ENDFOR
-	    \IF{$flag==true$}
-	    \IF{$A[i]$ is monitored in $D$}
-	    \IF{$f(A[i])\leq\lfloor \phi N\rfloor+\Delta(A[i])$}
-	    \STATE output $A[i]$ as a low-frequency element
-	    \ENDIF
-	    \ELSE
-	    \STATE output $A[i]$ as a low-frequency element
-	    \ENDIF
-	    \ENDIF
-	    \ENDFOR
-   \end{algorithmic}
+		\ENDIF
+		\ENDFOR
+		\IF{$flag==true$}
+		\IF{$A[i]$ is monitored in $D$}
+		\IF{$f(A[i])\leq\lfloor \phi N\rfloor+\Delta(A[i])$}
+		\STATE output $A[i]$ as a low-frequency element
+		\ENDIF
+		\ELSE
+		\STATE output $A[i]$ as a low-frequency element
+		\ENDIF
+		\ENDIF
+		\ENDFOR
+	\end{algorithmic}
 \end{algorithm}
-
 \subsection{Analysis of BFSS}
-In this section, we present a theoretical analysis of \emph{BFSS} described in Section \ref{sec:bfss}. We analyze the \emph{FNs} and \emph{FPs}, space complexity, and time complexity. At last, we will identify the existing problems in \emph{BFSS}. \par
+In this section, we present a theoretical analysis of \emph{BFSS} described in Section \ref{sec:bfss}. We analyze \emph{FNs}, \emph{FPs}, space complexity, and time complexity. At last, we will identify the challenges to \emph{BFSS}. \par
 
 
 \subsubsection{\textbf{Analysis of FNs}}
@@ -714,7 +726,7 @@ From Lemma \ref{lem:4}, we know that any element $e$ with $f_S(e)>2\lfloor \phi 
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:7}
-The probability of a false positive of \emph{BF} is no more than
+The probability of a false positive of \emph{BF} is no more than:
 \begin{equation}
 (1-(1-\frac{1}{K})^{HM})^H
 \end{equation}
@@ -731,16 +743,16 @@ First, a false positive of \emph{BF} means an element in $A$ not appearing in $S
 \begin{theorem}\label{thm:2}
 Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{BFSS}, denoted as $E(\#FPs)$, satisfies:
 \begin{equation}\label{eq:7}
-E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lfloor\frac{1}{\phi}\rfloor
+E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lceil\frac{1}{\phi}\rceil
 \end{equation}
 \end{theorem}
 
 \begin{IEEEproof}
 From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output.\par
 For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.\par 
-For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\lfloor\frac{1}{\phi}\rfloor$. From above, due to the linear properties of expectation, we can get:
+For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\lceil\frac{1}{\phi}\rceil$. From above, due to the linear properties of expectation, we can get:
 \begin{equation}\label{eq:8}
-E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\lfloor\frac{1}{\phi}\rfloor\\
+E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\lceil\frac{1}{\phi}\rceil\\
 \end{equation}
 \indent In addition, $M'\leq M$, so inequation \ref{eq:7} can be easily derived from inequation \ref{eq:8}.
 \end{IEEEproof}
@@ -835,11 +847,140 @@ Processing each data stream element needs $O(1)$ time, independent of the size o
 From Algorithm \ref{alg:bfss}, we know the processing time for each element consists two part: i) the time spent hasing each element into \emph{BF}. ii) the time spent updating the corresponding counter in $D$. Due to $H$ is constant, time spent hashing each element into \emph{BF} is constant too. Consider two cases in updating the corresponding counter in $D$: i) element $e$ is monitored in $D$, and we only have to update the corresponding counter. ii) element $e$ is not monitored in $D$, and we need to first locate the counter with the minimum $f(e)$, then update it. Obviously, the time spent for any case is constant because $\lceil \frac{1}{\phi}\rceil$ is constant. Therefore, processing each element needs only $O(1)$ time in total.
 \end{IEEEproof}
 
-\subsubsection{\textbf{Analysis of the existing problems }}
+\subsubsection{\textbf{Analysis of the challenges to BFSS}}
 In this section, we will identify the existing problems in \emph{BFSS}.\par
-From the analysis in section \ref{sec:space} , we observe that $K$ should increase monotonically with $M$ in order to keep a small number of \emph{FPs}, however, what if $M$ is extremely large? Consider such a case: 
+From the analysis in section \ref{sec:space} , we observe that $K$ should increase monotonically with $M$ in order to keep a low rate of \emph{FPs}, however, what if $M$ is extremely large? Consider such a case: if $M=4G$, i.e. 4 billion, and in order to keep $F$ less than 0.05\%, we have to set $K=64G$, i.e the space used by \emph{BF} is 8GB, which may exceed the memory limit of a normal PC.\par
+Inspired by the algorithm proposed in [], we present the \emph{SBFSS} algorithm, which can find low-frequency elements over the data streams from extremely large domain with acceptable number of \emph{FPs} and \emph{FNs} using proper space.\par
 
+\subsection{The SBFSS Algorithm}\label{sec:sbfss}
+In this section, we will introduce the \emph{SBFSS} algorithm, which improve the \emph{BFSS} algorithm and can handle the data streams from large domain.\par
+The major difference between \emph{BFSS} and \emph{SBFSS} is the Bloom filter we use. Concretely speaking, \emph{BF} is a regular Bloom filter, while \emph{SBF} change bits in \emph{BF} into cells, each consisting of one or more bits. In addition, from the explaination above, the size of \emph{BF}, i.e. $K$, should increase monotonically with $M$, however, there can be no linear relationship between the size of \emph{SBF}, i.e. $K'$, and $M$, and $K'$ can be any integer predefined by users. Defination \ref{def:1} is the detailed defination of \emph{SBF}.\par  
 
+\newtheorem{defn}{Definition}
+\begin{defn}\label{def:1}
+\emph{SBF} is defined as an array of integer $SBF[1],SBF[2],...,SBF[k]$ whose minimum value is 0 and maximum value is $max$. Each element of the array is allocated $d$ bits. The relation between $max$ and $d$ is then $max=2^d-1$. Compared to bits in a regular Bloom ﬁlter, each element of the \emph{SBF} is called a cell.
+\end{defn}
+
+Like \emph{BFSS}, \emph{SBFSS} consists of two phases: updating and quering. Algorithm \ref{alg:sbfss} and Algorithm \ref{alg:soutput} give the detailed descriptions of them.   Because of the limitation of length, no more tautology here.
+
+\begin{algorithm}[h]
+	\caption{SBFSS Update Algorithm}
+	\label{alg:sbfss}
+	\begin{algorithmic}[1]
+		\REQUIRE Stream $S$, support threshold $\phi$
+		\STATE The form of the counters in $D$ is $(e,f(e),\Delta(e))$
+		\FOR{$i=0$ to $k-1$}
+		\STATE $SBF[i]=0$
+		\ENDFOR
+		\FOR{each item $e$ of stream $S$}
+		\STATE Select $P$ different cells uniformly at random $SBF[j_1]...SBF[j_P]$, $P\in \{1,...,k\}$
+		\FOR{each cell $SBF[j]\in\{SBF[j_1]...SBF[j_P]\}$}
+		\IF{$SBF[j]\geq 1$}
+		\STATE $SBF[j]=SBF[j]-1$
+		\ENDIF
+		\ENDFOR
+	    \FOR{$i=1$ to $H$}
+		\STATE $SBF[h_i(e)]=max$
+		\ENDFOR
+		\IF{$e$ is monitored in $D$}
+		\STATE $f(e)=f(e)+1$;
+		\ELSIF{$m<C$}
+		\STATE Assign a new counter $(e,1,0)$ to it
+		\STATE $m=m+1$
+		\ELSE
+		\STATE Let $e_m$ be the element with least hits, $min$
+		\STATE Replace $e_m$ with $e$ in $D$
+		\STATE $f(e)=min+1,\Delta(e)=min$
+		\ENDIF
+		\STATE $N=N+1$;
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[h]
+	\caption{SBFSS Query Algorithm}
+	\label{alg:soutput}
+	\begin{algorithmic}[1]
+		\REQUIRE \emph{SBF}, $D$, $\phi$, $A$, $N$, $M$
+		\ENSURE low-frequency elements with threshold $\phi$
+		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an element is in \emph{SBF} or not}
+		\FOR{$i=0$ to $M-1$}
+		\STATE $flag=true$
+		\FOR{$j=1$ to $H$}
+		\IF{$SBF[h_j(A[i])]==0$}
+		\STATE $flag=false$
+		\STATE break;
+		\ENDIF
+		\ENDFOR
+		\IF{$flag==true$}
+		\IF{$A[i]$ is monitored in $D$}
+		\IF{$f(A[i])\leq\lfloor \phi N\rfloor+\Delta(A[i])$}
+		\STATE output $A[i]$ as a low-frequency element
+		\ENDIF
+		\ELSE
+		\STATE output $A[i]$ as a low-frequency element
+		\ENDIF
+		\ENDIF
+		\ENDFOR
+	\end{algorithmic}
+\end{algorithm}
+
+From Algorithm \ref{alg:sbfss}, we observe that there are two kinds of operation on \emph{SBF}. First randomly decrement $P$ cells by 1 so as to make room for fresh elements
+; then set the same $H$ cells as in the update process to $max$.\par 
+Intuitively, due to the random deletion operation, \emph{SBF} does not exceed its capacity in a data stream scenario, however, false negatives may come up as well.
+
+\subsection{Analysis of SBFSS}
+Like \emph{BFSS}, we will give some theoretical analysis of \emph{SBFSS} in this section, including \emph{FNs}, \emph{FPs}, space complexity, and time complexity.
+
+\subsubsection{\textbf{Analysis of FPs}}
+In this section, we will give a theoretically upper bound of the expectation of the number of \emph{FPs} in the ouput of \emph{SBFSS}.\par
+In [], the \emph{SBF} is used to detect duplicates over data streams, in fact, from Alogorithm \ref{alg:sbfss}, we can observe that the function of the \emph{SBF} used in \emph{SBFSS} can also be treated as duplicates detection, in this sense, the properties of the \emph{SBF} used in duplicates detection, including the probability of a false positive and a false negative of \emph{SBF}, are fully applicable to the \emph{SBF} used in \emph{SBFSS}.\par
+The detailed proof of Lemma \ref{lem:8} can be found in []. Because of the limitation of length, no more tautology here.
+
+\begin{lemma}\label{lem:8}
+The probability of a false positive of \emph{SBF} is no more than:
+\begin{equation}
+(1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H
+\end{equation}
+\end{lemma}
+
+\begin{theorem}\label{thm:6}
+Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{SBFSS}, denoted as $E'(\#FPs)$, satisfies:
+\begin{equation}\label{eq:17}
+E'(\#FPs)<M(1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H + \lceil\frac{1}{\phi}\rceil
+\end{equation}
+\end{theorem}
+
+\begin{IEEEproof}
+In fact, the only difference between the number of \emph{FPs} of \emph{SBFSS} and the number of \emph{FPs} of \emph{BFSS} exists in the number of \emph{FPs} caused by the Bloom filter, and the derivation of $E'(\#FPs)$ is exactly the same as $E(\#FPs)$, therefore based on the probability of a false positive of \emph{SBF} given in Lemma \ref{lem:8}, we can easily get the upper bound of $E'(\#FPs)$.
+\end{IEEEproof}
+
+\subsubsection{\textbf{Analysis of FNs}}
+In this section, unlike \emph{BFSS}, we will give a theoretically upper bound of the expectation of the number of \emph{FNs} in the ouput of \emph{SBFSS}. \par
+First, let us consider the probability of a false negative of \emph{SBF} which is an error when an element in $S$ wrongly filtered out by \emph{SBF}. Therefore only the elements in $S$ can generate false negatives, obviously the number of false negatives is related to the input data distribution.\par
+Suppose an element $A[i]$ appearing in $S$ whose last appearence in $S$ before a query comes is $e_{i-\delta_i}$, where $\delta_i$ represents the number of elements in $S$ during the time between the last appearance of $A[i]$ and a query, is hashed into $H$ cells, $SBF[C_{i1}],...,SBF[C_{iH}]$. A false negative happens if any of those $H$ cells is decremented to 0 during the $\delta_i$ iterations when a query comes. Let $PR_0(\delta_i,p'_{ij})$ be the probability that cell $C_{ij} (j = 1...H)$ is decremented to 0 within the $\delta_i$ iterations, and $A_l$ denotes the event that within the $N$ iterations the most recent setting operation applied to the cell occurs at iteration $N-l$, and $A'_N$ denotes the event that cell has never been set within the whole $N$ iterations. $PR_0(\delta_i,p'_{ij})$ can be computed as:
+\begin{equation}\label{eq:18}
+\begin{split}
+PR_0(\delta_i,p'_{ij})=\sum_{l=max}^{\delta_i-1}[Pr(SBF_{\delta_i}=0|A_l)Pr(A_l)]\\
++Pr(SBF_{\delta_i}=0|A_{\delta_i})Pr(A'_{\delta_i})
+\end{split}
+\end{equation}
+where 
+\begin{eqnarray}\label{eq:19}
+Pr(SBF_{\delta_i}=0|A_l)&=&\sum_{j=max}^{l}\left(^l_j\right)p^j(1-p)^{l-j}\\
+Pr(A_l)&=&(1-p'_{ij})^lp'_{ij}\\
+Pr(SBF_{\delta_i}=0|A'_{\delta_i})&=&\sum_{j=max}^{\delta_i}\left(^{\delta_i}_j\right)p^j(1-p)^{\delta_i-j}\\
+Pr(A'_{\delta_i})&=&(1-p'_{ij})^{\delta_i}
+\end{eqnarray}
+The tailed derivation of E.q \ref{eq:18} can be found in [], and no more tautology here.\par
+
+\begin{lemma}\label{lem:9}
+The expected number of the false negatives of \emph{SBF}, $E(\#FN)$, is: 
+\begin{equation}\label{eq:20}
+E(\#FN)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
+\end{equation}
+where $\widehat{\delta}$ and $\widehat{p'}$ are "average" $\delta$
+\end{lemma}
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
