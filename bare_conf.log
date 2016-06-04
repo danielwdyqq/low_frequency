@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  3 JUN 2016 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  4 JUN 2016 21:10
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -398,10 +398,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [7]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1509) in paragraph at lines 993--994
+[]\OT1/ptm/m/n/10 From E.q 17[], we ob-serve that the up-per bound of
+ []
+
+Missing character: There is no Ô in font ptmr7t!
+Missing character: There is no ¨ in font ptmr7t!
+Missing character: There is no Å in font ptmr7t!
+[8]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 1112.
+(Font)              <8> on input line 1139.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 1112.
+(Font)              <6> on input line 1139.
 
 
 ** Conference Paper **
@@ -414,34 +425,36 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[8] (bare_conf.aux) ) 
+[9
+
+] (bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 4202 strings out of 493335
- 65605 string characters out of 3130230
- 145186 words of memory out of 3000000
- 7687 multiletter control sequences out of 15000+200000
+ 4205 strings out of 493335
+ 65626 string characters out of 3130230
+ 145211 words of memory out of 3000000
+ 7690 multiletter control sequences out of 15000+200000
  42067 words of font info for 75 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,15n,39p,1065b,680s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/en
-c/dvips/fontname/8r.enc}<D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/public/amsfonts/cm/cmex10.pfb><D:/Users/dayan/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Users/dayan/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/Users/dayan/A
-ppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/U
-sers/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
-10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr7.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsy10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:/Users/dayan/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/Users/dayan/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><D:/Users/dayan/AppD
-ata/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><D:/Users/dayan
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><D:/Users/d
-ayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (8 pages, 220430 bytes).
+{D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/
+dvips/fontname/8r.enc}<D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Users/dayan/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/Users/dayan/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/Use
+rs/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10
+.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr7.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:/Users/dayan/AppData/Local/Programs
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/Users/dayan/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmb8a.pfb><D:/Users/dayan/AppDat
+a/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmbi8a.pfb><D:/Users/dayan/A
+ppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb><D:/Users/day
+an/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (9 pages, 227268 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
+ 86 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

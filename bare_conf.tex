@@ -778,7 +778,7 @@ where $x_m$ is the minimum possible value of $X$, and $\alpha$ is a positive par
 \end{IEEEproof}
 We may not calculate the exact value of $T$ because we can't get the exact value of $f_S(e_m)$, however, once a query comes, the parameters are confirmed and so is the value of $T$, furthermore, the upper bound of the value of $E(\#FPs)$ is confirmed as well. In this sense, it is meaningful to give the expression of $T$.\par
 From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, and our goal is to minimize the value of  $E(\#FPs)$ by choosing the appropriate values. In addtion, the value of $K$ directly influence the space complexity of \emph{BFSS}, so we will make some analysis of the values of $K$ and $H$ then.
-\subsubsection{\textbf{Analysis of the space complexity}}\label{sec:space}
+\subsubsection{\textbf{Space complexity}}\label{sec:space}
 In this section, we will give some analysis of the space complexity of \emph{BFSS} including how to choose the appropriate values of $H$ and $K$.
 
 \textbf{Choosing the appropriate values of $H$ and $K$}. Our goal is to minimize $E(\#FPs)$, and from Algorithm \ref{alg:bfss}, we see that the values of $M$ and $\phi$ are confirmed at the very beginning before our algorithm. In this way, our task is to minimize the value of $(1-(1-\frac{1}{K})^{HM})^H$, denoted as $F$, by calculating the appropriate values of $H$ and $K$, and we have:
@@ -836,18 +836,18 @@ The space complexity of \emph{BFSS} includes two part: i) the size of \emph{BF},
 
 In conclusion, there exists a trade off between the number of \emph{FPs} and the space consumption of \emph{BFSS}. Theoretically, once the value of $M$ is confirmed, the larger the value of $\lambda$, the smaller the number of \emph{FPs} should be, and the larger the value of $K$ should be.\par
 Furthermore, consider a naive method to solve $\phi$\emph{-Bounded Low-Frequency Elements}: we simply allocate each element in $A$ a counter, and update the corresponding counter for each element in $S$, when a query comes, we just output the elements with $f_S(e)\leq\lfloor \phi N\rfloor$. Obviously the method can maintain the low-frequency elements precisely, and the space complexity of the method is $O(M)$. \emph{BFSS} has no advantage over the naive method in space complexity considering big O though, \emph{BFSS} needs not to store the exact value or the fingerprint of each element which may consume much space in total especially when the value is long string, URL etc. The experimental results indicate \emph{BFSS} is much more space efficient too.
-\subsubsection{\textbf{Analysis of the time complexity}}
+\subsubsection{\textbf{Time complexity}}
 In this section, we will discuss the time complexity of \emph{BFSS}.
 
 \begin{theorem}\label{thm:5}
-Processing each data stream element needs $O(1)$ time, independent of the size of space and the stream.
+Processing each data stream element needs $O(1)$ time, independent of the size of the stream.
 \end{theorem}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, we know the processing time for each element consists two part: i) the time spent hasing each element into \emph{BF}. ii) the time spent updating the corresponding counter in $D$. Due to $H$ is constant, time spent hashing each element into \emph{BF} is constant too. Consider two cases in updating the corresponding counter in $D$: i) element $e$ is monitored in $D$, and we only have to update the corresponding counter. ii) element $e$ is not monitored in $D$, and we need to first locate the counter with the minimum $f(e)$, then update it. Obviously, the time spent for any case is constant because $\lceil \frac{1}{\phi}\rceil$ is constant. Therefore, processing each element needs only $O(1)$ time in total.
+From Algorithm \ref{alg:bfss}, we know the processing time for each element consists two parts: i) the time spent hasing each element into \emph{BF}. ii) the time spent updating the corresponding counter in $D$. Due to $H$ is constant, time spent hashing each element into \emph{BF} is constant too. Consider two cases in updating the corresponding counter in $D$: i) element $e$ is monitored in $D$, and we only have to update the corresponding counter. ii) element $e$ is not monitored in $D$, and we need to first locate the counter with the minimum $f(e)$, then update it. Obviously, the time spent for any case is constant because $\lceil \frac{1}{\phi}\rceil$ is constant. Therefore, processing each element needs only $O(1)$ time in total.
 \end{IEEEproof}
 
-\subsubsection{\textbf{Analysis of the challenges to BFSS}}
+\subsubsection{\textbf{Challenges to BFSS}}
 In this section, we will identify the existing problems in \emph{BFSS}.\par
 From the analysis in section \ref{sec:space} , we observe that $K$ should increase monotonically with $M$ in order to keep a low rate of \emph{FPs}, however, what if $M$ is extremely large? Consider such a case: if $M=4G$, i.e. 4 billion, and in order to keep $F$ less than 0.05\%, we have to set $K=64G$, i.e the space used by \emph{BF} is 8GB, which may exceed the memory limit of a normal PC.\par
 Inspired by the algorithm proposed in [], we present the \emph{SBFSS} algorithm, which can find low-frequency elements over the data streams from extremely large domain with acceptable number of \emph{FPs} and \emph{FNs} using proper space.\par
@@ -930,15 +930,14 @@ From Algorithm \ref{alg:sbfss}, we observe that there are two kinds of operation
 Intuitively, due to the random deletion operation, \emph{SBF} does not exceed its capacity in a data stream scenario, however, false negatives may come up as well.
 
 \subsection{Analysis of SBFSS}
-Like \emph{BFSS}, we will give some theoretical analysis of \emph{SBFSS} in this section, including \emph{FNs}, \emph{FPs}, space complexity, and time complexity.
-
+Like \emph{BFSS}, we will give theoretical analysis of \emph{SBFSS} in this section, including the equivalence of \emph{SBF'} (the \emph{SBF} used in []) and \emph{SBF}, \emph{FNs}, \emph{FPs}, parameters setting, and time complexity.\par
+\subsubsection{\textbf{Analysis of the equivalence of SBF' and SBF}}
+\emph{SBF'} is used to detect duplicates over data streams, in fact, from Algorithm \ref{alg:sbfss} and Algorithm \ref{alg:soutput}, we can observe that \emph{SBF} is used to filter out the elements that never appeared in $S$, and we check whether the element in $A$ is duplicated one by one, if the element is a duplicate, we just claim it appeared in $S$, in this sense, \emph{SBF'} and \emph{SBF} share the same function. So the properties of \emph{SBF'}, including the probability of a false positive and a false negative of \emph{SBF'}, are fully applicable to \emph{SBF}.\par
 \subsubsection{\textbf{Analysis of FPs}}
 In this section, we will give a theoretically upper bound of the expectation of the number of \emph{FPs} in the ouput of \emph{SBFSS}.\par
-In [], the \emph{SBF} is used to detect duplicates over data streams, in fact, from Alogorithm \ref{alg:sbfss}, we can observe that the function of the \emph{SBF} used in \emph{SBFSS} can also be treated as duplicates detection, in this sense, the properties of the \emph{SBF} used in duplicates detection, including the probability of a false positive and a false negative of \emph{SBF}, are fully applicable to the \emph{SBF} used in \emph{SBFSS}.\par
 The detailed proof of Lemma \ref{lem:8} can be found in []. Because of the limitation of length, no more tautology here.
-
 \begin{lemma}\label{lem:8}
-The probability of a false positive of \emph{SBF} is no more than:
+The probability of a false positive (FP) of \emph{SBF} is no greater than :
 \begin{equation}
 (1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H
 \end{equation}
@@ -972,16 +971,43 @@ Pr(A_l)&=&(1-p'_{ij})^lp'_{ij}\\
 Pr(SBF_{\delta_i}=0|A'_{\delta_i})&=&\sum_{j=max}^{\delta_i}\left(^{\delta_i}_j\right)p^j(1-p)^{\delta_i-j}\\
 Pr(A'_{\delta_i})&=&(1-p'_{ij})^{\delta_i}
 \end{eqnarray}
-The tailed derivation of E.q \ref{eq:18} can be found in [], and no more tautology here.\par
+Based on E.q \ref{eq:18}, the expected value of the false negatives of \emph{SBF}, $E(\#FN)$, can be easily derived, and the tailed derivation of E.q \ref{eq:18} and Lemma \ref{lem:9} can be found in [], therefore no more tautology here.\par
 
 \begin{lemma}\label{lem:9}
-The expected number of the false negatives of \emph{SBF}, $E(\#FN)$, is: 
+There must be an "average" $\widehat{\delta}$ and an "average" $\widehat{p'}$ such that: 
 \begin{equation}\label{eq:20}
 E(\#FN)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
 \end{equation}
-where $\widehat{\delta}$ and $\widehat{p'}$ are "average" $\delta$
 \end{lemma}
 
+\begin{theorem}\label{thm:7}
+	Assuming no specific data distribution, the expectation of the number of \emph{FNs} in the output of \emph{SBFSS}, denoted as $E'(\#FNs)$, satisfies:
+	\begin{equation}\label{eq:24}
+	E'(\#FNs)\leq M[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
+	\end{equation}
+\end{theorem}
+
+\begin{IEEEproof}
+Like \emph{FPs}, two kinds of elements contribute to \emph{FNs}: i) the elemtents with $0<f_S(e)\leq\lfloor \phi N\rfloor$ wrongly filtered out by \emph{SBF}; ii) the elemtents with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. In fact, elements with $f_S(e)\leq\lfloor \phi N\rfloor$ must satisfy $f(e)\leq\lfloor \phi N\rfloor+\Delta(e)$, which means no elements with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. For the first case, we assume that the false negatives are all elements with $0<f_S(e)\leq\lfloor \phi N\rfloor$, which is the worst case, and in this way we have $E(\#FN)=E(\#FNs)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]\leq M[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]$.
+\end{IEEEproof}
+From E.q \ref{eq:17}, we observe that the upper bound of $E'(\#FPs)$ is completely related to \emph{SBF} once the parameter $\phi$ is confirmed, and the upper bound of $E'(\#FNs)$ is totally related to \emph{SBF} which can be observed from E.q \ref{eq:24}. In this way, we will give some analysis of how to choose appropriate parameters of \emph{SBF} next.
+
+\subsubsection{\textbf{Parameters setting}}
+In this section, we will discuss how to choose appropriate parameters of \emph{SBF} in \emph{SBFSS}.\par 
+For \emph{SBFSS}, users will specify $\phi$, $\#FPs$ and memory limit $L$. The memory consumption of \emph{SBFSS} mainly contains two parts: \emph{SBF} and $D$. From Algorithm \ref{alg:sbfss}, we know that there are at most $\lceil\frac{1}{\phi}\rceil$ counters in $D$, and in this way we can estimate the memory available for \emph{SBF}, and through E.q \ref{eq:17}, we can estimate the FP rate, in fact, the FP rate can be a little larger than the caculated one beacause only a part of elements cause false positives. Therefore our goal is to choose a combination of $max,H$ and $P$ that minimizes the number of FNs under the condition that the FP rate is within a confirmed threshold and a fix amount of space.\par
+In fact, a detailed discussion of how to choose these parameters has been given in [], which can concluded as: A formula can be obtained to compute the value of $P$ from other parameters provided that $max$ and $H$ have been chosen already; then ﬁnd the optimal values of $H$ for each case of $max(1,3,7)$ by trying limited number$(\leq 10)$ of values of $H$ on the FN rate formulas; Last, $max$ can be set empirically, and specially in the case that no prior knowledge of the input data is available, [] suggests setting $max=1$.
+
+\subsubsection{\textbf{Time complexity}}
+In this section, we will analyze the time complexity of \emph{SBFSS}.\par
+For \emph{SBFSS}, the amount of space has been confirmed, so we just focus on time complexity.
+
+\begin{theorem}\label{thm:8}
+For \emph{SBFSS}, Processing each data stream element needs $O(1)$ time, independent of the size of space and the stream.
+\end{theorem}
+
+\begin{IEEEproof}
+Like \emph{BFSS}, the processing time for each element also consists two parts: i) the time spent updating \emph{SBF}; ii) the time spent updating $D$. In fact, from Algorithm \ref{alg:bfss} and Algorithm \ref{alg:sbfss}, we can see that \emph{BFSS} and \emph{SBFSS} share the same operations on $D$, so for \emph{SBFSS}, the time spent updating $D$ is constant once $\phi$ is confirmed, which means the size of space has no impact on it. For the first part, a detailed explaination has been given in [] to prove that the time spent updating \emph{SBF} is O(1), independent of the size of space and the stream. Therefore the time complexity of \emph{SBFSS} is O(1).
+\end{IEEEproof}
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
