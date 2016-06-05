@@ -414,9 +414,7 @@ Fax: (888) 555--1212}}
 
 \begin{abstract}
 %\boldmath
-We propose an one-pass algorithm, called BFSS, which can identify items in a data stream with frequencies less than a user specified
-support. Our algorithm is simple and have provably small memory footprints related to domain of data streams. Although the output is approximate, we can guarantee no false negatives and provably few false positives. Given a little modification, algorithm BFSS can be improved to
-SBFSS, which can handle low-frequency items detection over data streams from large domain with acceptable and bounded false negatives and false positives using a proper space.
+Low-frequency items in data streams are becoming more and more important due to their large amount, and the ability to excavate the rich information contained in them is of great significance to many companies and organizations. We propose an one-pass algorithm, called \emph{BFSS}, which can identify items in a data stream with frequencies less than a user specified support. Our algorithm is simple and have provably small memory footprints related to domain of data streams. Although the output is approximate, we can guarantee no false negatives and provably few false positives. Given a little modification, \emph{BFSS} can be improved to \emph{SBFSS}, which can handle low-frequency items detection over data streams from large domain with acceptable and bounded false negatives and false positives using a proper space.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -470,6 +468,8 @@ However, we are no longer saiesfied with responses only to popular demands. For 
 Yusuf Mehdi, SVP of Microsoft, once said at the meeting of Search Engine Strategies in 2010 that major reason why Bing got begind with Google is neglecting ``long tail'' of search flow items of which appear a few times or even once, and it is of great importance for them to analyze these low-frequency items. So it is individual requirements or in other words low-frequency demands, in some sense, that really make a difference rather than popular demands in areas like e-commerce and SE, and identifying them is the first step to do deep analysis on them.
 
 \subsubsection{Data distribution estimation}
+Data distribution is a basic and important property of a data stream. Sampling is a simple and fast method to estimate data distributions, however, sampling will lose much inforamtion of data streams and cause big errors sometimes. From Figure \ref{fig:sim}, we can observe that low-frequency elements have a great influence on data distributions of most data streams, in fact, low-frequency elements dominate the distinct elements in data streams of various distributions which can be seen in our experiments. \par 
+In fact, \emph{BFSS} and \emph{SBFSS} can find both frequent and low-frequency items in data streams efficiently, and in this way we can get much more accurate estimates of data distributions of data streams.
 
 \subsection{Our Contributions}
 We introduce and state the proplem of low-frequency items detection over data streams which are of great significance in areas such as individual requirements mining and data distribution estimation, and to the best of our knowledge there is no relative research up to now.\par
@@ -509,13 +509,8 @@ This section presents the problem statement and some representative algorithms s
 		$f_S(e)$ & The frequency of element $e$ in $S$\\ 
 		\emph{FPs} &The elements in $S$ with frequency no less than $\lfloor \phi N\rfloor$\\& wrongly output\\
 		\emph{FNs} & The elements in $S$ with frequency less than $\lfloor \phi N\rfloor$ \\&wrongly neglected\\
-		\hline \multicolumn{2}{l}{notation specially used in \emph{BFSS}}\\
-		\hline
 		\emph{BF}  &The Bloom filter used in \emph{BFSS}\\
 		$K$ & The size of \emph{BF}\\
-        \hline
-       \multicolumn{2}{l}{notation specially used in \emph{SBFSS}}\\
-       \hline
        \emph{SBF} &The Stable Bloom filter used in \emph{SBFSS}\\
         $K'$ & The size of \emph{SBF}\\
         $k$  &  Number of cells used in \emph{SBF}\\
@@ -1008,6 +1003,10 @@ For \emph{SBFSS}, Processing each data stream element needs $O(1)$ time, indepen
 \begin{IEEEproof}
 Like \emph{BFSS}, the processing time for each element also consists two parts: i) the time spent updating \emph{SBF}; ii) the time spent updating $D$. In fact, from Algorithm \ref{alg:bfss} and Algorithm \ref{alg:sbfss}, we can see that \emph{BFSS} and \emph{SBFSS} share the same operations on $D$, so for \emph{SBFSS}, the time spent updating $D$ is constant once $\phi$ is confirmed, which means the size of space has no impact on it. For the first part, a detailed explaination has been given in [] to prove that the time spent updating \emph{SBF} is O(1), independent of the size of space and the stream. Therefore the time complexity of \emph{SBFSS} is O(1).
 \end{IEEEproof}
+
+
+\section{Experiments}
+In this section, we 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
