@@ -630,7 +630,6 @@ Algorithm \ref{alg:output} checks and outputs the element with frequency less th
 \subsection{Analysis of BFSS}
 In this section, we present a theoretical analysis of \emph{BFSS} described in Section \ref{sec:bfss}. We analyze \emph{FNs}, \emph{FPs}, space complexity, and time complexity. At last, we will identify the challenges to \emph{BFSS}. \par
 
-
 \subsubsection{\textbf{Analysis of FNs}}
 In this section, we will prove that there are no \emph{FNs} in the output of \emph{BFSS}. The proof is based on Lemma \ref{lem:1} to Lemma \ref{lem:5}, and the detailed proof of Lemma \ref{lem:1} to Lemma \ref{lem:3} can be found in [].\par
 
@@ -709,6 +708,13 @@ From Lemma \ref{lem:3}, we can easily get $f(e)\leq f(e)-\Delta(e)+min$. $f(e)-\
 We only hava to prove that the elements we don't output contain no low-frequency elements. From Algorithm 1, only two kinds of elements are not ouput: i) elements filtered out by the \emph{BF}. ii) elements monitored in $D$ with $f(e)-\Delta(e)>\lfloor \phi N\rfloor$. The first kind of elements are obviously not low-frequency elements because they never appeared in $S$. From Lemma \ref{lem:5}, we know that the elements monitored in $D$ with $f(e)-\Delta(e)>\lfloor \phi N\rfloor$, must satisfy $f_S(e)>\lfloor \phi N\rfloor$. 
 \end{IEEEproof}
 
+\begin{figure}
+	\centering
+	\includegraphics[width=2.8in]{png/bfss.png}
+	\caption{Schematic diagram of the analysis of \emph{BFSS}}
+	\label{fig:bfss}
+\end{figure}
+
 \subsubsection{\textbf{Analysis of FPs}}
 In this section, we will give a theoretically strict bound of expectation of number of \emph{FPs} in output of \emph{BFSS} regardless of data distribution of $S$, and a tighter bound can be derived for data stream under Pareto distribution [].
 
@@ -743,7 +749,7 @@ E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lceil\frac{1}{\phi}\rceil
 \end{theorem}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output.\par
+From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. The two cases correspond to the gray areas in Fig. \ref{fig:bfss} which is abstracted out from the analysis of \emph{BFSS}. Concretely speaking, the ligth gray area represents the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output, i.e. the second case, and the dark gray area represents the elements not filtered out by \emph{BF}, i.e. the first case. Furthermore, the output of \emph{BFSS} is represented by $V$, therefore the exact low-frequency elements in $S$ is represented by $II-IV$.\par
 For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.\par 
 For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\lceil\frac{1}{\phi}\rceil$. From above, due to the linear properties of expectation, we can get:
 \begin{equation}\label{eq:8}
@@ -773,6 +779,8 @@ where $x_m$ is the minimum possible value of $X$, and $\alpha$ is a positive par
 \end{IEEEproof}
 We may not calculate the exact value of $T$ because we can't get the exact value of $f_S(e_m)$, however, once a query comes, the parameters are confirmed and so is the value of $T$, furthermore, the upper bound of the value of $E(\#FPs)$ is confirmed as well. In this sense, it is meaningful to give the expression of $T$.\par
 From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, and our goal is to minimize the value of  $E(\#FPs)$ by choosing the appropriate values. In addtion, the value of $K$ directly influence the space complexity of \emph{BFSS}, so we will make some analysis of the values of $K$ and $H$ then.
+
+
 \subsubsection{\textbf{Space complexity}}\label{sec:space}
 In this section, we will give some analysis of the space complexity of \emph{BFSS} including how to choose the appropriate values of $H$ and $K$.
 
@@ -960,12 +968,14 @@ PR_0(\delta_i,p'_{ij})=\sum_{l=max}^{\delta_i-1}[Pr(SBF_{\delta_i}=0|A_l)Pr(A_l)
 \end{split}
 \end{equation}
 where 
+\setlength{\arraycolsep}{0.0em}
 \begin{eqnarray}\label{eq:19}
 Pr(SBF_{\delta_i}=0|A_l)&=&\sum_{j=max}^{l}\left(^l_j\right)p^j(1-p)^{l-j}\\
 Pr(A_l)&=&(1-p'_{ij})^lp'_{ij}\\
 Pr(SBF_{\delta_i}=0|A'_{\delta_i})&=&\sum_{j=max}^{\delta_i}\left(^{\delta_i}_j\right)p^j(1-p)^{\delta_i-j}\\
 Pr(A'_{\delta_i})&=&(1-p'_{ij})^{\delta_i}
 \end{eqnarray}
+\setlength{\arraycolsep}{5pt}
 Based on E.q \ref{eq:18}, the expected value of the false negatives of \emph{SBF}, $E(\#FN)$, can be easily derived, and the tailed derivation of E.q \ref{eq:18} and Lemma \ref{lem:9} can be found in [], therefore no more tautology here.\par
 
 \begin{lemma}\label{lem:9}
