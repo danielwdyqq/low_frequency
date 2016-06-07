@@ -656,11 +656,12 @@ Lemma \ref{lem:1} can be written as:
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:3}
-	For any element $e \in E$, $0 \leq \Delta(e) \leq min$. 
+	For any element $e \in E$, $0 \leq \Delta(e) \leq \lfloor\phi N\rfloor$. 
 \end{lemma}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, $\Delta(e)$ is non-negative because any observed element is always given the benefit of doubt. $\Delta(e)$ is always assigned the value of the minimum counter at the time $e$ started being observed. Since the value of the minimum counter monotonically increases over time until it reaches the current $min$, then for all monitored elements $\Delta(e) \leq min$.
+From Algorithm \ref{alg:bfss}, $\Delta(e)$ is non-negative because any observed element is always given the benefit of doubt. $\Delta(e)$ is always assigned the value of the minimum counter at the time $e$ started being observed. Since the value of the minimum counter monotonically increases over time until it reaches the current $min$, then for all monitored elements $\Delta(e) \leq min$.\par
+Consider thses two cases: i) If $m=\lceil \frac{1}{\phi}\rceil$, $min\leq \lfloor\phi N\rfloor$; ii) if $m<\lceil \frac{1}{\phi}\rceil$, $\Delta(e)=0$. For any case, we have $0 \leq \Delta(e) \leq \lfloor\phi N\rfloor$.
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:4}
@@ -688,7 +689,7 @@ After adding up the left and right sides of inequality group \ref{eqnarray:1}, w
 \Delta(e_1)+\sum_{j=1}^{i}n_j\leq min
 \end{equation}\par
 We can get $f_S(e)\leq min$ from equation \ref{equa:2} and inequation \ref{equa:3}. This contradicts the condition $f_S(e)>min$.\par
-In fact, Lemma \ref{lem:4} can also be stated as: For any element $e\notin E$, $f_S(e)\leq min$. 
+In fact, Lemma \ref{lem:4} can also be stated as: For any element $e\notin E$ in $S$, $f_S(e)\leq min\leq \lfloor\phi N\rfloor$.  
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:5}
@@ -723,7 +724,7 @@ In this section, we will give a theoretically strict bound of expectation of num
 \end{lemma}
 
 \begin{IEEEproof}
-From Lemma \ref{lem:4}, we know that any element $e$ with $f_S(e)>2\lfloor \phi N\rfloor$ must be monitored in $D$, i.e. $e\in E$. Then from Lemma \ref{lem:5}, we can get that elements monitored in $D$ must satisfy $f_S(e)\leq f(e)$, and that is to say any element $e$ monitored in $D$ with $f_S(e)>2\lfloor \phi N\rfloor$, must satisfy $f(e)>2\lfloor \phi N\rfloor$. At last from Algorithm \ref{alg:bfss}, we can prove that any element $e$ with $f_S(e)>2\lfloor \phi N\rfloor$, must not be output.
+From Lemma \ref{lem:4}, we know that any element $e$ with $f_S(e)>2\lfloor \phi N\rfloor$ must be monitored in $D$, i.e. $e\in E$. Then from Lemma \ref{lem:5}, we can get that elements monitored in $D$ must satisfy $f_S(e)\leq f(e)$, and that is to say any element $e$ monitored in $D$ with $f_S(e)>2\lfloor \phi N\rfloor$, must satisfy $f(e)>2\lfloor \phi N\rfloor$. At last from Lemma \ref{lem:3}, we can prove that any element $e$ with $f(e)>2\lfloor \phi N\rfloor$, must satisfy $f(e)>\lfloor \phi N\rfloor+\Delta(e)$, which means $e$ will not be output.
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:7}
@@ -749,7 +750,7 @@ E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lceil\frac{1}{\phi}\rceil
 \end{theorem}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. The two cases correspond to the gray areas in Fig. \ref{fig:bfss} which is abstracted out from the analysis of \emph{BFSS}. Concretely speaking, the ligth gray area represents the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output, i.e. the second case, and the dark gray area represents the elements not filtered out by \emph{BF}, i.e. the first case. Furthermore, the output of \emph{BFSS} is represented by $V$, therefore the exact low-frequency elements in $S$ is represented by $II-IV$.\par
+From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. The two cases correspond to the gray areas in Fig. \ref{fig:bfss} which is abstracted out from the analysis of \emph{BFSS}. Concretely speaking, the ligth gray area represents the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output, i.e. the second case, and the dark gray area represents the elements not filtered out by \emph{BF}, i.e. the first case. Furthermore, the output of \emph{BFSS} is represented by $II+III+IV$, and the exact low-frequency elements in $S$ is represented by $III$.\par
 For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.\par 
 For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\lceil\frac{1}{\phi}\rceil$. From above, due to the linear properties of expectation, we can get:
 \begin{equation}\label{eq:8}
