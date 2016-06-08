@@ -479,7 +479,7 @@ In this paper, we propose \emph{BFSS}, which extends the classic frequent items 
 However, size of a Bloom filter must increase with the size of domain in order to keep a low false positive rate, and here comes a problem: what if the domain is too large to be handled by a Bloom filter in a limited space? Inspired by the solution presented in [], we propose \emph{SBFSS} which extends \emph{BFSS} to deal with data streams from large domains, and \emph{SBFSS} gurantee acceptable and bounded false negatives and false positives using a proper space.
 
 \subsection{Roadmap}
-In Section 2, we present the problem statement and some background on existing approches which deal with the problem of frequent items detection. Our solutions are presented and discussed in Section 3. In Section 4, we discuss how our algorithms can be used in practice. In Section 5, we experimentally evaluate out methods. Conclusions are given in Section 6.
+In Section 2, we present the problem statement and some background on existing approches which deal with the problem of frequent items detection. Our solutions are presented and discussed in Section 3. In Section 4, we experimentally evaluate out methods. Conclusions are given in Section 5.
 
 \section{PRELIMINARIES}
 This section presents the problem statement and some representative algorithms solvimg $\epsilon$\emph{-Deficient Frequent Elements} [sticky sampling] which will be formally defined below.Table \ref{tab:list} summarizes the major notation in this paper.
@@ -763,10 +763,12 @@ However, from the derivation above, we can see that $\frac{1}{\phi}$ is a loose 
 
 \begin{theorem}\label{thm:3}
 Assuming noiseless Pareto data with parameter $\alpha$ and $f_S(e_m)$, where $\alpha (\alpha >0)$ and $e_m$ denotes the element with the lowest freqeuncy, we have:
-\begin{eqnarray}\label{eq:10}
-	E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + T\\
-	T=min(\frac{1}{\phi},(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M)
+\setlength{\arraycolsep}{0.0em}
+\begin{eqnarray}
+	E(\#FPs)&<&M(1-(1-\frac{1}{K})^{HM})^H + T\\
+	T&=&(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M\label{eq:10}
 \end{eqnarray}
+\setlength{\arraycolsep}{5pt}
 \end{theorem}
 
 \begin{IEEEproof}
@@ -937,6 +939,7 @@ Intuitively, due to the random deletion operation, \emph{SBF} does not exceed it
 Like \emph{BFSS}, we will give theoretical analysis of \emph{SBFSS} in this section, including the equivalence of \emph{SBF'} (the \emph{SBF} used in []) and \emph{SBF}, \emph{FNs}, \emph{FPs}, parameters setting, and time complexity.\par
 \subsubsection{\textbf{Analysis of the equivalence of SBF' and SBF}}
 \emph{SBF'} is used to detect duplicates over data streams, in fact, from Algorithm \ref{alg:sbfss} and Algorithm \ref{alg:soutput}, we can observe that \emph{SBF} is used to filter out the elements that never appeared in $S$, and we check whether the element in $A$ is duplicated one by one, if the element is a duplicate, we just claim it appeared in $S$, in this sense, \emph{SBF'} and \emph{SBF} share the same function. So the properties of \emph{SBF'}, including the probability of a false positive and a false negative of \emph{SBF'}, are fully applicable to \emph{SBF}.\par
+
 \subsubsection{\textbf{Analysis of FPs}}
 In this section, we will give a theoretically upper bound of the expectation of the number of \emph{FPs} in the ouput of \emph{SBFSS}.\par
 The detailed proof of Lemma \ref{lem:8} can be found in []. Because of the limitation of length, no more tautology here.
@@ -955,11 +958,20 @@ E'(\#FPs)<M(1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H + \lceil\frac{1}{\phi}
 \end{theorem}
 
 \begin{IEEEproof}
-In fact, the only difference between the number of \emph{FPs} of \emph{SBFSS} and the number of \emph{FPs} of \emph{BFSS} exists in the number of \emph{FPs} caused by the Bloom filter, and the derivation of $E'(\#FPs)$ is exactly the same as $E(\#FPs)$, therefore based on the probability of a false positive of \emph{SBF} given in Lemma \ref{lem:8}, we can easily get the upper bound of $E'(\#FPs)$.
+From Fig. \ref{fig:sbfss}, we notice that the \emph{FPs} of \emph{SBFSS} has two parts: i) the false positives of \emph{SBF}, i.e. $II$; ii) the elements with $f_S(e)>\lfloor\phi N\rfloor$ wrongly output, i.e. $VI$. In fact, $V$ is the only difference between the \emph{FPs} of \emph{SBFSS} and the \emph{FPs} of \emph{BFSS}, for \emph{BFSS}, the elements in $V$ will be output, however, due to the false negatives of \emph{SBF} in \emph{SBFSS}, i.e. $IV+V+VIII$, the elements in $V$ will be neglected by \emph{SBFSS}, in this sense, the false negatives of \emph{SBF} inversely reduce the number of \emph{FPs} of \emph{SBFSS}. \par
+For the first case, we can get the upper bound of the expectation of the number of the false positives of \emph{SBF} through Lemma \ref{lem:8}. For the second case, it is clearly to see from Fig. \ref{fig:sbfss} that the maximum of the area of $VI$ is $\lceil\frac{1}{\phi}\rceil$, which is the area of the square surrounded by dotted lines, and obviously it is a loose bound. The residual derivation is obvious and exactly the same as Theorem \ref{thm:2}, and no more tautology here.
 \end{IEEEproof}
+Like \emph{BFSS}, a tighter bound of the area of $VI$ can be obtained if we assume the distribution of $S$, and the bound is $(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M$, the derivation of which is exactly the same as E.q. \ref{eq:10}, if the distribution is Pareto. In addition, due to the exsitence of $V$, the number of the elemens with $f_S(e)>\lfloor\phi N\rfloor$ wrongly output is smaller than that of \emph{BFSS} regardless of the data distribution of $S$. 
+\begin{figure}
+	\centering
+	\includegraphics[width=2.8in]{png/sbfss.png}
+	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
+	\label{fig:sbfss}
+\end{figure}
 
 \subsubsection{\textbf{Analysis of FNs}}
 In this section, unlike \emph{BFSS}, we will give a theoretically upper bound of the expectation of the number of \emph{FNs} in the ouput of \emph{SBFSS}. \par
+From Fig. \ref{alg:sbfss}, we can see that the \emph{FNs} of \emph{SBFSS}, $IV$, is a portion of the false negatives of \emph{SBF}, $IV+V+VIII$. Therefore the upper bound of the number of \emph{FNs} in the output of \emph{SBFSS} is the number of the false negatives of \emph{SBF}.\par
 First, let us consider the probability of a false negative of \emph{SBF} which is an error when an element in $S$ wrongly filtered out by \emph{SBF}. Therefore only the elements in $S$ can generate false negatives, obviously the number of false negatives is related to the input data distribution.\par
 Suppose an element $A[i]$ appearing in $S$ whose last appearence in $S$ before a query comes is $e_{i-\delta_i}$, where $\delta_i$ represents the number of elements in $S$ during the time between the last appearance of $A[i]$ and a query, is hashed into $H$ cells, $SBF[C_{i1}],...,SBF[C_{iH}]$. A false negative happens if any of those $H$ cells is decremented to 0 during the $\delta_i$ iterations when a query comes. Let $PR_0(\delta_i,p'_{ij})$ be the probability that cell $C_{ij} (j = 1...H)$ is decremented to 0 within the $\delta_i$ iterations, and $A_l$ denotes the event that within the $N$ iterations the most recent setting operation applied to the cell occurs at iteration $N-l$, and $A'_N$ denotes the event that cell has never been set within the whole $N$ iterations. $PR_0(\delta_i,p'_{ij})$ can be computed as:
 \begin{equation}\label{eq:18}
@@ -994,7 +1006,7 @@ E(\#FN)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
 \end{theorem}
 
 \begin{IEEEproof}
-Like \emph{FPs}, two kinds of elements contribute to \emph{FNs}: i) the elemtents with $0<f_S(e)\leq\lfloor \phi N\rfloor$ wrongly filtered out by \emph{SBF}; ii) the elemtents with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. In fact, elements with $f_S(e)\leq\lfloor \phi N\rfloor$ must satisfy $f(e)\leq\lfloor \phi N\rfloor+\Delta(e)$, which means no elements with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. For the first case, we assume that the false negatives are all elements with $0<f_S(e)\leq\lfloor \phi N\rfloor$, which is the worst case, and in this way we have $E(\#FN)=E(\#FNs)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]\leq M[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]$.
+Like \emph{FPs}, two kinds of elements contribute to \emph{FNs}: i) the elemtents with $0<f_S(e)\leq\lfloor \phi N\rfloor$ wrongly filtered out by \emph{SBF}; ii) the elemtents with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. In fact, elements with $f_S(e)\leq\lfloor \phi N\rfloor$ must satisfy $f(e)\leq\lfloor \phi N\rfloor+\Delta(e)$, which means no elements with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. For the first case, we assume that the false negatives are all elements with $0<f_S(e)\leq\lfloor \phi N\rfloor$, i.e. neglecting $V+VIII$ in Fig. \ref{fig:sbfss}, which is the worst case, and in this way we have $E(\#FN)=E(\#FNs)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]\leq M[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]$.
 \end{IEEEproof}
 From E.q \ref{eq:17}, we observe that the upper bound of $E'(\#FPs)$ is completely related to \emph{SBF} once the parameter $\phi$ is confirmed, and the upper bound of $E'(\#FNs)$ is totally related to \emph{SBF} which can be observed from E.q \ref{eq:24}. In this way, we will give some analysis of how to choose appropriate parameters of \emph{SBF} next.
 
@@ -1017,7 +1029,10 @@ Like \emph{BFSS}, the processing time for each element also consists two parts: 
 
 
 \section{Experiments}
-In this section, we 
+In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}. We tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the most naive method \emph{NCount} (allocating each element in $A$ a counter). We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{NCount}, which is essential to handle data streams. For \emph{SBFSS}, we measured the \emph{recall} and \emph{precision} under different parameter settings on both real and synthetic data sets. Last, we give a summarization of the experimental results.\par
+\subsection{Data Sets}
+\textbf{Real Data.} We \par
+\textbf{Synthetic Data.}
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
