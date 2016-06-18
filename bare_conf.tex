@@ -1029,13 +1029,25 @@ Like \emph{BFSS}, the processing time for each element also consists two parts: 
 
 
 \section{Experiments}
-In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}. We tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the most naive method \emph{nCount} (allocating each element in $A$ a counter). We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{nCount}, which is essential to handle data streams. For \emph{SBFSS}, we measured the \emph{recall} and \emph{precision} under different parameter settings on both real and synthetic data sets. Last, we give a summarization of the experimental results.\par
+In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{nCount}, which is essential to handle data streams. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} in limited space of different size on real data sets. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
 \subsection{Data Sets}
-\textbf{Real Data.} We \par
+\textbf{Real Data.} For real data experiments, we used the dataset which consists of all the requests made to the 1998 World Cup Web site between April 30, 1998 and July 26, 1998 []. We extracted $7\times10^7$ URLs in total.\par
 \textbf{Synthetic Data.} We generated several synthetic Zipﬁan data sets with the Zipf parameter varying from 0.5, which is very slightly uniform, to 3.0, which is highly skewed, with a fixed increment of 0.5. The size of each data set, N, is $10^7$, and the alphabet was of size $10^6$.
 \subsection{Implementation Issues}
-\textbf{\emph{BFSS} Implementation.} \par
-\textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct element in $S$ a counter, however, if we store the raw elements, it may consume too much space especially when the elements are URLs, therefore we use Rabin's method [] to hash each element in $S$ to a 32-bit fingerprint.
+\textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream element into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+
+\textbf{\emph{SBFSS} Implementation.} The only difference between the It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream element into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+
+
+\textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct element in $S$ a counter, however, if we store the raw elements, it may consume too much space especially when the elements are URLs, therefore we use Rabin's method [] to hash each element in $S$ to a 64-bit fingerprint. With this ﬁngerprinting technique, there is a very small chance that two diﬀerent URLs are mapped to the same fingerprint. In addition, we use a hash table to index these counters in order to speedup updating. When an element comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check the corresponding counter and output it if it is a low-freqeuncy element.\par
+
+\begin{figure}
+	\centering
+	\includegraphics[width=2.8in]{png/zipf-recall.png}
+	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
+	\label{fig:zipf-recall}
+\end{figure}
+
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -1122,7 +1134,10 @@ In this section, we first describe our data sets and the implementation details 
 
 
 \section{Conclusion}
-The conclusion goes here.
+Low-frequency items in data streams contain much useful information which can be widely used in commercial decision-making, data analysis, etc., and locating them is the first step. We present \emph{BFSS}, an effective and space efficient algorithm that aims to solve the problem \emph{$\phi$-Bounded Low-Frequency Elements} approximately. \emph{BFSS} can output all low-frequency items, i.e. no \emph{FNs}, and only a few frequent items, the number of which can be theoretically bounded. The experimental results show the recall of \emph{BFSS} is 1 and the precision can be above 0.9 using a small space. When the memory is limited and \emph{BFSS} can not guarantee high precision, we propose \emph{SBFSS} which can guarantee high precision and theoretically bounded recall using a limited space. \par
+The future directions of our work can be, but are not limited to: 1) output low-frequency items along with their approximate frequencies. 2) handle sliding window queries. 3) support both insertion and deletion of elements. 4) find low-frequency item sets. In fact, like frequent elements, there are many work can be done towards low-frequency elements, however, due to the special features of them, we still have a long and tough way to go and we just take a small step forward.
+
+
 
 
 
