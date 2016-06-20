@@ -126,6 +126,7 @@
 
 % *** GRAPHICS RELATED PACKAGES ***
 %
+
 \ifCLASSINFOpdf
    \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
@@ -952,14 +953,15 @@ The probability of a false positive (FP) of \emph{SBF} is no greater than :
 
 \begin{theorem}\label{thm:6}
 Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{SBFSS}, denoted as $E'(\#FPs)$, satisfies:
-\begin{equation}\label{eq:17}
-E'(\#FPs)<M(1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H + \lceil\frac{1}{\phi}\rceil
-\end{equation}
+\begin{eqnarray}\label{eq:17}
+E'(\#FPs)<M \min \{(1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H,\\\nonumber
+	(1-(1-\frac{1}{k})^{HM})^H\} + \lceil\frac{1}{\phi}\rceil
+\end{eqnarray}
 \end{theorem}
 
 \begin{IEEEproof}
 From Fig. \ref{fig:sbfss}, we notice that the \emph{FPs} of \emph{SBFSS} has two parts: i) the false positives of \emph{SBF}, i.e. $II$; ii) the elements with $f_S(e)>\lfloor\phi N\rfloor$ wrongly output, i.e. $VI$. In fact, $V$ is the only difference between the \emph{FPs} of \emph{SBFSS} and the \emph{FPs} of \emph{BFSS}, for \emph{BFSS}, the elements in $V$ will be output, however, due to the false negatives of \emph{SBF} in \emph{SBFSS}, i.e. $IV+V+VIII$, the elements in $V$ will be neglected by \emph{SBFSS}, in this sense, the false negatives of \emph{SBF} inversely reduce the number of \emph{FPs} of \emph{SBFSS}. \par
-For the first case, we can get the upper bound of the expectation of the number of the false positives of \emph{SBF} through Lemma \ref{lem:8}. For the second case, it is clearly to see from Fig. \ref{fig:sbfss} that the maximum of the area of $VI$ is $\lceil\frac{1}{\phi}\rceil$, which is the area of the square surrounded by dotted lines, and obviously it is a loose bound. The residual derivation is obvious and exactly the same as Theorem \ref{thm:2}, and no more tautology here.
+In fact, the posibility of a false positive of \emph{SBF} must be smaller than that of \emph{BF} under the same conditions because \emph{SBF} brings in decrement operation. For the first case, we can get the upper bound of the expectation of the number of the false positives of \emph{SBF} through Lemma \ref{lem:7} and Lemma \ref{lem:8}. For the second case, it is clearly to see from Fig. \ref{fig:sbfss} that the maximum of the area of $VI$ is $\lceil\frac{1}{\phi}\rceil$, which is the area of the square surrounded by dotted lines, and obviously it is a loose bound. The residual derivation is obvious and exactly the same as Theorem \ref{thm:2}, and no more tautology here.
 \end{IEEEproof}
 Like \emph{BFSS}, a tighter bound of the area of $VI$ can be obtained if we assume the distribution of $S$, and the bound is $(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M$, the derivation of which is exactly the same as E.q. \ref{eq:10}, if the distribution is Pareto. In addition, due to the exsitence of $V$, the number of the elemens with $f_S(e)>\lfloor\phi N\rfloor$ wrongly output is smaller than that of \emph{BFSS} regardless of the data distribution of $S$. 
 \begin{figure}
@@ -1030,23 +1032,57 @@ Like \emph{BFSS}, the processing time for each element also consists two parts: 
 
 \section{Experiments}
 In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{nCount}, which is essential to handle data streams. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} in limited space of different size on real data sets. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
+\begin{figure*}[!t]
+	\begin{minipage}{0.3\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/zipf-recall.png}
+	\end{minipage}
+	\begin{minipage}{0.3\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/zipf-recall.png}
+	\end{minipage}
+	\begin{minipage}{0.3\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/zipf-recall.png}
+	\end{minipage}
+	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
+	\label{fig:zipf-recall}
+\end{figure*}
+
+\begin{table*}[!t] 
+\centering 
+\caption{Network Delay as a Function of Load} 
+\label{table_delay} 
+\begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{x/r/Vx/r/v/r/x}
+\IEEEeqnarraydblrulerowcut\\ 
+&&&&\IEEEeqnarraymulticol{3}{t}{Precision}&\\ &\hfill\raisebox{-3pt}[0pt][0pt]{$\beta$}\hfill&&\IEEEeqnarraymulticol{5}{h}{}%
+\IEEEeqnarraystrutsize{0pt}{0pt}\\ 
+&&&&\hfill0.1\hfill&&\hfill 0.01\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ \IEEEeqnarraydblrulerowcut\\ 
+&1&&& 0.057&& 0.172&\\ 
+&10&&& 0.124&& 0.536&\\ 
+&100&&& 0.830&& 0.905\rlap{\textsuperscript{*}}&\\ 
+\IEEEeqnarraydblrulerowcut\\ 
+
+\end{IEEEeqnarraybox} 
+\end{table*} 
+
+
 \subsection{Data Sets}
 \textbf{Real Data.} For real data experiments, we used the dataset which consists of all the requests made to the 1998 World Cup Web site between April 30, 1998 and July 26, 1998 []. We extracted $7\times10^7$ URLs in total.\par
 \textbf{Synthetic Data.} We generated several synthetic Zipﬁan data sets with the Zipf parameter varying from 0.5, which is very slightly uniform, to 3.0, which is highly skewed, with a fixed increment of 0.5. The size of each data set, N, is $10^7$, and the alphabet was of size $10^6$.
 \subsection{Implementation Issues}
 \textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream element into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
 
-\textbf{\emph{SBFSS} Implementation.} The only difference between the It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream element into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+\textbf{\emph{SBFSS} Implementation.} The only difference between \emph{BFSS} implementation and \emph{SBFSS} implementation is the implementation of \emph{BF} and \emph{SBF}. For \emph{SBF}, we generate a random number in each iteration, decrement the corresponding cell and $(P-1)$ cells adjacent to it by 1; this process is faster than generating $P$ random numbers for each element; although the processes of picking the $P$ cells are not independent, each cell has a probability of $P/k$ for being picked at each iteration. Our analysis still holds. Then we hash each incoming stream element to $H$ numbers , and set the corresponding $H$ cells to max. In order to minimum the number of \emph{FNs}, we empirically set $max=3, H=4$ and $P=1$.\par
+
+\textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct element in $S$ a counter, we use a hash table to index these counters to speedup updating, and it is time consuming if we use a linked list or an array. When an element comes, we increment the corresponding counter using hash table. When a query comes, we traverse the hash table and output the low-frequency elements. \par
 
 
-\textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct element in $S$ a counter, however, if we store the raw elements, it may consume too much space especially when the elements are URLs, therefore we use Rabin's method [] to hash each element in $S$ to a 64-bit fingerprint. With this ﬁngerprinting technique, there is a very small chance that two diﬀerent URLs are mapped to the same fingerprint. In addition, we use a hash table to index these counters in order to speedup updating. When an element comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check the corresponding counter and output it if it is a low-freqeuncy element.\par
+\textbf{\emph{rCount} Implementation.} \emph{rCount} shares a similar idea with \emph{nCount}, however, unlike \emph{nCount}, \emph{rCount} uses Rabin's method [] to hash each element in $S$ to a 64-bit fingerprint, or it will consume too much space especially when the elements are URLs. With this fingerprinting technique, there is a small chance that two diﬀerent URLs are mapped to the same fingerprint. When an element comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check the corresponding counter and output it if it is a low-frequency element.\par
 
-\begin{figure}
-	\centering
-	\includegraphics[width=2.8in]{png/zipf-recall.png}
-	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
-	\label{fig:zipf-recall}
-\end{figure}
+\textbf{\emph{lCount} Implementation.} \emph{lCount} maintains a limited and fixed space, like \emph{rCount}, \emph{lCount} uses Rabin's method in order to adjust the space consumption through the maximum number of counters \emph{lCount} can maintain. In addition, we use a max heap to index the counters in \emph{lCount}. When an element comes, if there exists an empty counter, we insert a new counter into the heap, otherwise we replace the top counter of the heap, i.e. the counter with the maximum value, and set the value of the new counter to 1, at last we readjust the heap. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check if the corresponding counter exists in the heap and output it if it is a low-frequency element.
+
+
 
 
 % An example of a floating figure using the graphicx package.
