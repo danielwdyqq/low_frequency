@@ -355,7 +355,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Taking One Small Step Forward:\\Finding Low-Frequentcy Items in Data Streams}
+\title{Taking One Small Step Forward:\\Finding Low-Frequency Items in Data Streams}
 
 
 % author names and affiliations
@@ -1033,17 +1033,18 @@ Like \emph{BFSS}, the processing time for each element also consists two parts: 
 \section{Experiments}
 In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{nCount}, which is essential to handle data streams. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} in limited space of different size on real data sets. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
 \begin{figure*}[!t]
+\centering
 	\begin{minipage}{0.3\linewidth}
-		\centering
-		\includegraphics[width=2.8in]{png/zipf-recall.png}
+	\centering
+		\includegraphics[width=2.5in]{png/recall.png}
 	\end{minipage}
 	\begin{minipage}{0.3\linewidth}
 		\centering
-		\includegraphics[width=2.8in]{png/zipf-recall.png}
+		\includegraphics[width=2.5in]{png/precision.png}
 	\end{minipage}
 	\begin{minipage}{0.3\linewidth}
 		\centering
-		\includegraphics[width=2.8in]{png/zipf-recall.png}
+		\includegraphics[width=2.5in]{png/space.png}
 	\end{minipage}
 	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
 	\label{fig:zipf-recall}
@@ -1052,32 +1053,78 @@ In this section, we first describe our data sets and the implementation details 
 \begin{table*}[!t] 
 \centering 
 \caption{Network Delay as a Function of Load} 
-\label{table_delay} 
-\begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{x/r/Vx/r/Vx/r/v/r/Vx/r/v/r/x}
-\IEEEeqnarraydblrulerowcut\\ 
-&&&&&&\IEEEeqnarraymulticol{3}{t}{Precision}&&&\IEEEeqnarraymulticol{3}{t}{Recall}\\ &\hfill\raisebox{-3pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-3pt}[0pt][0pt]{$\beta$}\hfill&&\IEEEeqnarraymulticol{10}{h}{}%
+\label{tab:bfss} 
+\begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
+\hline
+&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision}&&&\IEEEeqnarraymulticol{7}{t}{Recall}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
 \IEEEeqnarraystrutsize{0pt}{0pt}\\ 
-&&&&&&\hfill0.1\hfill&&\hfill 0.01\hfill&&&&\hfill0.1\hfill&&\hfill 0.01\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
+&&&&&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
 \IEEEeqnarraydblrulerowcut\\ 
-&1&&& 0.057&&& 0.172&\\ 
-&10&&& 0.124&&& 0.536&\\ 
-&100&&& 0.830&&& 0.905\rlap{\textsuperscript{*}}&\\ 
-\IEEEeqnarraydblrulerowcut\\ 
-
+&\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
+\IEEEeqnarraystrutsize{0pt}{0pt}\\
+&&&&72KB&&&0.172&&0.29&&2121&&2121&&&1&&1&&1&&1&\\ 
+&&&&108KB&&&0.172&&0.29&&3525&&2121&&&1&&1&&1&&1&\\ 
+\hline
+&\hfill\raisebox{-13pt}[0pt][0pt]{0.001}\hfill
+\IEEEeqnarraystrutsize{0pt}{0pt}\\
+&&&&72KB&&&0.172&&0.29&&2121&&1&&&1&&1&&1&&1&\\ 
+&&&&108KB&&&0.172&&0.29&&3525&&1&&&1&&1&&1&&1&\\
+\IEEEeqnarrayrulerow
 \end{IEEEeqnarraybox} 
 \end{table*} 
 
-
+\begin{table*}[!t] 
+\centering 
+\caption{Network Delay as a Function of Load} 
+\label{tab:sbfss} 
+\begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
+\hline
+&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision (SBFSS / lCount)}&&&\IEEEeqnarraymulticol{7}{t}{Recall (SBFSS / lCount)}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
+\IEEEeqnarraystrutsize{0pt}{0pt}\\ 
+&&&&&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
+\IEEEeqnarraydblrulerowcut\\ 
+&\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
+\IEEEeqnarraystrutsize{0pt}{0pt}\\
+&&&&72KB&&&1/0.920&&1/0.930&&0.999/0.940&&1/0.959&&&0.432/0.315&&0.288/0.202&&0.208/0.153&&0.178/0.126&\\ 
+&&&&108KB&&&1/0.919&&1/0.932&&1/0.942&&1/0.960&&&0.473/0.476&&0.310/0.307&&0.236/0.230&&0.200/0.195&\\ 
+\hline
+&\hfill\raisebox{-13pt}[0pt][0pt]{0.001}\hfill
+\IEEEeqnarraystrutsize{0pt}{0pt}\\
+&&&&72KB&&&0.995/0.886&&0.980/0.906&&0.982/0.922&&0.990/0.907&&&0.328/0.294&&0.225/0.186&&0.159/0.141&&0.144/0.117&\\ 
+&&&&108KB&&&0.997/0.897&&0.987/0.904&&0.987/0.926&&0.994/0.952&&&0.406/0.459&&0.276/0.294&&0.200/0.220&&0.171/0.186&\\
+\IEEEeqnarrayrulerow
+\end{IEEEeqnarraybox} 
+\end{table*} 
+\begin{figure*}[!t]
+	\centering
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/001_72KB.png}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/001_108KB.png}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/0001_72KB.png}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/0001_108KB.png}
+	\end{minipage}
+	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
+	\label{fig:F1}
+\end{figure*}
 \subsection{Data Sets}
 \textbf{Real Data.} For real data experiments, we used the dataset which consists of all the requests made to the 1998 World Cup Web site between April 30, 1998 and July 26, 1998 []. We extracted $7\times10^7$ URLs in total.\par
 \textbf{Synthetic Data.} We generated several synthetic Zipﬁan data sets with the Zipf parameter varying from 0.5, which is very slightly uniform, to 3.0, which is highly skewed, with a fixed increment of 0.5. The size of each data set, N, is $10^7$, and the alphabet was of size $10^6$.
 \subsection{Implementation Issues}
 \textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream element into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
 
-\textbf{\emph{SBFSS} Implementation.} The only difference between \emph{BFSS} implementation and \emph{SBFSS} implementation is the implementation of \emph{BF} and \emph{SBF}. For \emph{SBF}, we generate a random number in each iteration, decrement the corresponding cell and $(P-1)$ cells adjacent to it by 1; this process is faster than generating $P$ random numbers for each element; although the processes of picking the $P$ cells are not independent, each cell has a probability of $P/k$ for being picked at each iteration. Our analysis still holds. Then we hash each incoming stream element to $H$ numbers , and set the corresponding $H$ cells to max. In order to minimum the number of \emph{FNs}, we empirically set $max=3, H=4$ and $P=1$.\par
+\textbf{\emph{SBFSS} Implementation.} The only difference between \emph{BFSS} implementation and \emph{SBFSS} implementation is the implementation of \emph{BF} and \emph{SBF}. For \emph{SBF}, we generate a random number in each iteration, decrement the corresponding cell and $(P-1)$ cells adjacent to it by 1; this process is faster than generating $P$ random numbers for each element; although the processes of picking the $P$ cells are not independent, each cell has a probability of $P/k$ for being picked at each iteration. Our analysis still holds. Then we hash each incoming stream element to $H$ numbers, and set the corresponding $H$ cells to max. Taking the number of \emph{FNs}, the number of \emph{FPs}, updating time and limited space we can use into consideration, we set $max=3, H=4$ and $P=1$.\par
 
 \textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct element in $S$ a counter, we use a hash table to index these counters to speedup updating, and it is time consuming if we use a linked list or an array. When an element comes, we increment the corresponding counter using hash table. When a query comes, we traverse the hash table and output the low-frequency elements. \par
-
 
 \textbf{\emph{rCount} Implementation.} \emph{rCount} shares a similar idea with \emph{nCount}, however, unlike \emph{nCount}, \emph{rCount} uses Rabin's method [] to hash each element in $S$ to a 64-bit fingerprint, or it will consume too much space especially when the elements are URLs. With this fingerprinting technique, there is a small chance that two diﬀerent URLs are mapped to the same fingerprint. When an element comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check the corresponding counter and output it if it is a low-frequency element.\par
 
