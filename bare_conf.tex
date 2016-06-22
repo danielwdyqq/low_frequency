@@ -1034,17 +1034,21 @@ Like \emph{BFSS}, the processing time for each element also consists two parts: 
 In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{nCount}, which is essential to handle data streams. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} in limited space of different size on real data sets. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
 \begin{figure*}[!t]
 \centering
-	\begin{minipage}{0.3\linewidth}
+	\begin{minipage}{0.4\linewidth}
 	\centering
-		\includegraphics[width=2.5in]{png/recall.png}
+		\includegraphics[width=2.8in]{png/recall.png}
 	\end{minipage}
-	\begin{minipage}{0.3\linewidth}
+	\begin{minipage}{0.4\linewidth}
 		\centering
-		\includegraphics[width=2.5in]{png/precision.png}
+		\includegraphics[width=2.8in]{png/precision.png}
 	\end{minipage}
-	\begin{minipage}{0.3\linewidth}
+	\begin{minipage}{0.4\linewidth}
 		\centering
-		\includegraphics[width=2.5in]{png/space.png}
+		\includegraphics[width=2.8in]{png/f1.png}
+	\end{minipage}
+	\begin{minipage}{0.4\linewidth}
+		\centering
+		\includegraphics[width=2.8in]{png/space.png}
 	\end{minipage}
 	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
 	\label{fig:zipf-recall}
