@@ -1,0 +1,213 @@
+
+ \begin{theindex} 
+ \makeatletter\scan@allowedfalse
+{\bfseries\hfil Symbols\hfil}\nopagebreak
+
+  \item \verb*+\@caption+\pfill \main{287}
+  \item \verb*+\@captype+\pfill 324, 336, 343, 347, 349, 350, 356, 357, 
+		431, 446, 458, 459, 480, 481, 488, 508, 521, 523, 524, 
+		542, 543, 545--548, 557, 558, 560--563, 590, 593--596, 
+		613, 619, 657, 674
+  \item \verb*+\@ccflagfalse+\pfill 573, 587, 642
+  \item \verb*+\@ccflagtrue+\pfill 597
+  \item \verb*+\@currentHref+\pfill 496, 550
+  \item \verb*+\@currentlabel+\pfill 582
+  \item \verb*+\@currentlabelname+\pfill 528, 538, 549
+  \item \verb*+\@currentlabstr+\pfill 537
+  \item \verb*+\@currname+\pfill 129, 213, 221
+  \item \verb*+\@dottedxxxline+\pfill 230, 256
+  \item \verb*+\@ehc+\pfill 110
+  \item \verb*+\@endfloatbox+\pfill 646, 647, 658, 675
+  \item \verb*+\@listsubcaptions+\pfill 488, \main{490}, 510, 514, 613, 
+		619, 657, 674
+  \item \verb*+\@newsubfloat+\pfill \main{242}
+  \item \verb*+\@subcaplabel+\pfill 437, 444
+  \item \verb*+\@tempa+\pfill 113--115, 194--196, 198, 201, 204
+  \item \verb*+\@tempb+\pfill 120, 121, 208, 209
+  \item \verb*+\@tempboxa+\pfill 375, 376, 378--380, 405, 408, 410, 412
+  \item \verb*+\@tempc+\pfill 200, 202, 209, 214
+  \item \verb*+\@tempcnta+\pfill 361, 363, 365, 386
+  \item \verb*+\@tempdima+\pfill 376, 454, 456, 471, 473, 476
+  \item \verb*+\@tempskipb+\pfill 393
+
+  \indexspace
+{\bfseries\hfil C\hfil}\nopagebreak
+
+  \item \verb*+\c@FRobj+\pfill 427
+  \item \verb*+\c@KVtest+\pfill 224
+  \item \verb*+\caption+\pfill 604, 605
+  \item \verb*+\caption@+\pfill 288, \main{504}
+  \item \verb*+\caption@ContinuedFloat+\pfill 594, \main{599}
+  \item \verb*+\caption@eh+\pfill 158, 180
+  \item \verb*+\caption@lstfmt+\pfill 160, 445, 541, 556
+  \item \verb*+\caption@make+\pfill 457, 479
+  \item \verb*+\caption@position+\pfill 148
+  \item \verb*+\caption@setfloattype+\pfill 234, 335, 507
+  \item \verb*+\caption@setformat+\pfill 5--7
+  \item \verb*+\caption@setjustification+\pfill 8--10, 30--38
+  \item \verb*+\caption@setlistofformat+\pfill \main{150}
+  \item \verb*+\caption@setsubrefformat+\pfill \main{172}
+  \item \verb*+\caption@settype+\pfill 233, 236, 237, 334, 342, 343, 
+		506
+  \item \verb*+\caption@subreffmt+\pfill 182, 544, 559
+  \item \verb*+\caption@tempa+\pfill 98, 100, 130, 215, 218, 225, 
+		227--229
+  \item \verb*+\caption@tempb+\pfill 99, 100, 221, 222
+  \item \verb*+\captionfont+\pfill 12--17
+  \item \verb*+\captionlabelfont+\pfill 18--26
+  \item \verb*+\captionlabelsep+\pfill 451
+  \item \verb*+\captionsetup+\pfill 48--59, 61, 64, 66, 228, 268, 289
+  \item \verb*+\captiontextfont+\pfill 39--47
+  \item \verb*+\ContinuedFloat+\pfill \main{574}
+
+  \indexspace
+{\bfseries\hfil D\hfil}\nopagebreak
+
+  \item \verb*+\DeclareCaptionListOfFormat+\pfill \main{150}
+  \item \verb*+\DeclareCaptionOption+\pfill 5--50, 52, 54--56, 58, 60, 
+		63, 167, 189
+  \item \verb*+\DeclareSubrefFormat+\pfill \main{172}
+  \item \verb*+\dimen@+\pfill 379--382, 464--467
+  \item \verb*+\dottedxxxline+\pfill \main{230}
+
+  \indexspace
+{\bfseries\hfil E\hfil}\nopagebreak
+
+  \item \verb*+\end@dblfloat+\pfill 91, 92, 608, \main{609}, 652, 669
+  \item \verb*+\end@float+\pfill 89, 90, 607, \main{609}, 665, 682
+  \item \verb*+\endfigure+\pfill 89
+  \item \verb*+\endtable+\pfill 90
+
+  \indexspace
+{\bfseries\hfil F\hfil}\nopagebreak
+
+  \item \verb*+\FB@readaux+\pfill 360, 469
+  \item \verb*+\FBafil+\pfill 412
+  \item \verb*+\FBbfil+\pfill 412
+  \item \verb*+\FBsc@max+\pfill 466, 467
+  \item \verb*+\FBso@max+\pfill 381, 382
+  \item \verb*+\FBsubcheight+\pfill 469, 470, 473
+  \item \verb*+\FBsuboheight+\pfill 360, 409, 412
+
+  \indexspace
+{\bfseries\hfil H\hfil}\nopagebreak
+
+  \item \verb*+\H@refstepcounter+\pfill 635, 636
+  \item \verb*+\hyperrefloadedtrue+\pfill 623
+
+  \indexspace
+{\bfseries\hfil I\hfil}\nopagebreak
+
+  \item \verb*+\if@ccflag+\pfill 572, 578, 639
+  \item \verb*+\if@twocolumn+\pfill 653, 670
+  \item \verb*+\ifhyperrefloaded+\pfill 525, 527, 535
+  \item \verb*+\ifmaincaptiontop+\pfill 242, 346, 367, 430
+  \item \verb*+\ifsf@usecaption+\pfill 127, 133, 305
+  \item \verb*+\ifsf@usecaptionfound+\pfill 125, 135, 308
+
+  \indexspace
+{\bfseries\hfil K\hfil}\nopagebreak
+
+  \item \verb*+\KV@@sp@def+\pfill 113, 120, 194, 208
+  \item \verb*+\KV@caption+\pfill 115, 124, 196, 311
+  \item \verb*+\KV@config+\pfill \main{190}, 314
+  \item \verb*+\KV@default+\pfill 206
+  \item \verb*+\KV@errx+\pfill 203
+  \item \verb*+\KV@prefix+\pfill 201, 213
+  \item \verb*+\KV@subfig@caption+\pfill 312
+  \item \verb*+\KV@subfig@caption@default+\pfill 313
+  \item \verb*+\KV@subfig@config+\pfill 315
+  \item \verb*+\KV@subfig@config@default+\pfill 316
+
+  \indexspace
+{\bfseries\hfil L\hfil}\nopagebreak
+
+  \item \verb*+\listsubcaptions+\pfill \main{485}, 648
+  \item \verb*+\listsubcaptions*+\pfill \main{485}
+
+  \indexspace
+{\bfseries\hfil M\hfil}\nopagebreak
+
+  \item \verb*+\maincaptiontopfalse+\pfill 340
+  \item \verb*+\maincaptiontoptrue+\pfill 338
+  \item \verb*+\meaning+\pfill 538
+  \item \verb*+\MessageBreak+\pfill 137, 138
+
+  \indexspace
+{\bfseries\hfil N\hfil}\nopagebreak
+
+  \item \verb*+\newsubfloat+\pfill 1, 3, \main{242}, 302, 303
+
+  \indexspace
+{\bfseries\hfil P\hfil}\nopagebreak
+
+  \item \verb*+\PackageWarningNoLine+\pfill 73
+  \item \verb*+\ProcessPackageOptions+\pfill \main{190}, 301, 317
+  \item \verb*+\providecommand+\pfill 599
+
+  \indexspace
+{\bfseries\hfil R\hfil}\nopagebreak
+
+  \item \verb*+\refsteponlycounter+\pfill 577, 601
+
+  \indexspace
+{\bfseries\hfil S\hfil}\nopagebreak
+
+  \item \verb*+\sf@@@subfloat+\pfill 356, 357, \main{358}
+  \item \verb*+\sf@@sub@label+\pfill 531, \main{532}
+  \item \verb*+\sf@@subfloat+\pfill 352, 353, \main{354}
+  \item \verb*+\sf@@subref+\pfill \main{566}
+  \item \verb*+\sf@addcontentsline+\pfill 497, \main{516}
+  \item \verb*+\sf@bottom+\pfill \main{321}, 369, 372, 422, 423
+  \item \verb*+\sf@capskip+\pfill \main{275}, 399, 400, 416, 417
+  \item \verb*+\sf@caption+\pfill \main{600}
+  \item \verb*+\sf@captionlist+\pfill 435, 436, 487, \main{489}, 493, 
+		503
+  \item \verb*+\sf@captopadj+\pfill \main{275}, 401, 402
+  \item \verb*+\sf@counterlist+\pfill 265, 267, 611, 617, 630, 655, 672
+  \item \verb*+\sf@end@dblfloat+\pfill \main{607}, 620
+  \item \verb*+\sf@end@float+\pfill \main{607}, 614, 662, 679
+  \item \verb*+\sf@endfloatbox+\pfill 646, 649
+  \item \verb*+\sf@farskip+\pfill \main{275}, 369, 371
+  \item \verb*+\sf@floatfix+\pfill \main{70}
+  \item \verb*+\sf@Hrefstepcounter+\pfill 635, 637
+  \item \verb*+\sf@ifinlist+\pfill \main{96}, 105, 107
+  \item \verb*+\sf@ifpositiontop+\pfill \main{147}, 337, 396, 509
+  \item \verb*+\sf@indent+\pfill \main{168}, 257
+  \item \verb*+\sf@nearskip+\pfill \main{275}, 368, 372
+  \item \verb*+\sf@numwidth+\pfill \main{168}, 257
+  \item \verb*+\sf@old@caption+\pfill \main{287}, 511, 513
+  \item \verb*+\sf@oldlabel+\pfill 344, 534
+  \item \verb*+\sf@refstepcounter+\pfill 575, 585
+  \item \verb*+\sf@savecaption+\pfill 602, 604
+  \item \verb*+\sf@setbool+\pfill 11, 27--29, \main{104}, 121
+  \item \verb*+\sf@setref+\pfill 625, 631, 633
+  \item \verb*+\sf@split+\pfill \main{112}, 132, \main{190}
+  \item \verb*+\sf@sub@label+\pfill 520, 521, \main{525}
+  \item \verb*+\sf@subcaption+\pfill 398, 419, \main{439}
+  \item \verb*+\sf@subfloat+\pfill 330, \main{331}
+  \item \verb*+\sf@subref+\pfill \main{566}
+  \item \verb*+\sf@temp+\pfill 129, 131, 493, 494, 496, 500, 580, 583, 
+		611, 612, 617, 618, 630, 631, 655, 656, 672, 673
+  \item \verb*+\sf@top+\pfill \main{321}, 368, 371, 389, 390, 393
+  \item \verb*+\sf@updatecaptionlist+\pfill \main{434}, 446
+  \item \verb*+\sf@usecaptionfalse+\pfill 307
+  \item \verb*+\sf@usecaptionfoundfalse+\pfill 126, 310
+  \item \verb*+\sf@usecaptionfoundtrue+\pfill 116, 309
+  \item \verb*+\sf@usecaptiontrue+\pfill 118, 128, 306
+  \item \verb*+\strip@prefix+\pfill 538
+  \item \verb*+\subfigure+\pfill \main{1}
+  \item \verb*+\subfloat+\pfill 2, 4, \main{323}
+  \item \verb*+\subfloat@label+\pfill 345, \main{518}
+  \item \verb*+\subfloatrowsep+\pfill 428
+  \item \verb*+\Subref+\pfill 67
+  \item \verb*+\subref+\pfill 67, \main{566}
+  \item \verb*+\subref*+\pfill \main{566}
+  \item \verb*+\subtable+\pfill \main{1}
+
+  \indexspace
+{\bfseries\hfil X\hfil}\nopagebreak
+
+  \item \verb*+\Xhsize+\pfill 378
+
+ \end{theindex}

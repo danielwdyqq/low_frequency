@@ -1,0 +1,72 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Do You Need This Package?}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{Package Commands}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{Preamble Commands}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.1}{The \134usepackage Command}{subsection.2.1}% 5
+\BOOKMARK [3][-]{subsubsection.2.1.2}{The \134newsubfloat Command}{subsection.2.1}% 6
+\BOOKMARK [3][-]{subsubsection.2.1.3}{The \134DeclareCaptionListOfFormat Command}{subsection.2.1}% 7
+\BOOKMARK [3][-]{subsubsection.2.1.4}{The \134DeclareSubrefFormat Command}{subsection.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.2}{General Commands}{section.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.1}{The \134subfloat Command}{subsection.2.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.2.2}{The \134subref Command}{subsection.2.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.2.3}{The \134ContinuedFloat Command}{subsection.2.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.2.4}{The \134listsubcaptions Command}{subsection.2.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.2.5}{The \134captionsetup Command}{subsection.2.2}% 14
+\BOOKMARK [1][-]{section.3}{Options: Keywords and Values}{}% 15
+\BOOKMARK [2][-]{subsection.3.1}{Options from the Caption Package}{section.3}% 16
+\BOOKMARK [3][-]{subsubsection.3.1.1}{The Caption Font Settings}{subsection.3.1}% 17
+\BOOKMARK [3][-]{subsubsection.3.1.2}{The Caption Shape Settings}{subsection.3.1}% 18
+\BOOKMARK [3][-]{subsubsection.3.1.3}{The Caption Justification Options}{subsection.3.1}% 19
+\BOOKMARK [3][-]{subsubsection.3.1.4}{The Caption Label Options}{subsection.3.1}% 20
+\BOOKMARK [3][-]{subsubsection.3.1.5}{The Caption Position Option}{subsection.3.1}% 21
+\BOOKMARK [2][-]{subsection.3.2}{Options from the Subfig Package}{section.3}% 22
+\BOOKMARK [3][-]{subsubsection.3.2.1}{The Subfig Configuration Specification}{subsection.3.2}% 23
+\BOOKMARK [3][-]{subsubsection.3.2.2}{The Subfig List-of-Floats Specification}{subsection.3.2}% 24
+\BOOKMARK [3][-]{subsubsection.3.2.3}{The Subfig Layout}{subsection.3.2}% 25
+\BOOKMARK [3][-]{subsubsection.3.2.4}{The Subfig Package Startup}{subsection.3.2}% 26
+\BOOKMARK [1][-]{section.4}{Compatibility With Other Packages.}{}% 27
+\BOOKMARK [2][-]{subsection.4.1}{Caption Package}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.2}{Float Package}{section.4}% 29
+\BOOKMARK [2][-]{subsection.4.3}{FloatRow Package}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.4}{verbatim and fancyvrb packages}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.5}{IEEEtrans Class}{section.4}% 32
+\BOOKMARK [2][-]{subsection.4.6}{Other Packages}{section.4}% 33
+\BOOKMARK [2][-]{subsection.4.7}{Backward Compatibility with the Subfigure Package}{section.4}% 34
+\BOOKMARK [1][-]{section.5}{Some Examples}{}% 35
+\BOOKMARK [2][-]{subsection.5.1}{A Simple Example}{section.5}% 36
+\BOOKMARK [2][-]{subsection.5.2}{A More Advanced Example}{section.5}% 37
+\BOOKMARK [2][-]{subsection.5.3}{An Example Without Sub-caption Text}{section.5}% 38
+\BOOKMARK [2][-]{subsection.5.4}{Another Example}{section.5}% 39
+\BOOKMARK [1][-]{section.6}{Frequently Asked Questions \(FAQs\)}{}% 40
+\BOOKMARK [2][-]{subsection.6.1}{``My sub-floats are not aligned along their bottoms. Why?''}{section.6}% 41
+\BOOKMARK [2][-]{subsection.6.2}{``How can I get my floats/sub-floats to line up the way I want?''}{section.6}% 42
+\BOOKMARK [2][-]{subsection.6.3}{``I have too many sub-floats for one page, How can I spread them over two or more pages and continue the numbering?''}{section.6}% 43
+\BOOKMARK [2][-]{subsection.6.4}{``Why do I get a garbled caption or an error when I use square brackets?''}{section.6}% 44
+\BOOKMARK [2][-]{subsection.6.5}{``How do I make my subcaptions print on the List-of-Floats pages?''}{section.6}% 45
+\BOOKMARK [2][-]{subsection.6.6}{``I set an option and it had no effect. What is happening?''}{section.6}% 46
+\BOOKMARK [2][-]{subsection.6.7}{``How do I make a change in the settings for just a single float?''}{section.6}% 47
+\BOOKMARK [2][-]{subsection.6.8}{``How do I put text labels on an imported sub-float?''}{section.6}% 48
+\BOOKMARK [2][-]{subsection.6.9}{``I want my sub-floats to be ordered by column rather than by row, how do I do that?''}{section.6}% 49
+\BOOKMARK [2][-]{subsection.6.10}{``How do I put a verbatim environment in a sub-float?''}{section.6}% 50
+\BOOKMARK [1][-]{section.7}{The Code}{}% 51
+\BOOKMARK [2][-]{subsection.7.1}{Identification}{section.7}% 52
+\BOOKMARK [2][-]{subsection.7.2}{Check for Nasty Classes}{section.7}% 53
+\BOOKMARK [2][-]{subsection.7.3}{Load The Caption Package}{section.7}% 54
+\BOOKMARK [3][-]{subsubsection.7.3.1}{Load The Keyval Package and Scan Options}{subsection.7.3}% 55
+\BOOKMARK [3][-]{subsubsection.7.3.2}{Load and Extend the Caption Package}{subsection.7.3}% 56
+\BOOKMARK [2][-]{subsection.7.4}{Options Processing}{section.7}% 57
+\BOOKMARK [2][-]{subsection.7.5}{Generalized List-of-Floats}{section.7}% 58
+\BOOKMARK [2][-]{subsection.7.6}{Create New Sub-floats}{section.7}% 59
+\BOOKMARK [2][-]{subsection.7.7}{Layout Parameters}{section.7}% 60
+\BOOKMARK [2][-]{subsection.7.8}{Process the Package Options}{section.7}% 61
+\BOOKMARK [2][-]{subsection.7.9}{Define the Sub-float Layout}{section.7}% 62
+\BOOKMARK [2][-]{subsection.7.10}{Use the Caption Package to Build the Sub-float Captions}{section.7}% 63
+\BOOKMARK [2][-]{subsection.7.11}{Subfig Caption Processing for the List-of-Floats Files}{section.7}% 64
+\BOOKMARK [2][-]{subsection.7.12}{Sub-float Label Handling}{section.7}% 65
+\BOOKMARK [2][-]{subsection.7.13}{Support for Continued Figures}{section.7}% 66
+\BOOKMARK [2][-]{subsection.7.14}{Automate the Sub-float Listings}{section.7}% 67
+\BOOKMARK [2][-]{subsection.7.15}{Provide Compatibility with Other Packages}{section.7}% 68
+\BOOKMARK [3][-]{subsubsection.7.15.1}{The Hyperref Package}{subsection.7.15}% 69
+\BOOKMARK [3][-]{subsubsection.7.15.2}{The Float Package}{subsection.7.15}% 70
+\BOOKMARK [3][-]{subsubsection.7.15.3}{The Fixltx2e Package}{subsection.7.15}% 71
+\BOOKMARK [1][-]{section.8}{Acknowledgments}{}% 72

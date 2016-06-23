@@ -1,0 +1,140 @@
+\contentsline {figure}{\numberline {1}{\ignorespaces Here are two figures side-by-side.\relax }}{2}{figure.caption.5}
+\contentsline {figure}{\numberline {2}{\ignorespaces First.\relax }}{2}{figure.caption.6}
+\contentsline {figure}{\numberline {3}{\ignorespaces Second.\relax }}{2}{figure.caption.6}
+\contentsline {figure}{\numberline {4}{\ignorespaces Here are the first two figures of a continued figure.\relax }}{5}{figure.caption.9}
+\contentsline {figure}{\numberline {5}{\ignorespaces Levels at which keyword/values pairs may be set to apply to, or override earlier keyword/values pairs, for floats and sub-floats.\relax }}{7}{figure.caption.11}
+\contentsline {figure}{\numberline {6}{\ignorespaces Float caption.\relax }}{10}{figure.caption.14}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Sub-float caption.}}}{10}{subfigure.6.1}
+\contentsline {figure}{\numberline {7}{\ignorespaces Font size options.\relax }}{10}{figure.caption.15}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces Option [\texttt {font=Large}].}}{10}{subfigure.7.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces Option [\texttt {font=large}].}}{10}{subfigure.7.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces Option [\texttt {font=normalsize}].}}{10}{subfigure.7.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces Option [\texttt {font=small}].}}{10}{subfigure.7.4}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces Option [\texttt {font=footnotesize}].}}{10}{subfigure.7.5}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces Option [\texttt {font=scriptsize}].}}{10}{subfigure.7.6}
+\contentsline {figure}{\numberline {8}{\ignorespaces Other Font Options.}}{11}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces Option [\texttt {font=\{rm,md,up\}}].}}{11}{subfigure.8.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces Option [\texttt {font=\{rm,md,it\}}].}}{11}{subfigure.8.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces Option [\texttt {font=\{rm,md,sl\}}].}}{11}{subfigure.8.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces Option [\texttt {font=\{rm,md,sc\}}].}}{11}{subfigure.8.4}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces Option [\texttt {font=\{rm,bf,up\}}].}}{11}{subfigure.8.5}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces Option [\texttt {font=\{rm,bf,it\}}].}}{11}{subfigure.8.6}
+\contentsline {subfigure}{\numberline {(g)}{\ignorespaces Option [\texttt {font=\{rm,bf,sl\}}].}}{11}{subfigure.8.7}
+\contentsline {subfigure}{\numberline {(h)}{\ignorespaces Option [\texttt {font=\{rm,bf,sc\}}].}}{11}{subfigure.8.8}
+\contentsline {subfigure}{\numberline {(i)}{\ignorespaces Option [\texttt {font=\{sf,md,up\}}].}}{11}{subfigure.8.9}
+\contentsline {subfigure}{\numberline {(j)}{\ignorespaces Option [\texttt {font=\{sf,md,it\}}].}}{11}{subfigure.8.10}
+\contentsline {subfigure}{\numberline {(k)}{\ignorespaces Option [\texttt {font=\{sf,md,sl\}}].}}{11}{subfigure.8.11}
+\contentsline {subfigure}{\numberline {(l)}{\ignorespaces Option [\texttt {font=\{sf,md,sc\}}].}}{11}{subfigure.8.12}
+\contentsline {subfigure}{\numberline {(m)}{\ignorespaces Option [\texttt {font=\{sf,bf,up\}}].}}{11}{subfigure.8.13}
+\contentsline {subfigure}{\numberline {(n)}{\ignorespaces Option [\texttt {font=\{sf,bf,it\}}].}}{11}{subfigure.8.14}
+\contentsline {subfigure}{\numberline {(o)}{\ignorespaces Option [\texttt {font=\{sf,bf,sl\}}].}}{11}{subfigure.8.15}
+\contentsline {subfigure}{\numberline {(p)}{\ignorespaces Option [\texttt {font=\{sf,bf,sc\}}].}}{11}{subfigure.8.16}
+\contentsline {subfigure}{\numberline {(q)}{\ignorespaces Option [\texttt {font=\{tt,md,up\}}].}}{11}{subfigure.8.17}
+\contentsline {subfigure}{\numberline {(r)}{\ignorespaces Option [\texttt {font=\{tt,md,it\}}].}}{11}{subfigure.8.18}
+\contentsline {subfigure}{\numberline {(s)}{\ignorespaces Option [\texttt {font=\{tt,md,sl\}}].}}{11}{subfigure.8.19}
+\contentsline {subfigure}{\numberline {(t)}{\ignorespaces Option [\texttt {font=\{tt,md,sc\}}].}}{11}{subfigure.8.20}
+\contentsline {subfigure}{\numberline {(u)}{\ignorespaces Option [\texttt {font=\{tt,bf,up\}}].}}{11}{subfigure.8.21}
+\contentsline {subfigure}{\numberline {(v)}{\ignorespaces Option [\texttt {font=\{tt,bf,it\}}].}}{11}{subfigure.8.22}
+\contentsline {subfigure}{\numberline {(w)}{\ignorespaces Option [\texttt {font=\{tt,bf,sl\}}].}}{11}{subfigure.8.23}
+\contentsline {subfigure}{\numberline {(x)}{\ignorespaces Option [\texttt {font=\{tt,bf,sc\}}].}}{11}{subfigure.8.24}
+\contentsline {figure}{\numberline {9}{\ignorespaces Options [\texttt {singlelinecheck=false}].\relax }}{12}{figure.caption.18}
+\contentsline {figure}{\numberline {10}{\ignorespaces Options [\texttt { }].\relax }}{13}{figure.caption.19}
+\contentsline {figure}{\numberline {11}{\ignorespaces Options [\texttt {indention=10pt,singlelinecheck=false}].\relax }}{13}{figure.caption.20}
+\contentsline {figure}{\numberline {12}{\ignorespaces Options [\texttt {indention=10pt}].\relax }}{13}{figure.caption.21}
+\contentsline {figure}{\numberline {13}{\ignorespaces Options [\texttt {hangindent=10pt,singlelinecheck=false}].\relax }}{14}{figure.caption.22}
+\contentsline {figure}{\numberline {14}{\ignorespaces Options [\texttt {hangindent=10pt}].\relax }}{14}{figure.caption.23}
+\contentsline {figure}{\numberline {15}{\ignorespaces Options [\texttt {hangindent=10pt,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{14}{figure.caption.24}
+\contentsline {figure}{\numberline {16}{\ignorespaces Options [\texttt {hangindent=10pt,indention=10pt}].\relax }}{14}{figure.caption.25}
+\contentsline {figure}{\numberline {17}{\ignorespaces Options [\texttt {parskip=5pt,singlelinecheck=false}].\relax }}{14}{figure.caption.26}
+\contentsline {figure}{\numberline {18}{\ignorespaces Options [\texttt {parskip=5pt}].\relax }}{15}{figure.caption.27}
+\contentsline {figure}{\numberline {19}{\ignorespaces Options [\texttt {parskip=5pt,indention=10pt,singlelinecheck=false}].\relax }}{15}{figure.caption.28}
+\contentsline {figure}{\numberline {20}{\ignorespaces Options [\texttt {parskip=5pt,indention=10pt}].\relax }}{15}{figure.caption.29}
+\contentsline {figure}{\numberline {21}{\ignorespaces Options [\texttt {parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{15}{figure.caption.30}
+\contentsline {figure}{\numberline {22}{\ignorespaces Options [\texttt {parskip=5pt,hangindent=10pt}].\relax }}{15}{figure.caption.31}
+\contentsline {figure}{\numberline {23}{\ignorespaces Options [\texttt {parskip=5pt,hangindent=10pt,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{16}{figure.caption.32}
+\contentsline {figure}{\numberline {24}{\ignorespaces Options [\texttt {parskip=5pt,hangindent=10pt,indention=10pt}].\relax }}{16}{figure.caption.33}
+\contentsline {figure}{\numberline {25}{\ignorespaces Options [\texttt {format=hang,singlelinecheck=false}].\relax }}{16}{figure.caption.34}
+\contentsline {figure}{\numberline {26}{\ignorespaces Options [\texttt {format=hang}].\relax }}{16}{figure.caption.35}
+\contentsline {figure}{\numberline {27}{\ignorespaces Options [\texttt {format=hang,indention=10pt,singlelinecheck=false}].\relax }}{17}{figure.caption.36}
+\contentsline {figure}{\numberline {28}{\ignorespaces Options [\texttt {format=hang,indention=10pt}].\relax }}{17}{figure.caption.37}
+\contentsline {figure}{\numberline {29}{\ignorespaces Options [\texttt {format=hang,hangindent=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{17}{figure.caption.38}
+\contentsline {figure}{\numberline {30}{\ignorespaces Options [\texttt {format=hang,hangindent=10pt}].\relax }}{17}{figure.caption.39}
+\contentsline {figure}{\numberline {31}{\ignorespaces Options [\texttt {format=hang,hangindent=10pt,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{18}{figure.caption.40}
+\contentsline {figure}{\numberline {32}{\ignorespaces Options [\texttt {format=hang,hangindent=10pt,indention=10pt}].\relax }}{18}{figure.caption.41}
+\contentsline {figure}{\numberline {33}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,singlelinecheck=false}].\relax }}{18}{figure.caption.42}
+\contentsline {figure}{\numberline {34}{\ignorespaces Options [\texttt {format=hang,parskip=5pt}].\relax }}{18}{figure.caption.43}
+\contentsline {figure}{\numberline {35}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{19}{figure.caption.44}
+\contentsline {figure}{\numberline {36}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,indention=10pt}].\relax }}{19}{figure.caption.45}
+\contentsline {figure}{\numberline {37}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{19}{figure.caption.46}
+\contentsline {figure}{\numberline {38}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,hangindent=10pt}].\relax }}{19}{figure.caption.47}
+\contentsline {figure}{\numberline {39}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ indention=10pt,singlelinecheck=false}{].}}}{20}{figure.caption.48}
+\contentsline {figure}{\numberline {40}{\ignorespaces Options [\texttt {format=hang,parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ indention=10pt}{].}}}{20}{figure.caption.49}
+\contentsline {figure}{\numberline {41}{\ignorespaces Options [\texttt {margin=10pt,singlelinecheck=false}].\relax }}{20}{figure.caption.50}
+\contentsline {figure}{\numberline {42}{\ignorespaces Options [\texttt {margin=10pt}].\relax }}{20}{figure.caption.51}
+\contentsline {figure}{\numberline {43}{\ignorespaces Options [\texttt {margin=10pt,indention=10pt,singlelinecheck=false}].\relax }}{21}{figure.caption.52}
+\contentsline {figure}{\numberline {44}{\ignorespaces Options [\texttt {margin=10pt,indention=10pt}].\relax }}{21}{figure.caption.53}
+\contentsline {figure}{\numberline {45}{\ignorespaces Options [\texttt {margin=10pt,hangindent=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{21}{figure.caption.54}
+\contentsline {figure}{\numberline {46}{\ignorespaces Options [\texttt {margin=10pt,hangindent=10pt}].\relax }}{21}{figure.caption.55}
+\contentsline {figure}{\numberline {47}{\ignorespaces Options [\texttt {margin=10pt,hangindent=10pt,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{22}{figure.caption.56}
+\contentsline {figure}{\numberline {48}{\ignorespaces Options [\texttt {margin=10pt,hangindent=10pt,indention=10pt}].\relax }}{22}{figure.caption.57}
+\contentsline {figure}{\numberline {49}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,singlelinecheck=false}].\relax }}{22}{figure.caption.58}
+\contentsline {figure}{\numberline {50}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt}].\relax }}{22}{figure.caption.59}
+\contentsline {figure}{\numberline {51}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{23}{figure.caption.60}
+\contentsline {figure}{\numberline {52}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,indention=10pt}].\relax }}{23}{figure.caption.61}
+\contentsline {figure}{\numberline {53}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{23}{figure.caption.62}
+\contentsline {figure}{\numberline {54}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,hangindent=10pt}].\relax }}{23}{figure.caption.63}
+\contentsline {figure}{\numberline {55}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ indention=10pt,singlelinecheck=false}{].}}}{24}{figure.caption.64}
+\contentsline {figure}{\numberline {56}{\ignorespaces Options [\texttt {margin=10pt,parskip=5pt,hangindent=10pt, \hfil \hbox {}\linebreak \ indention=10pt}{].}}}{24}{figure.caption.65}
+\contentsline {figure}{\numberline {57}{\ignorespaces Options [\texttt {margin=10pt,format=hang,singlelinecheck=false}].\relax }}{24}{figure.caption.66}
+\contentsline {figure}{\numberline {58}{\ignorespaces Options [\texttt {margin=10pt,format=hang}].\relax }}{24}{figure.caption.67}
+\contentsline {figure}{\numberline {59}{\ignorespaces Options [\texttt {margin=10pt,format=hang,indention=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{25}{figure.caption.68}
+\contentsline {figure}{\numberline {60}{\ignorespaces Options [\texttt {margin=10pt,format=hang,indention=10pt}].\relax }}{25}{figure.caption.69}
+\contentsline {figure}{\numberline {61}{\ignorespaces Options [\texttt {margin=10pt,format=hang,hangindent=10pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{25}{figure.caption.70}
+\contentsline {figure}{\numberline {62}{\ignorespaces Options [\texttt {margin=10pt,format=hang,hangindent=10pt}].\relax }}{25}{figure.caption.71}
+\contentsline {figure}{\numberline {63}{\ignorespaces Options [\texttt {margin=10pt,format=hang,hangindent=10pt, \hfil \hbox {}\linebreak \ indention=10pt,singlelinecheck=false}{].}}}{26}{figure.caption.72}
+\contentsline {figure}{\numberline {64}{\ignorespaces Options [\texttt {margin=10pt,format=hang,hangindent=10pt, \hfil \hbox {}\linebreak \ indention=10pt}{].}}}{26}{figure.caption.73}
+\contentsline {figure}{\numberline {65}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ singlelinecheck=false}{].}}}{26}{figure.caption.74}
+\contentsline {figure}{\numberline {66}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt}].\relax }}{26}{figure.caption.75}
+\contentsline {figure}{\numberline {67}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ indention=10pt,singlelinecheck=false}{].}}}{27}{figure.caption.76}
+\contentsline {figure}{\numberline {68}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ indention=10pt}{].}}}{27}{figure.caption.77}
+\contentsline {figure}{\numberline {69}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ hangindent=10pt,singlelinecheck=false}{].}}}{27}{figure.caption.78}
+\contentsline {figure}{\numberline {70}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ hangindent=10pt}{].}}}{27}{figure.caption.79}
+\contentsline {figure}{\numberline {71}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ hangindent=10pt,indention=10pt,singlelinecheck=false}{].}}}{28}{figure.caption.80}
+\contentsline {figure}{\numberline {72}{\ignorespaces Options [\texttt {margin=10pt,format=hang,parskip=5pt, \hfil \hbox {}\linebreak \ hangindent=10pt,indention=10pt}{].}}}{28}{figure.caption.81}
+\contentsline {figure}{\numberline {73}{\ignorespaces Options [\texttt {justification=justified,singlelinecheck=false}].\relax }}{28}{figure.caption.82}
+\contentsline {figure}{\numberline {74}{\ignorespaces Options [\texttt {justification=centerfirst,singlelinecheck=false}].\relax }}{29}{figure.caption.83}
+\contentsline {figure}{\numberline {75}{\ignorespaces Options [\texttt {justification=centerlast,singlelinecheck=false}].\relax }}{29}{figure.caption.84}
+\contentsline {figure}{\numberline {76}{\ignorespaces Options [\texttt {justification=centering,singlelinecheck=false}].\relax }}{29}{figure.caption.85}
+\contentsline {figure}{\numberline {77}{\ignorespaces Options [\texttt {justification=Centering,singlelinecheck=false}].\relax }}{29}{figure.caption.86}
+\contentsline {figure}{\numberline {78}{\ignorespaces Options [\texttt {justification=raggedleft,singlelinecheck=false}].\relax }}{29}{figure.caption.87}
+\contentsline {figure}{\numberline {79}{\ignorespaces Options [\texttt {justification=RaggedLeft,singlelinecheck=false}].\relax }}{30}{figure.caption.88}
+\contentsline {figure}{\numberline {80}{\ignorespaces Options [\texttt {justification=raggedright,singlelinecheck=false}].\relax }}{30}{figure.caption.89}
+\contentsline {figure}{\numberline {81}{\ignorespaces Options [\texttt {justification=RaggedRight,singlelinecheck=false}].\relax }}{30}{figure.caption.90}
+\contentsline {figure}{\numberline {82}{\ignorespaces Options [\texttt {labelformat=empty}].\relax }}{30}{figure.caption.91}
+\contentsline {figure}{\numberline {83}{\ignorespaces Options [\texttt {labelformat=simple}].\relax }}{30}{figure.caption.92}
+\contentsline {figure}{\numberline {84}{\ignorespaces Options [\texttt {labelformat=parens}].\relax }}{31}{figure.caption.93}
+\contentsline {figure}{\numberline {85}{\ignorespaces Options [\texttt {labelsep=none}].\relax }}{31}{figure.caption.94}
+\contentsline {figure}{\numberline {86}{\ignorespaces Options [\texttt {labelsep=colon}].\relax }}{31}{figure.caption.95}
+\contentsline {figure}{\numberline {87}{\ignorespaces Options [\texttt {labelsep=period}].\relax }}{31}{figure.caption.96}
+\contentsline {figure}{\numberline {88}{\ignorespaces Options [\texttt {labelsep=space}].\relax }}{32}{figure.caption.97}
+\contentsline {figure}{\numberline {89}{\ignorespaces Options [\texttt {labelsep=quad}].\relax }}{32}{figure.caption.98}
+\contentsline {figure}{\numberline {90}{\ignorespaces Options [\texttt {labelsep=newline}].\relax }}{32}{figure.caption.99}
+\contentsline {figure}{\numberline {91}{\ignorespaces Sub-float Layout.}}{34}{figure.caption.101}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Standard layout (Sub-float: position=bottom).}}}{34}{subfigure.91.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Standard layout without a caption (Sub-float: position=bottom)}}}{34}{subfigure.91.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Reversed layout (Sub-float: position=top).}}}{34}{subfigure.91.3}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Standard layout without a caption (Sub-float: position=top)}}}{34}{subfigure.91.4}
+\contentsline {figure}{\numberline {92}{\ignorespaces Main Caption.\relax }}{39}{figure.caption.103}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces Black box}}{39}{subfigure.92.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Caption 2.}}}{39}{subfigure.92.2}
+\contentsline {figure}{\numberline {93}{\ignorespaces Three sub-floats.\relax }}{42}{figure.caption.104}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {First.}}}{42}{subfigure.93.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Second figure.}}}{42}{subfigure.93.2}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Third.}}}{42}{subfigure.93.3}
+\contentsline {figure}{\numberline {94}{\ignorespaces Two sub-floats.\relax }}{43}{figure.caption.105}
+\contentsline {subfigure}{\numberline {94.1}{\ignorespaces {First.}}}{43}{subfigure.94.1}
+\contentsline {subfigure}{\numberline {94.2}{\ignorespaces {Second.}}}{43}{subfigure.94.2}
+\contentsline {figure}{\numberline {95}{\ignorespaces A set of four sub-floats.}}{45}{figure.caption.107}
+\contentsline {figure}{\numberline {96}{\ignorespaces Two more sub-floats.\relax }}{45}{figure.caption.109}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Big figure}}}{45}{subfigure.96.1}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Small figure}}}{45}{subfigure.96.2}

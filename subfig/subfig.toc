@@ -1,0 +1,72 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Do You Need This Package?}{1}{subsection.1.1}
+\contentsline {section}{\numberline {2}Package Commands}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Preamble Commands}{2}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}The \cs {usepackage} Command}{2}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}The \cs {newsubfloat} Command}{3}{subsubsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.3}The \cs {DeclareCaptionListOfFormat} Command}{3}{subsubsection.2.1.3}
+\contentsline {subsubsection}{\numberline {2.1.4}The \cs {DeclareSubrefFormat} Command}{3}{subsubsection.2.1.4}
+\contentsline {subsection}{\numberline {2.2}General Commands}{4}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}The \cs {subfloat} Command}{4}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}The \cs {subref} Command}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}The \cs {ContinuedFloat} Command}{5}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}The \cs {listsubcaptions} Command}{6}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}The \cs {captionsetup} Command}{6}{subsubsection.2.2.5}
+\contentsline {section}{\numberline {3}Options: Keywords and Values}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Options from the \textsf {Caption} Package}{7}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}The \textsf {Caption} Font Settings}{10}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}The \textsf {Caption} Shape Settings}{10}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}The \textsf {Caption} Justification Options}{28}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}The \textsf {Caption} Label Options}{28}{subsubsection.3.1.4}
+\contentsline {subsubsection}{\numberline {3.1.5}The \textsf {Caption} Position Option}{31}{subsubsection.3.1.5}
+\contentsline {subsection}{\numberline {3.2}Options from the \textsf {Subfig} Package}{32}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}The \textsf {Subfig} Configuration Specification}{32}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}The \textsf {Subfig} List-of-Floats Specification}{33}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}The \textsf {Subfig} Layout}{33}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}The \textsf {Subfig} Package Startup}{35}{subsubsection.3.2.4}
+\contentsline {section}{\numberline {4}Compatibility With Other Packages.}{36}{section.4}
+\contentsline {subsection}{\numberline {4.1}\textsf {Caption} Package}{36}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}\textsf {Float} Package}{36}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}\textsf {FloatRow} Package}{37}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}\textsf {verbatim} and \textsf {fancyvrb} packages}{38}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}\textsf {IEEEtrans} Class}{39}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Other Packages}{39}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}Backward Compatibility with the \textsf {Subfigure} Package}{40}{subsection.4.7}
+\contentsline {section}{\numberline {5}Some Examples}{41}{section.5}
+\contentsline {subsection}{\numberline {5.1}A Simple Example}{42}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}A More Advanced Example}{43}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}An Example Without Sub-caption Text}{44}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Another Example}{44}{subsection.5.4}
+\contentsline {section}{\numberline {6}Frequently Asked Questions (FAQs)}{46}{section.6}
+\contentsline {subsection}{\numberline {6.1}``My sub-floats are not aligned along their bottoms. Why?''}{46}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}``How can I get my floats/sub-floats to line up the way I want?''}{46}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}``I have too many sub-floats for one page, How can I spread them over two or more pages and continue the numbering?''}{46}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}``Why do I get a garbled caption or an error when I use square brackets?''}{46}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}``How do I make my subcaptions print on the List-of-Floats pages?''}{47}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}``I set an option and it had no effect. What is happening?''}{47}{subsection.6.6}
+\contentsline {subsection}{\numberline {6.7}``How do I make a change in the settings for just a single float?''}{47}{subsection.6.7}
+\contentsline {subsection}{\numberline {6.8}``How do I put text labels on an imported sub-float?''}{47}{subsection.6.8}
+\contentsline {subsection}{\numberline {6.9}``I want my sub-floats to be ordered by column rather than by row, how do I do that?''}{48}{subsection.6.9}
+\contentsline {subsection}{\numberline {6.10}``How do I put a verbatim environment in a sub-float?''}{48}{subsection.6.10}
+\contentsline {section}{\numberline {7}The Code}{49}{section.7}
+\contentsline {subsection}{\numberline {7.1}Identification}{49}{subsection.7.1}
+\contentsline {subsection}{\numberline {7.2}Check for Nasty Classes}{49}{subsection.7.2}
+\contentsline {subsection}{\numberline {7.3}Load The \textsf {Caption} Package}{49}{subsection.7.3}
+\contentsline {subsubsection}{\numberline {7.3.1}Load The \textsf {Keyval} Package and Scan Options}{49}{subsubsection.7.3.1}
+\contentsline {subsubsection}{\numberline {7.3.2}Load and Extend the \textsf {Caption} Package}{50}{subsubsection.7.3.2}
+\contentsline {subsection}{\numberline {7.4}Options Processing}{52}{subsection.7.4}
+\contentsline {subsection}{\numberline {7.5}Generalized List-of-Floats}{53}{subsection.7.5}
+\contentsline {subsection}{\numberline {7.6}Create New Sub-floats}{54}{subsection.7.6}
+\contentsline {subsection}{\numberline {7.7}Layout Parameters}{54}{subsection.7.7}
+\contentsline {subsection}{\numberline {7.8}Process the Package Options}{55}{subsection.7.8}
+\contentsline {subsection}{\numberline {7.9}Define the Sub-float Layout}{56}{subsection.7.9}
+\contentsline {subsection}{\numberline {7.10}Use the \textsf {Caption} Package to Build the Sub-float Captions}{59}{subsection.7.10}
+\contentsline {subsection}{\numberline {7.11}Subfig Caption Processing for the List-of-Floats Files}{60}{subsection.7.11}
+\contentsline {subsection}{\numberline {7.12}Sub-float Label Handling}{61}{subsection.7.12}
+\contentsline {subsection}{\numberline {7.13}Support for Continued Figures}{63}{subsection.7.13}
+\contentsline {subsection}{\numberline {7.14}Automate the Sub-float Listings}{64}{subsection.7.14}
+\contentsline {subsection}{\numberline {7.15}Provide Compatibility with Other Packages}{65}{subsection.7.15}
+\contentsline {subsubsection}{\numberline {7.15.1}The \textsf {Hyperref} Package}{65}{subsubsection.7.15.1}
+\contentsline {subsubsection}{\numberline {7.15.2}The \textsf {Float} Package}{65}{subsubsection.7.15.2}
+\contentsline {subsubsection}{\numberline {7.15.3}The \textsf {Fixltx2e} Package}{65}{subsubsection.7.15.3}
+\contentsline {section}{\numberline {8}Acknowledgments}{66}{section.8}

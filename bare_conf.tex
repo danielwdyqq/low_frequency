@@ -146,6 +146,11 @@
   % every instance of \includegraphics
   \DeclareGraphicsExtensions{.eps}
 \fi
+
+\ifCLASSOPTIONcompsoc 
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig} 
+\else \usepackage[caption=false,font=footnotesize]{subfig} 
+\fi
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
 % installed on most LaTeX systems. The latest version and documentation can
@@ -1031,61 +1036,61 @@ Like \emph{BFSS}, the processing time for each element also consists two parts: 
 
 
 \section{Experiments}
-In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements; and the \emph{precision}, the number of correct elements found as a percentage of the entire output. We also measured the space used by \emph{BFSS} and \emph{nCount}, which is essential to handle data streams. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} in limited space of different size on real data sets. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
+In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements, and the \emph{precision}, the number of correct elements found as a percentage of the entire output, then we calculated $F_1$. We also measured the space used by \emph{BFSS}, \emph{nCount} and \emph{rCount}, which is essential to handle data streams, however, due to the page limit, we can not show the results of synthetic data here. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} on real data in different size of limited space. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
 \begin{figure*}[!t]
 \centering
 	\begin{minipage}{0.4\linewidth}
-	\centering
-		\includegraphics[width=2.8in]{png/recall.png}
+	   \centering
+	   \subfloat[Recall for 0.001-BLFE]{\includegraphics[width=2.8in]{png/recall.png}\label{subfig:recall}}
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
-		\centering
-		\includegraphics[width=2.8in]{png/precision.png}
+	   \centering
+	   \subfloat[Precision for 0.001-BLFE]{\includegraphics[width=2.8in]{png/precision.png}\label{subfig:precison}}
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
-		\centering
-		\includegraphics[width=2.8in]{png/f1.png}
+	   \centering
+	   \subfloat[$F_1$ for 0.001-BLFE]{\includegraphics[width=2.8in]{png/f1.png}\label{subfig:f1}}
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
-		\centering
-		\includegraphics[width=2.8in]{png/space.png}
+	   \centering
+	   \subfloat[Space for 0.001-BLFE]{\includegraphics[width=2.8in]{png/space.png}}
 	\end{minipage}
-	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
-	\label{fig:zipf-recall}
+	\caption{ Performance Comparison between \emph{BFSS}, \emph{nCount} and \emph{rCount} Using Real Data - Varying $N$ }
+	\label{fig:performance comparison of BFSS}
 \end{figure*}
 
 \begin{table*}[!t] 
 \centering 
-\caption{Network Delay as a Function of Load} 
+\caption{ Performance of \emph{BFSS} Using Real Data - Varying $\phi$, $K$ and $N$ } 
 \label{tab:bfss} 
-\begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
+\begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
 \hline
-&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision}&&&\IEEEeqnarraymulticol{7}{t}{Recall}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
+&&&&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision}&&&\IEEEeqnarraymulticol{7}{t}{Recall}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{$K$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
 \IEEEeqnarraystrutsize{0pt}{0pt}\\ 
-&&&&&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
+&&&&&&&&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
 \IEEEeqnarraydblrulerowcut\\ 
 &\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
-&&&&72KB&&&0.172&&0.29&&2121&&2121&&&1&&1&&1&&1&\\ 
-&&&&108KB&&&0.172&&0.29&&3525&&2121&&&1&&1&&1&&1&\\ 
+&&&&72KB&&&123&&&0.172&&0.29&&2121&&2121&&&1&&1&&1&&1&\\ 
+&&&&108KB&&&23&&&0.172&&0.29&&3525&&2121&&&1&&1&&1&&1&\\ 
 \hline
 &\hfill\raisebox{-13pt}[0pt][0pt]{0.001}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
-&&&&72KB&&&0.172&&0.29&&2121&&1&&&1&&1&&1&&1&\\ 
-&&&&108KB&&&0.172&&0.29&&3525&&1&&&1&&1&&1&&1&\\
+&&&&72KB&&&123&&&0.172&&0.29&&2121&&2121&&&1&&1&&1&&1&\\ 
+&&&&108KB&&&23&&&0.172&&0.29&&3525&&2121&&&1&&1&&1&&1&\\ 
 \IEEEeqnarrayrulerow
 \end{IEEEeqnarraybox} 
 \end{table*} 
 
 \begin{table*}[!t] 
 \centering 
-\caption{Network Delay as a Function of Load} 
+\caption{ Performance Comparison between \emph{SBFSS} and \emph{lCount} Using Real Data in Limited Space - Varying $\phi$, $N$ } 
 \label{tab:sbfss} 
 \begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
 \hline
 &&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision (SBFSS / lCount)}&&&\IEEEeqnarraymulticol{7}{t}{Recall (SBFSS / lCount)}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
 \IEEEeqnarraystrutsize{0pt}{0pt}\\ 
-&&&&&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&&&\hfill1000W\hfill&&\hfill3000W\hfill&&\hfill5000W\hfill&&\hfill7000W\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
+&&&&&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
 \IEEEeqnarraydblrulerowcut\\ 
 &\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
@@ -1103,21 +1108,21 @@ In this section, we first describe our data sets and the implementation details 
 	\centering
 	\begin{minipage}{0.4\linewidth}
 		\centering
-		\includegraphics[width=2.8in]{png/001_72KB.png}
+		\subfloat[$\phi$=0.01, Space=72KB]{\includegraphics[width=2.8in]{png/001_72KB.png}}
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
 		\centering
-		\includegraphics[width=2.8in]{png/001_108KB.png}
+		\subfloat[$\phi$=0.01, Space=108KB]{\includegraphics[width=2.8in]{png/001_108KB.png}}
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
 		\centering
-		\includegraphics[width=2.8in]{png/0001_72KB.png}
+		\subfloat[$\phi$=0.001, Space=72KB]{\includegraphics[width=2.8in]{png/0001_72KB.png}}
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
 		\centering
-		\includegraphics[width=2.8in]{png/0001_108KB.png}
+		\subfloat[$\phi$=0.001, Space=108KB]{\includegraphics[width=2.8in]{png/0001_108KB.png}}
 	\end{minipage}
-	\caption{Schematic diagram of the analysis of \emph{SBFSS}}
+	\caption{Performance Comparison of $F_1$ between \emph{SBFSS} and \emph{lCount} - Varying $\phi$ and Space }
 	\label{fig:F1}
 \end{figure*}
 \subsection{Data Sets}
@@ -1132,10 +1137,12 @@ In this section, we first describe our data sets and the implementation details 
 
 \textbf{\emph{rCount} Implementation.} \emph{rCount} shares a similar idea with \emph{nCount}, however, unlike \emph{nCount}, \emph{rCount} uses Rabin's method [] to hash each element in $S$ to a 64-bit fingerprint, or it will consume too much space especially when the elements are URLs. With this fingerprinting technique, there is a small chance that two diﬀerent URLs are mapped to the same fingerprint. When an element comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check the corresponding counter and output it if it is a low-frequency element.\par
 
-\textbf{\emph{lCount} Implementation.} \emph{lCount} maintains a limited and fixed space, like \emph{rCount}, \emph{lCount} uses Rabin's method in order to adjust the space consumption through the maximum number of counters \emph{lCount} can maintain. In addition, we use a max heap to index the counters in \emph{lCount}. When an element comes, if there exists an empty counter, we insert a new counter into the heap, otherwise we replace the top counter of the heap, i.e. the counter with the maximum value, and set the value of the new counter to 1, at last we readjust the heap. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check if the corresponding counter exists in the heap and output it if it is a low-frequency element.
+\textbf{\emph{lCount} Implementation.} \emph{lCount} maintains a limited and fixed space, like \emph{rCount}, \emph{lCount} uses Rabin's method in order to adjust the space consumption through the maximum number of counters \emph{lCount} can maintain. In addition, we use a max heap to index the counters in \emph{lCount}. When an element comes, if there exists an empty counter, we insert a new counter into the heap, otherwise we replace the top counter of the heap, i.e. the counter with the maximum value, and set the value of the new counter to 1, at last we readjust the heap. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check if the corresponding counter exists in the heap and output it if it is a low-frequency element.\par
 
-
-
+\subsection{Performance of BFSS}
+The query issued for \emph{BFSS}, \emph{nCount} and \emph{rCount} was to find all elements, with frequency no more than $\frac{N}{10^3}$. The results comparing the recall, precision, $F_1$ and space used by the algorithms are summarized in Fig. \ref{fig:performance comparison of BFSS}. $N$ was varied from $10^7$ to $7\times 10^7$, and $\phi=0.001$.\par
+The recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$, as is clear from Fig. \ref{subfig:recall}, however, due to the existence of hash collisions, \emph{rCount} may neglect a few low-frequency items, and the recall of \emph{rCount} remained above 0.95. From Fig. \ref{subfig:precison}, with the increasing of $N$, the precision of \emph{BFSS} decreased ranging from 0.969 to 0.943 since the false positive rate of \emph{BF} increased with the increasing of $N$, and the precision of \emph{rCount} increased ranging from 0.931 to 0.978 because only the elements not appearing in $S$ might cause false positives which can be observed from the detailed implementation of \emph{rCount}, and the number of these elements decreased with the increasing of $N$, in this way the precision of \emph{rCount} would increase with the increasing of $N$, in addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each element in $S$. Being concerned with both precision and recall, we calculated the $F_1$s of these algorithms based on the precisions and recalls as Fig. \ref{subfig:f1} shows, and we can find that \emph{BFSS} outperformed \emph{rCount} for all values of $N$.
+\subsection{Performance of SBFSS}
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.

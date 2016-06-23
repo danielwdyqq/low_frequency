@@ -1,0 +1,17 @@
+This is makeindex, version 2.15 [MiKTeX 2.9 64-bit] (kpathsea + Thai support).
+Scanning style file D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/makeindex/latex/gglo.ist........
+** Input style error (file = D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/makeindex/latex/gglo.ist, line = 66):
+   -- Unknown specifier lethead_prefix.
+** Input style error (file = D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/makeindex/latex/gglo.ist, line = 67):
+   -- Unknown specifier lethead_suffix.
+** Input style error (file = D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/makeindex/latex/gglo.ist, line = 68):
+   -- Unknown specifier lethead_flag.
+......done (14 attributes redefined, 3 ignored).
+Scanning input file subfig.glo....
+!! Input index error (file = subfig.glo, line = 3):
+   -- Incomplete first argument (premature LFD).
+done (72 entries accepted, 1 rejected).
+Sorting entries....done (468 comparisons).
+Generating output file subfig.gls....done (124 lines written, 0 warnings).
+Output written in subfig.gls.
+Transcript written in subfig.ilg.

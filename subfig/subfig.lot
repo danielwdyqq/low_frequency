@@ -1,0 +1,8 @@
+\contentsline {table}{\numberline {1}{\ignorespaces Example of internals created by a \cs {newsubfloat} ``subfigure''.\relax }}{3}{table.caption.7}
+\contentsline {table}{\numberline {2}{\ignorespaces \cs {subfloat} calling arguments.\relax }}{4}{table.caption.8}
+\contentsline {table}{\numberline {3}{\ignorespaces Keywords with defaults and values.}}{8}{table.caption.12}
+\contentsline {table}{\numberline {4}{\ignorespaces Example font attribute substitutions.}}{12}{table.caption.17}
+\contentsline {table}{\numberline {5}{\ignorespaces \textsf {Subfig} specific options.\relax }}{33}{table.caption.100}
+\contentsline {table}{\numberline {6}{\ignorespaces Results in Two Tables.\relax }}{38}{table.caption.102}
+\contentsline {subtable}{\numberline {(a)}{\ignorespaces {First Table of Results.}}}{38}{subtable.6.1}
+\contentsline {subtable}{\numberline {(b)}{\ignorespaces Second Table of Results.}}{38}{subtable.6.2}

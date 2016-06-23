@@ -1,0 +1,124 @@
+
+ \begin{theglossary} 
+
+    \makeatletter\scan@allowedfalse
+
+  \item v1.0\efill 
+ \subitem General:\ Created (based on the \textsf  {subfigure} package.\pfill 1
+  \item v1.1\efill 
+ \subitem \verb*+\caption@setlistofformat+:\ Changed \cs  {captionlistofformat} to \cs  {caption@lstfmt}.\pfill 51
+    \subitem \verb*+\sf@@sub@label+:\ Fixed bug wherein the subreference could ignore any prefix numbering when set on the List-of-Floats page. Also changed \cs  {captionlistofformat} to \cs  {caption@lstfmt}.\pfill 
+		62
+    \subitem General:\ Added explanation for multiple `\#' signs in table~\ref  {tab:options}.\pfill 
+		33
+      \subsubitem Changed \cs  {captionlistofformat} to \cs  {caption@lstfmt}.\pfill 
+		59
+      \subsubitem Removed `position' settings from initial setup to allow the class or other external settings to control the initial settings of the default (`bottom') and table (`top') positions.\pfill 
+		55
+      \subsubitem Updated `listofformat' value from `simple' to `subsimple'.\pfill 
+		36, 42, 55
+      \subsubitem Updated the values and the default for the keyword `listofformat' in table~\ref  {tab:keywords2}.\pfill 
+		7
+  \item v1.2\efill 
+ \subitem \verb*+\@newsubfloat+:\ Changed first parameter of the \cs  {dotttedxxxline} to use the float rather than the sub-float name.\pfill 
+		54
+      \subsubitem Removed code setting a default `position' in the new sub-float based on its corresponding float.\pfill 
+		54
+    \subitem \verb*+\caption@+:\ Changed method of setting the float caption settings to first check for \cs  {caption@setfloattype} and to use that if present.\pfill 
+		61
+      \subsubitem Simplified \cs  {caption@} at the suggestion of Axel Sommerfeldt.\pfill 
+		61
+    \subitem \verb*+\dottedxxxline+:\ Added commands to set the float caption keyword/values.\pfill 53
+    \subitem \verb*+\sf@@@subfloat+:\ Changed the top and bottom skips to be placed opposite the main caption rather than the sub-caption; I decided that that looked better.\pfill 
+		57
+      \subsubitem Inserted another \cs  {hrule} of zero size to kill extra vertical space from being added.\pfill 
+		57
+    \subitem \verb*+\sf@@sub@label+:\ Changed \cs  {thepage} to \cs  {@nameuse}\{thesub-\cs  {@captype}\} so that a starred-form of the \cs  {subref} command will work to extract the simple form of the subfigure number using the \cs  {pageref} mechanism.\pfill 
+		62
+    \subitem \verb*+\sf@@subref+:\ Added a starred-form of the \cs  {subref} command.\pfill 63
+    \subitem \verb*+\sf@nearskip+:\ Fine-tuned defaults for `farskip', `topadjust', `captionskip', and `nearskip'.\pfill 
+		54
+    \subitem \verb*+\sf@subfloat+:\ Changed method of setting the float caption settings to first check for \cs  {caption@setfloattype} and to use that if present.\pfill 
+		56
+    \subitem \verb*+\subtable+:\ Added default setting of `loose'.\pfill 39
+      \subsubitem Removed code that forces the figure or table to be in some place. The default will be `bottom' if nothing else is set.\pfill 
+		39
+    \subitem General:\ Added ``The \textsf  {Subfig} Package Startup'' section.\pfill 35
+      \subsubitem Added documentation for the \cs  {subref*} command.\pfill 
+		4
+      \subsubitem Added footnote to reference NFSS.\pfill 10
+      \subsubitem Added missing space.\pfill 7
+      \subsubitem Added the reset of the \cs  {CaptionOption} to keep this package from influencing other packages using the variable.\pfill 
+		55
+      \subsubitem Changed `indent' to `indention'.\pfill 7
+      \subsubitem Changed the first parameter to send float name rather than sub-float name.\pfill 
+		53
+      \subsubitem Changed the names `topskip' to `farskip', and `bottomskip' to `nearskip'. Added a hyphen to ``sub-float'' and ``sub-caption'' where they occurs as regular text to match the usage in The \LaTeX  \ Companion. Also fixed bug in the alternative code if the \textsf  {multirow} package is not found.\pfill 
+		1
+      \subsubitem Fine-tuned the defaults for `farskip', `topadjust', `captionskip', and `nearskip'.\pfill 
+		7
+      \subsubitem Fixed old reference to \cs  {subfigure} to \cs  {subfloat}.\pfill 
+		42
+      \subsubitem Fixed references.\pfill 10
+      \subsubitem Fixed typo: ``Someg eneral'' to ``Some general''.\pfill 
+		41
+      \subsubitem Removed \cs  {captionsetup} of defaults for `farskip', `topadjust', `captionskip', and `nearskip'; because these are defaulted above. Any change can be added to the ``subfloat'' variable.\pfill 
+		55
+      \subsubitem Removed `widespace'.\pfill 7
+      \subsubitem Removed duplicate line.\pfill 36
+      \subsubitem Removed mention of undocumented and/or unreleased \cs  {topcaption} and \cs  {bottomcaption} commands.\pfill 
+		35
+      \subsubitem Removed separate setting of the mapname since the \textsf  {caption} package now fixes the float command \cs  {restylefloat*}. Also, the same fix in the prolog of this document.\pfill 
+		36
+      \subsubitem Removed two extra commas in the figure options lists.\pfill 
+		10
+      \subsubitem Rewrote description of the layout.\pfill 32
+  \item v1.3\efill 
+ \subitem \verb*+\@listsubcaptions+:\ Modified the \cs  {sf@captionlist} to have a unique name for hyper references to the subfigures.\pfill 
+		61
+    \subitem \verb*+\@newsubfloat+:\ Added creating the key-value options for setting the associated List-of-Floats page depth with a default of 2.\pfill 
+		54
+    \subitem \verb*+\ContinuedFloat+:\ Added support for the \textsf  {caption} package version of the \cs  {ContinuedFloat} command.\pfill 
+		63
+      \subsubitem Fixed bug that required new float types to have their corresponding sub-floats defined in order to use the \cs  {ContinuedFloat} command.\pfill 
+		63
+    \subitem \verb*+\caption@ContinuedFloat+:\ Added \cs  {caption@ContinuedFloat} command to provide support for older versions of the \textsf  {caption} package.\pfill 
+		64
+    \subitem \verb*+\caption@setsubrefformat+:\ Added the ability to format the \cs  {subref*} output.\pfill 52
+    \subitem \verb*+\sf@@@subfloat+:\ At the request of Olga Lapko, added a hook into the \cs  {sf@@@subfloat} macro to record the maximum size of subfloats on the current row and to set the height/depth of the current subfloat.\pfill 
+		57
+    \subitem \verb*+\sf@@sub@label+:\ Added formatting for the \cs  {subref*} command.\pfill 62
+    \subitem \verb*+\sf@ifinlist+:\ Added to generalized boolean values.\pfill 49
+    \subitem \verb*+\sf@setbool+:\ Added to generalized boolean values.\pfill 50
+    \subitem \verb*+\sf@split+:\ Added check for `caption' keyword.\pfill 52
+    \subitem \verb*+\sf@subcaption+:\ Added \cs  {sf@updatecaptionlist} to get unique names for hyper-references.\pfill 
+		59
+    \subitem \verb*+\sf@updatecaptionlist+:\ Added to support the \cs  {sf@subcaption}.\pfill 59
+    \subitem General:\ Added `caption'.\pfill 7
+      \subsubitem Added `lofdepth' and `lotdepth'. \pfill 7
+      \subsubitem Added `subrefformat' default.\pfill 55
+      \subsubitem Added an update to the \cs  {H@refstepcounter} so that when it is called within the context of a \cs  {caption} when the \cs  {@ccflag} is true, the respective sub-counter will be restored. This change allows the correct functioning of the \cs  {ContinuedFloat} command.\pfill 
+		65
+      \subsubitem Added another example based on a received question.\pfill 
+		44
+      \subsubitem val]'.\pfill 49
+      \subsubitem Added compatibility with the \textsf  {floatrow} package.\pfill 
+		36
+      \subsubitem Added documentation about including verbatim text in a subfloat.\pfill 
+		38
+      \subsubitem Added FAQ for putting a verbatim environmemnt in a sub-float.\pfill 
+		48
+      \subsubitem Added FAQ for setting the individual List-of-Floats depth variables in order to show the subcaptions.\pfill 
+		46
+      \subsubitem Added new elements due to the addition of the `caption' option processing.\pfill 
+		55
+      \subsubitem At the request of David Kastrup, added code to check for classes that use \cs  {let} on \cs  {end@figure} and similar; and to print a warning and fix the problem if detected.\pfill 
+		49
+      \subsubitem At the request of Olga Lapko, added a hook into the \cs  {@subcaption} macro to record the maximum size of subcaption on the current row and to set the height/depth of the current subcaption.\pfill 
+		59
+      \subsubitem Fixed problem with the ``loose'' and ``tight'' options.\pfill 
+		41
+      \subsubitem Generalized boolean values.\pfill 40
+      \subsubitem Moved configuration subsection.\pfill 32
+
+ \end{theglossary}
