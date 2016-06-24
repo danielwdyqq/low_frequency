@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  23 JUN 2016 17:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  24 JUN 2016 19:13
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -454,37 +454,31 @@ Package pdftex.def Info: png/space.png used on input line 1056.
 <png/001_72KB.png, id=47, 816.651pt x 573.1011pt>
 File: png/001_72KB.png Graphic file (type png)
  <use png/001_72KB.png>
-Package pdftex.def Info: png/001_72KB.png used on input line 1111.
+Package pdftex.def Info: png/001_72KB.png used on input line 1113.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
 <png/001_108KB.png, id=48, 816.651pt x 573.1011pt>
 File: png/001_108KB.png Graphic file (type png)
  <use png/001_108KB.png>
-Package pdftex.def Info: png/001_108KB.png used on input line 1115.
+Package pdftex.def Info: png/001_108KB.png used on input line 1117.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
 <png/0001_72KB.png, id=49, 816.651pt x 573.1011pt>
 File: png/0001_72KB.png Graphic file (type png)
  <use png/0001_72KB.png>
-Package pdftex.def Info: png/0001_72KB.png used on input line 1119.
+Package pdftex.def Info: png/0001_72KB.png used on input line 1121.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
 <png/0001_108KB.png, id=50, 816.651pt x 573.1011pt>
 File: png/0001_108KB.png Graphic file (type png)
  <use png/0001_108KB.png>
-Package pdftex.def Info: png/0001_108KB.png used on input line 1123.
+Package pdftex.def Info: png/0001_108KB.png used on input line 1125.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
 [9]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [10 <./png/recall.png> <./png/precision.png> <./png/f1.png> <./png/space.png>]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
@@ -502,38 +496,36 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[12
-
-] (bare_conf.aux) ) 
+[12] (bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 4413 strings out of 493335
- 68956 string characters out of 3130230
- 162338 words of memory out of 3000000
- 7886 multiletter control sequences out of 15000+200000
+ 4417 strings out of 493335
+ 69018 string characters out of 3130230
+ 163378 words of memory out of 3000000
+ 7890 multiletter control sequences out of 15000+200000
  42067 words of font info for 75 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,15n,49p,1295b,682s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/
-dvips/fontname/8r.enc}<D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/t
-ype1/public/amsfonts/cm/cmex10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Users/dayan/AppData/Local/P
-rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/Users/dayan/App
-Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/Use
-rs/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8
-.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr5.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmr6.pfb><D:/Users/dayan/AppData/Local/Programs/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Users/dayan/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Users/dayan/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:/
+ 38i,15n,49p,2066b,682s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/e
+nc/dvips/fontname/8r.enc}<D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmex10.pfb><D:/Users/dayan/AppData/Local/Programs/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Users/dayan/AppData/Loca
+l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/Users/dayan/
+AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/
 Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-sy7.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/times
-/utmb8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/t
-imes/utmbi8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-urw/times/utmr8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (12 pages, 759837 bytes).
+mi8.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr5.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/Users/dayan/AppData/Local/Program
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Users/dayan/AppData/Lo
+cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Users/day
+an/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><
+D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
+/cmsy7.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/ti
+mes/utmb8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/ur
+w/times/utmbi8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
+e1/urw/times/utmr8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (12 pages, 762458 bytes).
 PDF statistics:
  125 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

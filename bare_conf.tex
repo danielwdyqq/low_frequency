@@ -1053,7 +1053,7 @@ In this section, we first describe our data sets and the implementation details 
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
 	   \centering
-	   \subfloat[Space for 0.001-BLFE]{\includegraphics[width=2.8in]{png/space.png}}
+	   \subfloat[Space for 0.001-BLFE]{\includegraphics[width=2.8in]{png/space.png}\label{subfig:space}}
 	\end{minipage}
 	\caption{ Performance Comparison between \emph{BFSS}, \emph{nCount} and \emph{rCount} Using Real Data - Varying $N$ }
 	\label{fig:performance comparison of BFSS}
@@ -1071,13 +1071,15 @@ In this section, we first describe our data sets and the implementation details 
 \IEEEeqnarraydblrulerowcut\\ 
 &\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
-&&&&72KB&&&123&&&0.172&&0.29&&2121&&2121&&&1&&1&&1&&1&\\ 
-&&&&108KB&&&23&&&0.172&&0.29&&3525&&2121&&&1&&1&&1&&1&\\ 
+&&&&270000&&&49KB&&&0.970&&0.959&&0.949&&0.944&&&1&&1&&1&&1&\\ 
+&&&&400000&&&66KB&&&0.984&&0.979&&0.974&&0.972&&&1&&1&&1&&1&\\ 
+&&&&800000&&&116KB&&&0.996&&0.994&&0.992&&0.992&&&1&&1&&1&&1&\\ 
 \hline
 &\hfill\raisebox{-13pt}[0pt][0pt]{0.001}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
-&&&&72KB&&&123&&&0.172&&0.29&&2121&&2121&&&1&&1&&1&&1&\\ 
-&&&&108KB&&&23&&&0.172&&0.29&&3525&&2121&&&1&&1&&1&&1&\\ 
+&&&&270000&&&193KB&&&0.969&&0.958&&0.948&&0.943&&&1&&1&&1&&1&\\ 
+&&&&400000&&&210KB&&&0.984&&0.978&&0.974&&0.972&&&1&&1&&1&&1&\\ 
+&&&&800000&&&260KB&&&0.996&&0.994&&0.993&&0.992&&&1&&1&&1&&1&\\ 
 \IEEEeqnarrayrulerow
 \end{IEEEeqnarraybox} 
 \end{table*} 
@@ -1120,7 +1122,7 @@ In this section, we first describe our data sets and the implementation details 
 	\end{minipage}
 	\begin{minipage}{0.4\linewidth}
 		\centering
-		\subfloat[$\phi$=0.001, Space=108KB]{\includegraphics[width=2.8in]{png/0001_108KB.png}}
+		\subfloat[$\phi$=0.001, Space=108KB]{\includegraphics[width=2.8in]{png/0001_108KB.png}\label{subfig:f1_4}}
 	\end{minipage}
 	\caption{Performance Comparison of $F_1$ between \emph{SBFSS} and \emph{lCount} - Varying $\phi$ and Space }
 	\label{fig:F1}
@@ -1141,9 +1143,10 @@ In this section, we first describe our data sets and the implementation details 
 
 \subsection{Performance of BFSS}
 The query issued for \emph{BFSS}, \emph{nCount} and \emph{rCount} was to find all elements, with frequency no more than $\frac{N}{10^3}$. The results comparing the recall, precision, $F_1$ and space used by the algorithms are summarized in Fig. \ref{fig:performance comparison of BFSS}. $N$ was varied from $10^7$ to $7\times 10^7$, and $\phi=0.001$.\par
-The recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$, as is clear from Fig. \ref{subfig:recall}, however, due to the existence of hash collisions, \emph{rCount} may neglect a few low-frequency items, and the recall of \emph{rCount} remained above 0.95. From Fig. \ref{subfig:precison}, with the increasing of $N$, the precision of \emph{BFSS} decreased ranging from 0.969 to 0.943 since the false positive rate of \emph{BF} increased with the increasing of $N$, and the precision of \emph{rCount} increased ranging from 0.931 to 0.978 because only the elements not appearing in $S$ might cause false positives which can be observed from the detailed implementation of \emph{rCount}, and the number of these elements decreased with the increasing of $N$, in this way the precision of \emph{rCount} would increase with the increasing of $N$, in addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each element in $S$. Being concerned with both precision and recall, we calculated the $F_1$s of these algorithms based on the precisions and recalls as Fig. \ref{subfig:f1} shows, and we can find that \emph{BFSS} outperformed \emph{rCount} for all values of $N$.
+The recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$, as is clear from Fig. \ref{subfig:recall}, however, due to the existence of hash collisions, \emph{rCount} may neglect a few low-frequency items, and the recall of \emph{rCount} remained above 0.95. From Fig. \ref{subfig:precison}, with the increasing of $N$, the precision of \emph{BFSS} decreased ranging from 0.969 to 0.943 since the false positive rate of \emph{BF} increased with the increasing of $N$, and the precision of \emph{rCount} increased ranging from 0.931 to 0.978 because only the elements not appearing in $S$ might cause false positives which can be observed from the detailed implementation of \emph{rCount}, and the number of these elements decreased with the increasing of $N$, in this way the precision of \emph{rCount} would increase with the increasing of $N$, in addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each element in $S$. Being concerned with both precision and recall, we calculated the values of $F_1$ of these algorithms based on the precisions and recalls as Fig. \ref{subfig:f1} shows, and we can find that \emph{BFSS} outperformed \emph{rCount} for all values of $N$. The advantage of \emph{BFSS} is evident in Fig. \ref{subfig:space}, which shows that \emph{BFSS} achieved a reduction in the space used by a factor ranging from 6 when $N$ was $10^7$ up to 16 when $N$ was $7\times 10^7$, and it is interesting to note that with the increasing of $N$, the space used by \emph{nCount} and \emph{rCount} increased rapidly since more counters were needed with the increasing of $N$, however, the space used by \emph{BFSS} was stable and even decreased a little with the increasing of $N$ because the space complexity is not related to $N$ which can be seen from the analysis of the space complexity of \emph{BFSS}, and the minor difference between the space used by \emph{BFSS} of different $N$ existed in the space used by $D$.\par
+Table \ref{tab:bfss} shows the performance of \emph{BFSS} with different parameter settings. We can see that the precision increased with the increasing of K, and once $K$ and $N$ were confirmed the precision was almost confirmed too, which means the value of $\phi$ had little affection on the precison of \emph{BFSS}, in fact, from the analysis above, we can also observe that \emph{BF} mainly influences the accuracy of \emph{BFSS}, and the precision of $$
 \subsection{Performance of SBFSS}
-
+As mentioned before, when the total space is limited, the space left for the Bloom filter is limited as well, and it may cause many \emph{FPs} when the space is small. Table \ref{tab:sbfss} shows the performance comparison between \emph{SBFSS} and \emph{lCount} when the space was limited. When $\phi$ was 0.01, \emph{SBFSS} outperformed \emph{lCount} in both precision and recall, and we can see that the precision of \emph{SBFSS} was stable and constant at 1 for most values of $N$, and the precision of \emph{lCount} increased with the increasing of $N$ the reason of which is much like \emph{rCount}. In addition, the recalls of \emph{SBFSS} and \emph{lCount} decreased with $N$ since the space was limited and the information we could maintain was limited too, which directly caused the decreasing of the recalls. When $\phi$ was 0.001, the rules of how the precisons and recalls changed was similar to the case when $\phi$ was 0.01, and we can find that \emph{SBFSS} still maintained high accuracy, however, the general performance of \emph{SBFSS} was not as good as the case when $\phi$ was 0.01 because much more space could be allocated to \emph{SBF} when $\phi$ was smaller and the total space was limited. Another interesting observation is that \emph{SBFSS} performed better when the limited space is small, which can be clearly seen from Fig. \ref{fig:F1}, which shows the comparison of $F_1$ between \emph{SBFSS} and \emph{lCount}, especially when $\phi$ was 0.001 and space was 108KB, the performance of \emph{lCount} was even better than \emph{BFSS}, as is clear from Fig. \ref{subfig:f1_4}, however, \emph{SBFSS} mainly applies to the case when the space is limited and small or \emph{BFSS} will perform better. 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
