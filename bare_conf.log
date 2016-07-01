@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  24 JUN 2016 19:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  1 JUL 2016 17:16
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -90,6 +90,10 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \@IEEEtmpitemindent=\dimen116
 \c@IEEEbiography=\count90
 \@IEEEtranrubishbin=\box26
+) (cite.sty
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 332.
+Package: cite 2015/02/27  v 5.5
 )
 ("D:\Users\dayan\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphicx.
 sty"
@@ -267,18 +271,18 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 ) (bare_conf.aux)
 \openout1 = `bare_conf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 359.
-LaTeX Font Info:    ... okay on input line 359.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 359.
-LaTeX Font Info:    ... okay on input line 359.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 359.
-LaTeX Font Info:    ... okay on input line 359.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 359.
-LaTeX Font Info:    ... okay on input line 359.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 359.
-LaTeX Font Info:    ... okay on input line 359.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 359.
-LaTeX Font Info:    ... okay on input line 359.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 361.
+LaTeX Font Info:    ... okay on input line 361.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 361.
+LaTeX Font Info:    ... okay on input line 361.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 361.
+LaTeX Font Info:    ... okay on input line 361.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 361.
+LaTeX Font Info:    ... okay on input line 361.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 361.
+LaTeX Font Info:    ... okay on input line 361.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 361.
+LaTeX Font Info:    ... okay on input line 361.
 
 ("D:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -349,6 +353,10 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 454.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 454.
  <png/zipf.png, id=1, 421.575pt x 316.18124pt>
 File: png/zipf.png Graphic file (type png)
  <use png/zipf.png>
@@ -360,10 +368,16 @@ Package pdftex.def Info: png/zipf.png used on input line 463.
 
  <./png/zipf.png (PNG copy)>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 483.
+(Font)              <8> on input line 474.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 483.
- [2]
+(Font)              <6> on input line 474.
+
+Underfull \hbox (badness 10000) in paragraph at lines 474--474
+[][][]\OT1/ptm/m/n/8 http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-
+the-Long-
+ []
+
+[2]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
@@ -374,37 +388,37 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
  [3]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 583.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 587.
 
 
 ("D:\Users\dayan\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 583.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 587.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 \c@lemma=\count124
 [4]
 \c@theorem=\count125
- <png/bfss.png, id=28, 569.7285pt x 338.4645pt>
+ <png/bfss.png, id=28, 676.929pt x 345.6915pt>
 File: png/bfss.png Graphic file (type png)
  <use png/bfss.png>
-Package pdftex.def Info: png/bfss.png used on input line 720.
-(pdftex.def)             Requested size: 202.35622pt x 120.21512pt.
+Package pdftex.def Info: png/bfss.png used on input line 724.
+(pdftex.def)             Requested size: 202.35622pt x 103.339pt.
  [5 <./png/bfss.png>] [6]
 \c@defn=\count126
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
 
-Underfull \hbox (badness 2181) in paragraph at lines 873--874
+Underfull \hbox (badness 2181) in paragraph at lines 877--878
 []\OT1/ptm/m/it/10 SBF \OT1/ptm/m/n/10 is de-fined as an ar-ray of in-te-ger
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 888--889
+Underfull \hbox (badness 10000) in paragraph at lines 893--894
 [] []\OT1/ptm/m/n/10 Select $\OML/cmm/m/it/10 P$ \OT1/ptm/m/n/10 dif-fer-ent ce
 lls uni-formly at ran-dom
  []
@@ -412,79 +426,94 @@ lls uni-formly at ran-dom
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] <png/sbfss.png, id=39, 579.3645pt x 328.22626pt>
+[7] <png/sbfss.png, id=39, 747.39224pt x 339.06676pt>
 File: png/sbfss.png Graphic file (type png)
  <use png/sbfss.png>
-Package pdftex.def Info: png/sbfss.png used on input line 974.
-(pdftex.def)             Requested size: 202.35622pt x 114.6405pt.
+Package pdftex.def Info: png/sbfss.png used on input line 979.
+(pdftex.def)             Requested size: 202.35622pt x 91.80275pt.
 
 [8 <./png/sbfss.png>]
-Underfull \hbox (badness 1509) in paragraph at lines 1018--1019
+Underfull \hbox (badness 1509) in paragraph at lines 1023--1024
 []\OT1/ptm/m/n/10 From E.q 17[], we ob-serve that the up-per bound of
  []
 
-<png/recall.png, id=43, 939.51pt x 722.7pt>
+[9] <png/recall.png, id=46, 939.51pt x 722.7pt>
 File: png/recall.png Graphic file (type png)
  <use png/recall.png>
-Package pdftex.def Info: png/recall.png used on input line 1044.
+Package pdftex.def Info: png/recall.png used on input line 1049.
 (pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
 
-<png/precision.png, id=44, 939.51pt x 722.7pt>
+<png/precision.png, id=47, 939.51pt x 722.7pt>
 File: png/precision.png Graphic file (type png)
  <use png/precision.png>
-Package pdftex.def Info: png/precision.png used on input line 1048.
+Package pdftex.def Info: png/precision.png used on input line 1053.
 (pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
 
-<png/f1.png, id=45, 939.51pt x 722.7pt>
+<png/f1.png, id=48, 939.51pt x 722.7pt>
 File: png/f1.png Graphic file (type png)
  <use png/f1.png>
-Package pdftex.def Info: png/f1.png used on input line 1052.
+Package pdftex.def Info: png/f1.png used on input line 1057.
 (pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 1052.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 1052.
 
-<png/space.png, id=46, 939.51pt x 722.7pt>
+<png/space.png, id=49, 939.51pt x 722.7pt>
 File: png/space.png Graphic file (type png)
  <use png/space.png>
-Package pdftex.def Info: png/space.png used on input line 1056.
+Package pdftex.def Info: png/space.png used on input line 1061.
 (pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
 
-<png/001_72KB.png, id=47, 816.651pt x 573.1011pt>
+<png/001_72KB.png, id=50, 816.651pt x 573.1011pt>
 File: png/001_72KB.png Graphic file (type png)
  <use png/001_72KB.png>
-Package pdftex.def Info: png/001_72KB.png used on input line 1113.
+Package pdftex.def Info: png/001_72KB.png used on input line 1118.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
-<png/001_108KB.png, id=48, 816.651pt x 573.1011pt>
+<png/001_108KB.png, id=51, 816.651pt x 573.1011pt>
 File: png/001_108KB.png Graphic file (type png)
  <use png/001_108KB.png>
-Package pdftex.def Info: png/001_108KB.png used on input line 1117.
+Package pdftex.def Info: png/001_108KB.png used on input line 1122.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
-<png/0001_72KB.png, id=49, 816.651pt x 573.1011pt>
+<png/0001_72KB.png, id=52, 816.651pt x 573.1011pt>
 File: png/0001_72KB.png Graphic file (type png)
  <use png/0001_72KB.png>
-Package pdftex.def Info: png/0001_72KB.png used on input line 1121.
+Package pdftex.def Info: png/0001_72KB.png used on input line 1126.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
 
-<png/0001_108KB.png, id=50, 816.651pt x 573.1011pt>
+<png/0001_108KB.png, id=53, 816.651pt x 573.1011pt>
 File: png/0001_108KB.png Graphic file (type png)
  <use png/0001_108KB.png>
-Package pdftex.def Info: png/0001_108KB.png used on input line 1125.
+Package pdftex.def Info: png/0001_108KB.png used on input line 1130.
 (pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
-
-[9]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
- [10 <./png/recall.png> <./png/precision.png> <./png/f1.png> <./png/space.png>]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
- [11 <./png/001_72KB.png> <./png/001_108KB.png> <./png/0001_72KB.png> <./png/00
+
+[10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [11 <./png/recall.png> <./png/precision.png> <./png/f1.png> <./png/space.png>]
+
+(bare_conf.bbl
+Missing character: There is no ¬ in font ptmr7t!
+Missing character: There is no ¥ in font ptmr7t!
+ [12 <./png/001_72KB.png> <./png/001_108KB.png> <./png/0001_72KB.png> <./png/00
 01_108KB.png>]
+Missing character: There is no Ô in font ptmr7t!
+Missing character: There is no ¨ in font ptmr7t!
+Missing character: There is no Å in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ô in font ptmr7t!
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ô in font ptmr7t!
+)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -496,13 +525,13 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[12] (bare_conf.aux) ) 
+[13] (bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 4417 strings out of 493335
- 69018 string characters out of 3130230
- 163378 words of memory out of 3000000
- 7890 multiletter control sequences out of 15000+200000
- 42067 words of font info for 75 fonts, out of 3000000 for 9000
+ 4541 strings out of 493335
+ 70819 string characters out of 3130230
+ 163256 words of memory out of 3000000
+ 8009 multiletter control sequences out of 15000+200000
+ 41968 words of font info for 75 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
  38i,15n,49p,2066b,682s stack positions out of 5000i,500n,10000p,200000b,50000s
 {D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/e
@@ -525,9 +554,9 @@ mes/utmb8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/ur
 w/times/utmbi8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/urw/times/utmr8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (12 pages, 762458 bytes).
+Output written on bare_conf.pdf (13 pages, 809212 bytes).
 PDF statistics:
- 125 PDF objects out of 1000 (max. 8388607)
+ 129 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
