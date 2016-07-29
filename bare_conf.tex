@@ -362,28 +362,12 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{Taking One Small Step Forward:\\Finding Low-Frequency Items in Data Streams}
+\title{\emph{Taking One Small Step Forward:}\\Finding Low-Frequency Items in Data Streams}
 
 
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Michael Shell}
-\IEEEauthorblockA{School of Electrical and\\Computer Engineering\\
-Georgia Institute of Technology\\
-Atlanta, Georgia 30332--0250\\
-Email: http://www.michaelshell.org/contact.html}
-\and
-\IEEEauthorblockN{Homer Simpson}
-\IEEEauthorblockA{Twentieth Century Fox\\
-Springfield, USA\\
-Email: homer@thesimpsons.com}
-\and
-\IEEEauthorblockN{James Kirk\\ and Montgomery Scott}
-\IEEEauthorblockA{Starfleet Academy\\
-San Francisco, California 96678-2391\\
-Telephone: (800) 555--1212\\
-Fax: (888) 555--1212}}
 
 % conference papers do not typically use \thanks and this command
 % is locked out in conference mode. If really needed, such as for
@@ -422,7 +406,7 @@ Fax: (888) 555--1212}}
 
 \begin{abstract}
 %\boldmath
-Low-frequency items in data streams are becoming more and more important due to their large amount, and the ability to excavate the rich information contained in them is of great significance to many companies and organizations. We propose an one-pass algorithm, called \emph{BFSS}, which can find items in a data stream with frequencies less than a user specified support. Our algorithm is simple and have small memory footprints. Although the output is approximate, we can guarantee the recall of \emph{BFSS} is always 1 and the precision is high enough. Given a little modification, \emph{BFSS} can be improved to \emph{SBFSS}, which can handle data streams in limited and small space and gurantee a high precision together with a theoretically bounded recall. The experimental results tested on real data set show the recall of \emph{BFSS} was 1 and the precision was above 0.95 using much less space compared to \emph{nCount} and \emph{rCount}, which are two naive methods finding low-frequency items in data streams. \emph{SBFSS} outperformed \emph{lCount}, a method finding low-frequency items in data streams using limited space with replacement strategy, in both precision and recall.
+With the explosive growth of the amount of data and the rapid development of information technology, low-frequency items in data streams have attracted much attention due to their large amount and the rich information contained in them. However, as far as we know, there is no method finding low-frequency items in data streams. To address this problem, we propose an one-pass algorithm, called \emph{BFSS}, which can find the items in a data stream whose frequency is no more than a user-specified support approximately. \emph{BFSS} is simple and has small memory footprints. Although the output is approximate, we can guarantee no false negatives (\emph{FNs}) and only a few false positives (\emph{FPs}) exist in the result. Given a little modification, \emph{BFSS} can be extended to \emph{SBFSS}, which can handle data streams in limited and small space and guarantee only a few \emph{FPs} and theoretically bounded number of \emph{FNs} exist in the result. Experimental results on real-world dataset show \emph{BFSS} achieves high performance using much less space compared to \emph{nCount} and \emph{rCount}, which are two naive methods finding low-frequency items in data streams. \emph{SBFSS} outperforms \emph{lCount}, a method finding low-frequency items in data streams using limited space with a simple replacement strategy, in both precision and recall.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -451,10 +435,7 @@ Low-frequency items in data streams are becoming more and more important due to 
 \section{Introduction}
 % no \IEEEPARstart
 In many real-world applications, information such as web click data \cite{IEEEexample:webdata}, stock ticker
-data \cite{IEEEexample:stockticker,IEEEexample:stockticker2}, sensor network data \cite{IEEEexample:sensor}, phone call records \cite{IEEEexample:phonecall}, and network packet traces \cite{IEEEexample:packet} appear in the form of data streams. Motivated by the above applications, researchers started working on novel algorithms for analyzing data streams. Problems studied in this context include approximate frequency moments \cite{IEEEexample:frequencymoments}, distinct values estimation \cite{IEEEexample:distinctestimation,IEEEexample:distinctvalues}, bit counting \cite{IEEEexample:bitcounting}, duplicate detection \cite{IEEEexample:sbf,IEEEexample:duplicatedetec}, approximate quantiles \cite{IEEEexample:quantile}, wavelet based aggregate queries \cite{IEEEexample:wavelet}, correlated aggregate queries \cite{IEEEexample:correlated}, frequent elements \cite{IEEEexample:frequent1,IEEEexample:frequent2,IEEEexample:frequent3,IEEEexample:ldsketch} and top-$k$ queries \cite{IEEEexample:spacesaving,IEEEexample:top-k1}.\par
-However, to the best of our knowledge, there are no algorithms identifying low-frequency items over data streams. Low-frequency items, similar to the defination of frequent items, are items frequencies of which are less than a specified threshold S. \par
-Zipf's law refers to the fact that many types of data studied in the physical and social sciences can be approximated with a Zipfian distribution, one of a family of related discrete power law distributions. Fig.\ref{fig:sim} describes relation between frequency rank and frequency of items that follow a power law distribution over data streams, and we can find that the distinct number of low-frequency items is much larger than the distinct number of frequent items, so under the restriction of limited memory it is much more difficult to identify low-frequency items than to identify frequent items. \par
-Nowadays, Low-frequency items over data streams are becoming more and more important because of the rich information they contain which can be easily understood through the observation of entropy of data streams \cite{IEEEexample:metropy}. We take one small step forward to maintain low-frequency items over data streams approximately and try to fill up the blank of low-frequency items mining over data streams in this paper.   
+data \cite{IEEEexample:stockticker,IEEEexample:stockticker2}, sensor network data \cite{IEEEexample:sensor}, phone call records \cite{IEEEexample:phonecall}, and network packet traces \cite{IEEEexample:packet} appears in the form of data streams. Motivated by the above applications, researchers started working on novel algorithms for analyzing data streams. Problems studied in this context include approximate frequency moments \cite{IEEEexample:frequencymoments}, distinct values estimation \cite{IEEEexample:distinctestimation,IEEEexample:distinctvalues}, bit counting \cite{IEEEexample:bitcounting}, duplicate detection \cite{IEEEexample:sbf,IEEEexample:duplicatedetec}, approximate quantiles \cite{IEEEexample:quantile}, wavelet based aggregate queries \cite{IEEEexample:wavelet}, correlated aggregate queries \cite{IEEEexample:correlated}, frequent elements \cite{IEEEexample:frequent1,IEEEexample:frequent2,IEEEexample:frequent3,IEEEexample:ldsketch} and top-$k$ queries \cite{IEEEexample:spacesaving,IEEEexample:top-k1}. However, to the best of our knowledge, there is no algorithm finding low-frequency items in data streams. In fact, low-frequency items in data streams have attracted much attention because of the rich information they contain which can be seen through the formulas of entropy of data streams \cite{IEEEexample:metropy}. We take one small step forward to find low-frequency items in data streams approximately in this paper.   
 % You must have at least 2 lines in the paragreaph with the drop letter
 % (should never be an issue)
 
@@ -467,32 +448,31 @@ Nowadays, Low-frequency items over data streams are becoming more and more impor
 
 
 \subsection{Motivating Examples}
-\subsubsection{Individual requirements mining}
-In such an era that information technology develops rapidly, it is much easier for us to get access to various of knowledge and information and we need through a few mouse clicks, for example, we can shop online with the help of e-commerce site, such as Amazon and Taobao etc. We can search whatever we are interested in through search engines, such as Google and Bing etc. \par 
-Our requirements are popular most times, for example, buying a regular water glass online or searching the information about a tourist attraction etc, and these popular requirements can be easily met because almost every e-commerce site sell all linds of water glasses and nearly every search engines provide links to popular tourist attractions worldwide.  \par
-However, we are no longer saiesfied with responses only to popular demands. For example, it is not so easy for us to buy embroidery stitches online or search information about a nameless small village in China, because these are individual requirements, and some e-commerce sites or search engines may neglect these requirements, for example, i can't find product information about embroidery stitches at Amazon while Taobao does. \par
-Yusuf Mehdi, senior vice president of the Online Audience Group for Microsoft Bing, once said at Search Engine Strategies that major reason why Bing got begind with Google is neglecting ``long tail'' of search flow items of which appear a few times or even once, and it is of great importance for them to analyze them\footnote{http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-the-Long-Tail-in-Search-Bing-Boss-Says-396023}. So it is individual requirements or in other words low-frequency demands, in some sense, that really make a difference rather than popular demands in areas like e-commerce and search engine market, and identifying them is the first step to analyze them.
+\subsubsection{Individualized demands mining}
+With the rapid development of internet, we can shop and search whatever we are interested in online. Our demands, for example, buying a regular water glass online or searching the information about a tourist attraction etc, are popular most of the time and these demands can be easily satisfied. However, we are no longer satisfied with just popular demands nowadays. For example, it is not so easy for us to buy embroidery stitches or find the information about a nameless village in China online, because they are individualized demands.\par
+Microsoft lags so far behind Google in the search engine market because it focused a lot on the head of the queries and didn't acknowledge the long tail, said Yusuf Mehdi, senior vice president of the Online Audience Group for Microsoft Bing, at Search Engine Strategies\footnote{http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-the-Long-Tail-in-Search-Bing-Boss-Says-396023}. For Microsoft, focusing on the head instead of the ``long tail'' meant that it returned popular queries but failed to satisfy less common queries. The long tail of queries, or the individualized demands, ended up yielding more sizable traffic and therefore more money for Google over the last 11-plus years.\par
+From above, we can see that individualized demands, in some sense, are more important than popular demands, and finding individualized demands requires the algorithms finding low-frequency items in data streams.
 
-\subsubsection{Data distribution estimation}
-Data distribution is a basic and important property of a data stream. Sampling is a simple and fast method to estimate data distributions, however, sampling will lose much inforamtion of data streams and cause big errors sometimes. From Figure \ref{fig:sim}, we can observe that low-frequency elements have a great influence on data distributions of most data streams, in fact, low-frequency elements dominate the distinct elements in data streams of various distributions which can be seen in our experiments. \par 
-In fact, \emph{BFSS} and \emph{SBFSS} can find both frequent and low-frequency items in data streams efficiently, and in this way we can get much more accurate estimates of data distributions of data streams.
+\subsubsection{Distribution estimation}\label{distribution estimation}
+Distribution is a basic property of a data stream, therefore it is important to estimate the distribution of a data stream efficiently. Sampling is a simple and fast method to estimate distributions, however, it may cause significant errors sometimes. Fig.\ref{fig:sim} is a power-law graph, being used to demonstrate the ranking of frequencies of items in data streams under power-law distributions\footnote{the distributions of a wide variety of physical, biological, and man-made phenomena are approximately power-law distributions}. From Fig.\ref{fig:sim}, we observe that low-frequency items have a great influence on distributions, and combining the information of both frequent and low-frequency items, we can have a relatively more comprehensive estimation of the distribution of a data stream.\par 
+In fact, \emph{BFSS} can approximately find both frequent and low-frequency items in data streams, given a little modification, \emph{BFSS} can be extended to estimate the percentage of the total frequencies of a certain proportion of items in data streams, for example, we can approximately estimate the percentage of the total frequencies of the most frequent twenty\footnote{``twenty'' is just an example, and the specific value varies and will be explained later} percent of items in a data stream, which is similar to the expression of the famous Pareto principle, also known as the 80-20 rule.
 
 \subsection{Our Contributions}
-We introduce and state the proplem of low-frequency items detection over data streams which is of great significance in areas such as individual requirements mining and data distribution estimation, and to the best of our knowledge there is no relative research up to now.\par
+We are the first to pose and formally define the problem $s$\emph{-Bounded Low-Frequency Elements ($s$-BLFE)}, the formal definition of which will be given later, and to the best of our knowledge, there is no method solving the problem till now.\par
 
-In this paper, we propose \emph{BFSS}, which extends the classic frequent items detection algorithm \emph{Space Saving} to maintain both frequent and low-frequency items in a data stream approximately. The basic idea of our solution is as follows: each item in a data stream is either a frequent one or a low-frequency one once the threshold $\phi[\in (0,1)]$ is set, so we can maintain low-frequency items by filtering the frequent items out. A major problem we have to deal with is to maintain an itemset items in which appear in the data stream, and this can be done approximately using a Bloom filter size of which is related to the size of the alphabet of a data stream. \emph{BFSS} gurantees no false negatives and provably few false positives using small memory footprints.\par
+We propose \emph{BFSS}, which extends the classic algorithm \emph{Space Saving} to maintain both frequent and low-frequency items in a data stream approximately. The basic idea of our solution is as follows: each item in a data stream is either a frequent one or a low-frequency one once the threshold $s[\in (0,1)]$ is confirmed, so we can maintain low-frequency items by filtering the frequent items out. A major problem we have to deal with is to maintain an itemset items in which appear in the data stream, and this can be done approximately using a Bloom filter. \emph{BFSS} gurantees no false negatives and provably few false positives using small memory footprints.\par
 
-However, the size of a Bloom filter must increase with the size of the alphabet of a data stream in order to keep a low false positive rate, and here comes a problem: In many embedded devices, such as sensors and routers etc., the storage space is limited and small. In this case, \emph{BFSS} will produce many false positives. Inspired by the solution presented in \cite{IEEEexample:sbf}, we propose \emph{SBFSS} which extends \emph{BFSS} to deal with data streams in limited and small space, and \emph{SBFSS} gurantees few false positives and theoretically bounded false negatives.\par
+However, the size of a Bloom filter must increase with the alphabet's size in order to keep low false positive rate, and here comes a problem: In many embedded devices, such as sensors and routers etc., the storage space is limited and small, in which case \emph{BFSS} will produce many \emph{FPs}. Inspired by the method presented in \cite{IEEEexample:sbf}, we propose \emph{SBFSS} which extends \emph{BFSS} to deal with data streams in limited and small space, and \emph{SBFSS} gurantees a few false positives and theoretically bounded number of false negatives.\par
 
 \subsection{Roadmap}
-In Section 2, we present the problem statement and some background on existing approches which deal with the problem of frequent items detection. Our solutions are presented and discussed in Section 3. In Section 4, we experimentally evaluate out methods. Conclusions are given in Section 5.
+In Section 2, we present problem statement and some backgrounds on the existing approches which deal with the problem $\epsilon$\emph{-Deficient Frequent Elements}. Our solutions are presented and discussed in Section 3. In Section 4, we experimentally evaluate our methods. Conclusions are given in Section 5.
 
 \section{PRELIMINARIES}
-This section presents the problem statement and some representative algorithms solvimg $\epsilon$\emph{-Deficient Frequent Elements} \cite{IEEEexample:sticky} which will be formally defined below.Table \ref{tab:list} summarizes the major notation in this paper.
+This section presents problem statement and some representative algorithms solvimg $\epsilon$\emph{-Deficient Frequent Elements} \cite{IEEEexample:sticky} which will be formally defined below. Table \ref{tab:list} summarizes the major notations in this paper.
 
 \begin{table}
 	
-    \caption{Major Notation Used in the Paper.}
+    \caption{Major Notations Used in the Paper.}
    
 	\begin{tabular}{ll}
 		\hline	Notation  & Meaning\\ 
@@ -500,23 +480,28 @@ This section presents the problem statement and some representative algorithms s
 		\emph{BFSS} & Our first algorithm\\
 		\emph{SBFSS} & Our second algorithm\\	
 		$S$ & The input data stream\\
-		$A$ & The domain of $S$\\
+		$A$ & The alphabet of $S$\\
 		$M$ & The size of $A$\\
-		$M'$ & The number of distinct elements in $S$\\
-		$\phi$ & The user specified support threshold\\
+		$n$ & The number of distinct items in $S$\\
+		$s$ & The user-specified support parameter\\
+	    $\epsilon$ & The user-specified error parameter\\
 		$D$ & The synopsis used in \emph{BFSS} and \emph{SBFSS}\\
-	    $(e,f(e),\Delta(e))$ & The form of each counter in $D$\\ 
-		$E$ & The set of elements monitored in $D$\\
+	    $e$ & The item monitored in $D$\\
+	    $f(e)$ & The estimated frequency of $e$\\
+	    $\Delta(e)$& The estimated error of $f(e)$\\
+		$E$ & The item set monitored in $D$\\
 		$min$ & The minimum value of $f(e)$ in $D$\\
 		$C$ & The maximum number of counters in $D$\\
 		$m$ & The number of counters used in $D$\\
-		$N$ & The number of elements in the input stream\\
+		$N$ & The length of $S$\\
 		$H$ & The number of hash functions used in \emph{BFSS} and \emph{SBFSS}\\
-		$f_S(e)$ & The frequency of element $e$ in $S$\\ 
-		\emph{FPs} &The elements in $S$ with frequency no less than $\lfloor \phi N\rfloor$\\& wrongly output\\
-		\emph{FNs} & The elements in $S$ with frequency less than $\lfloor \phi N\rfloor$ \\&wrongly neglected\\
+		$f_S(e)$ & The Frequency of item $e$ in $S$\\ 
+		\emph{FPs} &The items in $S$ with frequency more than $\lfloor sN\rfloor$\\& wrongly output\\
+		\emph{FNs} & The items in $S$ with frequency no more than $\lfloor sN\rfloor$ \\&wrongly neglected\\
 		\emph{BF}  &The Bloom filter used in \emph{BFSS}\\
 		$K$ & The size of \emph{BF}\\
+		$p_1$ & The percentage of the number of the items \\&whose frequency is above $\lfloor sN\rfloor$\\
+		$p_2$ & The percentage of the total frequencies of the items \\&whose frequency is above $\lfloor sN\rfloor$\\
        \emph{SBF} &The Stable Bloom filter used in \emph{SBFSS}\\
         $K'$ & The size of \emph{SBF}\\
         $k$  &  Number of cells used in \emph{SBF}\\
@@ -526,6 +511,7 @@ This section presents the problem statement and some representative algorithms s
         $p$ &  The probability that a cell is picked to be decremented by 1 \\
         &in each iteration\\
         $p'$ &  The probability that a cell is set in each iteration\\
+        $W$ & The real data set we used in our experiments\\
        \hline
 	\end{tabular}
 \label{tab:list}
@@ -533,32 +519,26 @@ This section presents the problem statement and some representative algorithms s
 \end{table}
 
 \subsection{Problem Statement}
-Consider an input stream $S = e_1,e_2,..., e_N$ of current length $N$, which arrives item by item. Let each item $e_i$ belong to a universe set $A=\{a_1,a_2,...,a_M\}$ of size $M$ representing the input stream's domain. Let $f_S(a)$ denote the number of occurrences of $a$ in $S$\par
-
-Our problem $\phi$\emph{-Bounded Low-Frequency Elements} can be stated as follows: given a data stream $S$ along with its domain $A$ and a user specified threshold $\phi[\in (0,1)]$, output the subset $I(S,\phi) \subset A$ of symbols defined as $I(S,\phi) = \{a\in A : 0 < f_S(a)\leq\lfloor \phi N\rfloor\}$.\par
-
-At any point of time, \emph{BFSS} output a list of items with the following guarantees: 
+Consider an input stream $S = e_1,e_2,..., e_N$ of current length $N$, which arrives item by item. Let each item $e_i$ belong to a universe set $A=\{a_1,a_2,...,a_M\}$ of size $M$.\par
+The problem $s$-\emph{BLFE} can be stated as follows: given a data stream $S$ along with two user-specified parameters: a support parameter $s[\in (0,1)]$ and an error parameter $\epsilon[\in (0,1)]$ such that $\epsilon\leq s$.\par
+At any point of time, with a small bounded memory, output a list of items with the following guarantees: 
 \begin{enumerate}
-\item  All elements whose true frequency is no more than $\lfloor\phi N\rfloor$ are output. There are no \emph{false negatives}.
-\item  No element whose true frequency exceeds $2\lfloor\phi N\rfloor$ is output.
-\end{enumerate} 
-
-As for data streams from large domains which means $M$ is so large that \emph{BFSS} can not handle in mempry, \emph{SBFSS} output a list of items using proper space under the restriction of limited memory with acceptable false negatives and false positives, where a false positive is an item with frequency more than $\lfloor\phi N\rfloor$ wrongly output, and a false negative is an item with frequency no more than $\lfloor\phi N\rfloor$ wrongly neglected.
+\item[1.] all items whose true frequency is no more than $\lfloor sN\rfloor$ are output.
+\item[2.] no item whose true frequency is no less than $\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ is output.
+\end{enumerate}\par
+Imagine a user who is interested in identifying all items whose frequency is no more than $0.1\%N$. Then $s=0.1\%$. The user is free to set $\epsilon$ to whatever she feels is a comfortable margin of error. As a rule of thumb, she could set $\epsilon$ to one-tenth or one-twentieth the value of $s$ and use our algorithm. Let us assume she chooses $\epsilon=0.01\%$ (one-tenth of $s$). As per Property 1, all items with frequency no more than  $0.1\%N$ will be output, there will be no false negatives. As per Property 2, no element with frequency no less than $\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ will be output.\par
 
 \subsection{Related Work}
-As far as we know there are no related algorithms addressing this problem, however, the methods we propose are based on the algorithm solving $\epsilon$\emph{-Deficient Frequent Elements} which can be described as follows: given a input stream $S$ of current length $N$ and a support threshold $\phi \in (0,1)$, return the items whose frequencies are guaranteed to be no smaller than $\lfloor(\phi-\epsilon)N\rfloor$ deterministically or with a probability of at least $1-\delta$, where $\epsilon \in (0,1)$ is a user-defined error and $\delta \in (0,1)$ is a probability of failure, so we examine several algorithms solving $\epsilon$\emph{-Deficient Frequent Elements}.\par
+As far as we know there is no related algorithm addressing $s$-\emph{BLFE}, however, the methods we propose are based on the algorithm solving $\epsilon$\emph{-Deficient Frequent Elements} which can be described as follows: given a input stream $S$ of current length $N$ and a support threshold $s\in(0,1)$, return the items whose frequency is guaranteed to be no smaller than $\lfloor(s-\epsilon)N\rfloor$ deterministically or with a probability of at least $1-\delta$, where $\epsilon\in(0,1)$ is a user-defined error and $\delta\in(0,1)$ is a probability of failure, so we examine several algorithms solving $\epsilon$\emph{-Deficient Frequent Elements}.\par
+Research can be divided into two groups: \emph{counter-based} techniques and \emph{sketch-based} techniques.\par
 
-
-
-research can be divided into two groups: \emph{counter-based} techniques and \emph{sketch-based} techniques.\par
-
-\textbf{Counter-Based Techniques} keep an individual counter for each element in the monitored set, a subset of A. The counter of a monitored element, $e_i$, is updated when $e_i$ occurs in the stream. If there is no counter kept for the observed ID, it is either disregarded, or some algorithm-dependent action is taken.\par
+\textbf{Counter-Based Techniques} keep an individual counter for each item in the monitored set, a subset of A. The counter of a monitored item, $e_i$, is updated when $e_i$ occurs in the stream. If there is no counter kept for the observed ID, it is either disregarded, or some algorithm-dependent action is taken.\par
 
 Two representative algorithms \emph{Sticky Sampling} and \emph{Lossy Counting} were proposed in \cite{IEEEexample:sticky}. The algorithms cut the stream into rounds, and they prune some potential low-requency items at the edge of each round. Though simple and intuitive, they suffer from zeroing too many counters at rounds’ boundaries, and thus, they free space before it is really needed. In addition, answering a frequent elements query entails scanning all counters.\par
 
 The algorithm \emph{Space Saving} , the one we are based at, was proposed in \cite{IEEEexample:spacesaving}. The algorithm maintains a synopsis which keeps all counters in an order according to the value of each counter's monitoring frequency plus maximum possible error. For a non-monitored item, the counter with the smallest counts, \emph{min}, is assigned to monitor it, with the items monitoring frequency $f(e)$ set to 1 and its maximal possible error $\Delta(e)$ set to \emph{min}. Since $min\leq\epsilon N$ (this follows because of the choice of the number of counters), the operation amounts to replacing an old, potentially infrequent item with a new, hopefully frequent item. This strategy keeps the item information until the very end when space is absolutely needed, and it leads to the high accuracy of \emph{Space-Saving}. Experiments done in \cite{IEEEexample:overview_vldbj,IEEEexample:overview} showed \emph{Space-Saving} outperformed other Counter-Based techniques in recall and precision tests.\par
 
-\textbf{Sketch-Based Techniques} do not monitor a subset of elements, rather provide, with less stringent guarantees, frequency estimation for all elements using bitmaps of counters. Usually, each element is hashed into the space of counters using a family of hash functions, and the hashed-to counters are updated for every hit of this element. Those “representative” counters are then queried for the element frequency with less accuracy, due to hashing collisions.\par
+\textbf{Sketch-Based Techniques} do not monitor a subset of items, rather provide, with less stringent guarantees, frequency estimation for all items using bitmaps of counters. Usually, each item is hashed into the space of counters using a family of hash functions, and the hashed-to counters are updated for every hit of this item. Those “representative” counters are then queried for the item frequency with less accuracy, due to hashing collisions.\par
 
 The \emph{Count-Min Sketch} algorithm of Cormode and Muthukrishnan \cite{IEEEexample:count-min} maintains an array of $d\times w$ counters, and pairwise independent hash functions $h_j$ map items onto $[w]$ for each row. Each update is mapped onto $d$ entries in the array, each of which is incremented. The Markov inequality is used to show that the estimate for each $j$ overestimates by less than $n/w$, and repeating $d$ times reduces the probability of error exponentially.\par
 
@@ -566,25 +546,23 @@ The \emph{hCount} algorithm was proposed in \cite{IEEEexample:hcount}. The data 
 
 \section{OUR ALGORITHMS}
 In this section, we will discuss our approaches \emph{BFSS} and \emph{SBFSS} in detail.
-\subsection{The Challenges in $\phi$-Bounded Low-Frequency Elements}
-$\phi$\emph{-Bounded Low-Frequency Elements} has two main challenges due to the different features between frequent items and low-frequency elements over data streams.\par
+\subsection{Challenges of $s$-BLFE}
+$s$\emph{-BLFE} has two main challenges due to the different features between frequent items and low-frequency items over data streams.\par
 
-\textbf{The long tail phenomenon}. It can be easily proved that there are at most $\lceil1/\phi\rceil$ frequent elements whose frequency is more than $\lfloor\phi N\rfloor$ in any data stream, however, there is no provable upper bound of the number of low-frequency elements whose frequency is less than $\lfloor\phi N\rfloor$. In fact, our experiments on both real and synthetic data show that low-frequency elements occupy most of the distinct elements appear in data streams, and it is almost impossible to maintain all low-frequency elements in memory. Another observation is that their frequencies are very low and close as well, and it may consume much space to separate low-frequency elements from frequent elements especially when $\phi$ is very small.\par
+\textbf{The Long Tails in data streams}. It can be easily proved that there are at most $\lceil1/s\rceil$ frequent items whose frequency is more than $\lfloor sN\rfloor$ in any data stream, however, there is no upper bound of the number of the low-frequency items whose frequency is no more than $\lfloor sN\rfloor$. In fact, our experiments show that the low-frequency items occupy most of the distinct items in data streams, and it is almost impossible to maintain all of them in memory. Another observation is their frequencies are very low and close as well, and it may consume much space to separate low-frequency items from frequent items especially when $s$ is very small.\par
 
-\textbf{The unpredictability}. A basic and common idea of \emph{Counter-Based Techniques} is to discard potential infrequent elements dynamically, and it is based on the fact that potential infrequent elements will never become frequent elements if they don't appear afterwards, however, this fact no longer applies to low-frequency elements in data streams because potential elements will possibly become low-frequency elements if they don't appear afterwards. The unpredictability of low-frequency elements makes it difficult to maintain them directly like frequent elements.
+\textbf{Unpredictability}. A basic and common idea of \emph{Counter-Based Techniques} is to discard potential infrequent items dynamically, and it is based on the fact that potential infrequent items will never become frequent items if they don't appear afterwards, however, this fact no longer applies to low-frequency items in data streams because frequent items will possibly become low-frequency items if they don't appear afterwards. The unpredictability of low-frequency items makes it difficult to maintain them directly.
 
 \subsection{The BFSS Algorithm}\label{sec:bfss}
-In consideration of the challenges in $\phi$\emph{-Bounded Low-Frequency Elements}, we tried to solve the problem indirectly by filtering frequent items out which is the underlying idea of \emph{BFSS}.\par
-Two algorithms are proposed for updating and outputting final result separately. Algorithm \ref{alg:bfss} maintains a Bloom filter $BF$ of size $K$ with $H$ uniformly independent hash functions $\{h_1(x),...,h_H(x)\}$ and a synopsis $D$ with $M$ counters. Each of these $H$ hash function maps an element from $A$ to $[0,...,K-1]$. Initially each bit of BF is set to 0 and $D$ has $M$ empty counters. Each newly arrived element in the stream is mapped to $H$ bits in BF by the $H$ hash functions and we set the $H$ bits to 1. Then if we observe an element that is monitored in $D$, we just increment $f(e)$. If we observe an element, $e_{new}$, that is not monitored in $D$, handle it depending on whether there is an empty counter in $D$. If there is one, we just allocate it to $e_{new}$ and set $f(e_{new})$ to 1 and set $\Delta(e_{new})$ to 0. If $D$ is full, we just replace the element that currently has the least hits, $min$, with $e_{new}$. Assign $f(e_{new})$ the value $min+1$ and assign $\Delta(e_{new})$ the value $min$.\par
-
-
+In consideration of the challenges in $s$\emph{-BLFE}, we tried to solve the problem indirectly by filtering frequent items out which is the underlying idea of \emph{BFSS}.\par
+Two algorithms are proposed for updating and outputting results separately. Algorithm \ref{alg:bfss} maintains a Bloom filter $BF$ of size $K$ with $H$ uniformly independent hash functions $\{h_1(x),...,h_H(x)\}$ and a synopsis $D$ with $C$ counters. Each of these $H$ hash function maps an item from $A$ to $[0,...,K-1]$. Initially each bit of BF is set to 0 and $D$ has $C$ empty counters. Each newly arrived item in the stream is mapped to $H$ bits in BF by the $H$ hash functions and we set the $H$ bits to 1. Then if we observe an item that is monitored in $D$, we just increment $f(e)$. If we observe an item, $e_{new}$, that is not monitored in $D$, handle it depending on whether there is an empty counter in $D$. If there is one, we just allocate it to $e_{new}$ and set $f(e_{new})$ to 1 and set $\Delta(e_{new})$ to 0. Otherwise, we just replace the item that currently has the least hits, $min$, with $e_{new}$. Assign $f(e_{new})$ the value $min+1$ and assign $\Delta(e_{new})$ the value $min$.\par
 
 \begin{algorithm}[h]
 	\caption{BFSS Update Algorithm}
 	\label{alg:bfss}
 \begin{algorithmic}[1]
-	\REQUIRE Stream $S$, support threshold $\phi$
-	\STATE $N=0,m=0,C=\lceil 1/\phi\rceil,K=\lambda',H=\mu'$; \COMMENT{$N$: length of stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: number of hash functions;The value of $\lambda'$ and $\mu'$ will be discussed in detail later.}
+	\REQUIRE Stream $S$, support threshold $s$
+	\STATE $N=0,m=0,C=\lceil 1/\epsilon\rceil,K=\lambda',H=\mu'$; \COMMENT{$N$: the length of the input stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: the number of hash functions; The value of $\lambda'$ and $\mu'$ will be discussed in detail later.}
 	\STATE The form of the counters in $D$ is $(e,f(e),\Delta(e))$
 	\FOR{$i=0$ to $K-1$}
 	\STATE $BF[i]=0$
@@ -599,7 +577,7 @@ Two algorithms are proposed for updating and outputting final result separately.
 	\STATE Assign a new counter $(e,1,0)$ to it
 	\STATE $m=m+1$
 	\ELSE
-	\STATE Let $e_m$ be the element with least hits, $min$
+	\STATE Let $e_m$ be the item with least hits, $min$
 	\STATE Replace $e_m$ with $e$ in $D$
 	\STATE $f(e)=min+1,\Delta(e)=min$
 	\ENDIF
@@ -608,15 +586,15 @@ Two algorithms are proposed for updating and outputting final result separately.
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:output} checks and outputs the element with frequency less than a user-specified threshold $\phi$. For each element in $A$, we first check whether it is in $BF$. If the element is not in $BF$, it must not be a low-frequency item because it never appeared in the stream. If the element is in $BF$ but not in $D$, it must be a low-frequency item and we output it, and we will give the reason later. If the element appears both in $BF$ and $D$, we identify the element as a low-frequency element if $f(e)<\lfloor \phi N\rfloor+\Delta(e)$ with high probability. The time requirement of Algorithm \ref{alg:output} is linear to the range of universe. It is acceptable when the frequency of the requests is not high. 
+Algorithm \ref{alg:output} checks and outputs the items whose frequency is no more than $sN$. For each item in $A$, we first check whether it is in $BF$. If the item is not in $BF$, it must not be a low-frequency item. If the item is in $BF$ but not in $D$, we output it as a low-frequency item. If the item appears both in $BF$ and $D$, we identify it as a low-frequency item if $f(e)\leq\lfloor sN\rfloor+\Delta(e)$ with high probability. The time requirement of Algorithm \ref{alg:output} is linear to the range of universe. It is acceptable when the frequency of the requests is not high. 
 
 \begin{algorithm}[h]
 	\caption{BFSS Query Algorithm}
 	\label{alg:output}
 	\begin{algorithmic}[1]
-		\REQUIRE \emph{BF}, $D$, $\phi$, $A$, $N$, $M$
-		\ENSURE low-frequency elements with threshold $\phi$
-		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an element is in \emph{BF} or not}
+		\REQUIRE \emph{BF}, $D$, $s$, $A$, $N$, $M$
+		\ENSURE low-frequency items with threshold $s$
+		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an item is in \emph{BF}}
 		\FOR{$i=0$ to $M-1$}
 		\STATE $flag=true$
 		\FOR{$j=1$ to $H$}
@@ -627,11 +605,11 @@ Algorithm \ref{alg:output} checks and outputs the element with frequency less th
 		\ENDFOR
 		\IF{$flag==true$}
 		\IF{$A[i]$ is monitored in $D$}
-		\IF{$f(A[i])\leq\lfloor \phi N\rfloor+\Delta(A[i])$}
-		\STATE output $A[i]$ as a low-frequency element
+		\IF{$f(A[i])\leq\lfloor sN\rfloor+\Delta(A[i])$}
+		\STATE output $A[i]$ as a low-frequency item
 		\ENDIF
 		\ELSE
-		\STATE output $A[i]$ as a low-frequency element
+		\STATE output $A[i]$ as a low-frequency item
 		\ENDIF
 		\ENDIF
 		\ENDFOR
@@ -649,7 +627,7 @@ In this section, we will prove that there are no \emph{FNs} in the output of \em
 \end{lemma}
 
 \begin{IEEEproof}
-Every hit in $S$ increments only one counter by 1 among the $M$ counters which can be easily proved when $D$ has empty counters. It is true even when a replacement happens, i.e., the observed element $e$ was not previously monitored and $D$ has no empty counters, and it replaces another element $e_m$. This is because we add $f(e_m)$ to $f(e)$ and increment $f(e)$ by 1. Therefore, at any time, the sum of all counters is equal to the length of the stream observed so far.
+Every hit in $S$ increments only one counter by 1 among the $M$ counters which can be easily proved when $D$ has empty counters. It is true even when a replacement happens, i.e., the observed item $e$ was not monitored and $D$ has no empty counters, and it replaces another item $e_m$. This is because we add $f(e_m)$ to $f(e)$ and increment $f(e)$ by 1. Therefore, at any time, the sum of all counters is equal to the length of the stream observed so far.
 \end{IEEEproof}
 
 
@@ -666,25 +644,24 @@ Lemma \ref{lem:1} can be written as:
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:3}
-	For any element $e \in E$, $0 \leq \Delta(e) \leq \lfloor\phi N\rfloor$. 
+	For any item $e \in E$, $0 \leq \Delta(e) \leq \lfloor \epsilon N\rfloor$. 
 \end{lemma}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, $\Delta(e)$ is non-negative because any observed element is always given the benefit of doubt. $\Delta(e)$ is always assigned the value of the minimum counter at the time $e$ started being observed. Since the value of the minimum counter monotonically increases over time until it reaches the current $min$, then for all monitored elements $\Delta(e) \leq min$.\par
-Consider thses two cases: i) If $m=\lceil \frac{1}{\phi}\rceil$, $min\leq \lfloor\phi N\rfloor$; ii) if $m<\lceil \frac{1}{\phi}\rceil$, $\Delta(e)=0$. For any case, we have $0 \leq \Delta(e) \leq \lfloor\phi N\rfloor$.
+From Algorithm \ref{alg:bfss}, $\Delta(e)$ is non-negative because any observed item is always given the benefit of doubt. $\Delta(e)$ is always assigned the value of the minimum counter at the time $e$ started being observed. Since the value of the minimum counter monotonically increases over time until it reaches the current $min$, then for all monitored items $\Delta(e) \leq min$.\par
+Consider thses two cases: i) if $m=\lceil \frac{1}{\epsilon}\rceil$, $min\leq \lfloor \epsilon N\rfloor$; ii) if $m<\lceil \frac{1}{\epsilon}\rceil$, $\Delta(e)=0$. For any case, we have $0 \leq \Delta(e) \leq \lfloor \epsilon N\rfloor$.
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:4}
-	An element $e$ with $f_S(e)> min$, must be monitored in $D$.
+	For any item $e\notin E$ but appearing in $S$, $f_S(e)\leq min\leq \lfloor \epsilon N\rfloor$.
 \end{lemma}
 
 \begin{IEEEproof}
-The proof is given in \cite{IEEEexample:spacesaving}, however, we think the proof is not very rigorous because it is based on the fact that the true frequency of $e$ must be no more than its estimated frequency, i.e. $f_S(e)\leq f(e)$, but this fact should be based on Lemma \ref{lem:4}.\par
-My proof is also by contradiction. Assume $e\notin E$. Then, it was evicted previously, and we assume that it had been monitored in $i(>0)$ time slots, and $e$ appeared $n_j(0<j\leq i)$ times in the $j$th time slot. $n_j$ satisfies:
+From Lemma \ref{lem:2}, we can easily get $min\leq\lfloor \epsilon N\rfloor$ because there must be no empty counter in $D$ and $m=\lceil\frac{1}{\epsilon}\rceil$. We only have to porve that any item satisfying $f_S(e)> min$ must be monitored in $D$, i.e. $e\in E$. The proof is by contradiction. Assume $e\notin E$. Then it was evicted previously, and we assume that it had been monitored in $i(>0)$ time slots, and $e$ appeared $n_j(0<j\leq i)$ times in the $j$th time slot, therefore $n_j$ satisfies:
 \begin{equation}\label{equa:2}
 \sum_{j=1}^{i}n_j=f_S(e)
 \end{equation}\par
-We assume that $\Delta(e_j)(>0)$ denotes the error estimation assigned to $e$ at the start of the $j$th time slot, and we have the following inequality because the minimum counter value increases monotonically:
+We assume that $\Delta(e_j)(\geq 0)$ denotes the error estimation assigned to $e$ at the start of the $j$th time slot, and we have the following inequality because the minimum counter value increases monotonically:
 \setlength{\arraycolsep}{0.0em}
 \begin{eqnarray}\label{eqnarray:1}
 \Delta(e_1)&+&n_1\leq\Delta(e_2)\notag\\
@@ -698,16 +675,15 @@ After adding up the left and right sides of inequality group \ref{eqnarray:1}, w
 \begin{equation}\label{equa:3}
 \Delta(e_1)+\sum_{j=1}^{i}n_j\leq min
 \end{equation}\par
-We can get $f_S(e)\leq min$ from equation \ref{equa:2} and inequation \ref{equa:3}. This contradicts the condition $f_S(e)>min$.\par
-In fact, Lemma \ref{lem:4} can also be stated as: For any element $e\notin E$ in $S$, $f_S(e)\leq min\leq \lfloor\phi N\rfloor$.  
+Therefore $f_S(e)\leq min$, which contradicts the condition $f_S(e)>min$.\par
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:5}
-  For any element $e\in E$, $f(e)-\Delta(e)\leq f_S(e)\leq f(e)\leq f(e)-\Delta(e)+min$
+  For any item $e\in E$, $f(e)-\Delta(e)\leq f_S(e)\leq f(e)\leq f(e)-\Delta(e)+min$
 \end{lemma}
 
 \begin{IEEEproof}
-From Lemma \ref{lem:3}, we can easily get $f(e)\leq f(e)-\Delta(e)+min$. $f(e)-\Delta(e)$ is the true frequency of $e$ since it was lastly observed, so $f(e)-\Delta(e)\leq f_S(e)$. From Lemma \ref{lem:4}, we can find that $\Delta(e)$ over estimated the frequency of $e$ before it was observed ,and it clearly indicates $f_S(e)\leq f(e)$. From the above, we can prove Lemma \ref{lem:5}.
+Since the value of the minimum counter monotonically increases, we have $\Delta(e)\leq min$, which indicates $f(e)\leq f(e)-\Delta(e)+min$. $f(e)-\Delta(e)$ is the true frequency of $e$ since it was lastly observed, so $f(e)-\Delta(e)\leq f_S(e)$. From Lemma \ref{lem:4}, we can find that $\Delta(e)$ over estimated the frequency of $e$ before it was observed, and it clearly indicates $f_S(e)\leq f(e)$.
 \end{IEEEproof}
 
 \newtheorem{theorem}{Theorem}
@@ -716,25 +692,25 @@ From Lemma \ref{lem:3}, we can easily get $f(e)\leq f(e)-\Delta(e)+min$. $f(e)-\
 \end{theorem}
 
 \begin{IEEEproof}
-We only hava to prove that the elements we don't output contain no low-frequency elements. From Algorithm 1, only two kinds of elements are not ouput: i) elements filtered out by the \emph{BF}. ii) elements monitored in $D$ with $f(e)-\Delta(e)>\lfloor \phi N\rfloor$. The first kind of elements are obviously not low-frequency elements because they never appeared in $S$. From Lemma \ref{lem:5}, we know that the elements monitored in $D$ with $f(e)-\Delta(e)>\lfloor \phi N\rfloor$, must satisfy $f_S(e)>\lfloor \phi N\rfloor$. 
+We only hava to prove that the items we don't output contain no low-frequency items. Algorithm \ref{alg:output} shows that two kinds of items are not ouput: i) the items filtered out by \emph{BF}. ii) the items monitored in $D$ with $f(e)-\Delta(e)>\lfloor sN\rfloor$. The first kind of items are obviously not low-frequency items because they never appeared in $S$. From Lemma \ref{lem:5}, we know that the items monitored in $D$ with $f(e)-\Delta(e)>\lfloor sN\rfloor$ must satisfy $f_S(e)>\lfloor sN\rfloor$, which means the second kind of items must be frequent items.
 \end{IEEEproof}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=2.8in]{png/bfss.png}
+	\includegraphics[width=3.5in]{png/bfss.png}
 	\caption{The schematic diagram of the analysis of \emph{BFSS}}
 	\label{fig:bfss}
 \end{figure}
 
 \subsubsection{\textbf{Analysis of FPs}}
-In this section, we will give a theoretically strict bound of expectation of number of \emph{FPs} in output of \emph{BFSS} regardless of data distribution of $S$, and a tighter bound can be derived for data stream under Pareto distribution \cite{IEEEexample:pareto}.
+In this section, we will give a theoretically bound of the expectation of the number of \emph{FPs} in the output of \emph{BFSS} regardless of the distribution of $S$, and a tighter bound can be derived for data streams under Pareto distribution \cite{IEEEexample:pareto}.
 
 \begin{lemma}\label{lem:6}
-	 Any element $e$ with $f_S(e)>2\lfloor \phi N\rfloor$, must not be output.
+Any item $e$ with $f_S(e)>\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ must not be output.
 \end{lemma}
 
 \begin{IEEEproof}
-From Lemma \ref{lem:4}, we know that any element $e$ with $f_S(e)>2\lfloor \phi N\rfloor$ must be monitored in $D$, i.e. $e\in E$. Then from Lemma \ref{lem:5}, we can get that elements monitored in $D$ must satisfy $f_S(e)\leq f(e)$, and that is to say any element $e$ monitored in $D$ with $f_S(e)>2\lfloor \phi N\rfloor$, must satisfy $f(e)>2\lfloor \phi N\rfloor$. At last from Lemma \ref{lem:3}, we can prove that any element $e$ with $f(e)>2\lfloor \phi N\rfloor$, must satisfy $f(e)>\lfloor \phi N\rfloor+\Delta(e)$, which means $e$ will not be output.
+From Lemma \ref{lem:4}, we know that any item $e$ with $f_S(e)>\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ must be monitored in $D$, i.e. $e\in E$. Then from Lemma \ref{lem:5}, we can get that the items monitored in $D$ must satisfy $f_S(e)\leq f(e)$, and that is to say any item $e$ monitored in $D$ with $f_S(e)>\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ must satisfy $f(e)>\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$. At last from Lemma \ref{lem:3}, we can prove that any item $e$ with $f(e)>\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ must satisfy $f(e)>\lfloor sN\rfloor+\Delta(e)$, which means $e$ will not be output.
 \end{IEEEproof}
 
 \begin{lemma}\label{lem:7}
@@ -745,59 +721,59 @@ The probability of a false positive of \emph{BF} is no more than:
 \end{lemma}
 
 \begin{IEEEproof}
-First, a false positive of \emph{BF} means an element in $A$ not appearing in $S$ but not filtered out by \emph{BF}. Observe that after inserting $M$ keys into a table of size $K$, the probability that a particular bit is still 0 is exactly
+A false positive of \emph{BF} means an item in $A$ not appearing in $S$ but not filtered out by \emph{BF}. Observe that after inserting $M$ keys into a table of size $K$, the probability that a particular bit is still 0 is exactly
 \begin{equation} 
 (1-\frac{1}{K})^{HM}
 \end{equation}
-\indent Hence the probability of a false positive in this situation is $(1-(1-\frac{1}{K})^{HM})^H$. However, we know that $M$ denotes the size of $A$ which is the domain of $S$, so the number of distinct elements in $S$ must be no more than $M$, i.e. $M'\leq M$, and further we have $(1-(1-\frac{1}{K})^{HM'})^H\leq (1-(1-\frac{1}{K})^{HM})^H$.
+\indent Hence the probability of a false positive in this situation is $(1-(1-\frac{1}{K})^{HM})^H$. However, we know that $M$ denotes the size of $A$ which is the alphabet of $S$, so the number of the distinct items in $S$ must be no more than $M$, i.e. $n\leq M$, and further we have $(1-(1-\frac{1}{K})^{Hn})^H\leq (1-(1-\frac{1}{K})^{HM})^H$.
 \end{IEEEproof}
 
 \begin{theorem}\label{thm:2}
 Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{BFSS}, denoted as $E(\#FPs)$, satisfies:
 \begin{equation}\label{eq:7}
-E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lceil\frac{1}{\phi}\rceil
+E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + \lfloor\frac{1}{s}\rfloor
 \end{equation}
 \end{theorem}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, we can observe that two kinds of elements contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output. The two cases correspond to the gray areas in Fig. \ref{fig:bfss} which is abstracted out from the analysis of \emph{BFSS}. Concretely speaking, the ligth gray area represents the elements with $f_S(e)>\lfloor \phi N\rfloor$ wrongly output, i.e. the second case, and the dark gray area represents the elements not filtered out by \emph{BF}, i.e. the first case. Furthermore, the output of \emph{BFSS} is represented by $II+III+IV$, and the exact low-frequency elements in $S$ is represented by $III$.\par
-For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each element in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{HM'})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-M')(1-(1-\frac{1}{K})^{HM'})^H$.\par 
-For the second case, we know from Lemma \ref{lem:6} that elements with $f_S(e)>2\lfloor \phi N\rfloor$ must not be not output, so only elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor \phi N\rfloor$ are likely to be output, and these elements must be monitored in $D$ which can be directly derived from Lemma \ref{lem:4}, so the maximum number of these elements is $\lceil\frac{1}{\phi}\rceil$. From above, due to the linear properties of expectation, we can get:
+From Algorithm \ref{alg:bfss}, we can observe that two kinds of items contribute to \emph{FPs}: i) the false positives of \emph{BF}; ii) the items with $f_S(e)>\lfloor sN\rfloor$ wrongly output. The two cases correspond to the gray areas in Fig. \ref{fig:bfss} which is abstracted out from the analysis of \emph{BFSS}. Concretely speaking, the ligth gray area represents the items with $f_S(e)>\lfloor sN\rfloor$ wrongly output, i.e. the second case, and the dark gray area represents the items not filtered out by \emph{BF}, i.e. the first case. Furthermore, the output of \emph{BFSS} is represented by $II+III+IV$, and the exact low-frequency items in $S$ is represented by $III$.\par
+For the first case, we define the independent 0-1 random variables $x_i(1\leq i\leq M)$ for each item in $A$, and the value of $x_i$ depends on whether $a_i$ appeared in $S$ or not. If $a_i$ appeared in $S$, then $x_i=0$; If not, then with a probability of $(1-(1-\frac{1}{K})^{Hn})^H$, $x_i=1$; From the defination of $x_i$, we can find that the expectation of the number of the false positives of \emph{BF} equals $E(\sum_{i=1}^{M}x_i)$, i.e. $(M-n)(1-(1-\frac{1}{K})^{Hn})^H$.\par 
+For the second case, we know from Lemma \ref{lem:6} that items with $f_S(e)>\lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ must not be not output, so only items with $\lfloor sN\rfloor<f_S(e)\leq \lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ are likely to be output, and the maximum number of these items is $\lfloor\frac{1}{s}\rfloor$ because there are at most $\lfloor\frac{1}{s}\rfloor$ items with $f_S(e)>\lfloor sN\rfloor$ in $S$. From above, due to the linear properties of expectation, we can get:
 \begin{equation}\label{eq:8}
-E(\#FPs)\leq (M-M')(1-(1-\frac{1}{K})^{HM'})^H+\lceil\frac{1}{\phi}\rceil\\
+E(\#FPs)\leq (M-n)(1-(1-\frac{1}{K})^{Hn})^H+\lfloor\frac{1}{s}\rfloor\\
 \end{equation}
-\indent In addition, $M'\leq M$, so inequation \ref{eq:7} can be easily derived from inequation \ref{eq:8}.
+\indent In addition, $n\leq M$, so inequation \ref{eq:7} can be easily derived from inequation \ref{eq:8}.
 \end{IEEEproof}
-
-However, from the derivation above, we can see that $\frac{1}{\phi}$ is a loose bound of the second case because elements with $f_S(e)>2\lfloor \phi N\rfloor$ can not be output, and we count them in. So if we make an assumption of the distribution of $S$, we will get a relatively tighter bound of the second case.
+However, from above, we can see that $\frac{1}{s}$ is a very loose bound of the number of the items with $\lfloor sN\rfloor<f_S(e)\leq \lfloor sN\rfloor+\lfloor \epsilon N\rfloor$. We will get a tighter bound if $S$ .
 
 \begin{theorem}\label{thm:3}
-Assuming noiseless Pareto data with parameter $\alpha$ and $f_S(e_m)$, where $\alpha (\alpha >0)$ and $e_m$ denotes the element with the lowest freqeuncy, we have:
+Assuming noiseless Pareto data with parameter $\alpha$ and $f_S(e_m)$, where $\alpha (>0)$ and $e_m$ denotes the item with the lowest frequency, we have:
 \setlength{\arraycolsep}{0.0em}
 \begin{eqnarray}
-	E(\#FPs)&<&M(1-(1-\frac{1}{K})^{HM})^H + T\\
-	T&=&(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M\label{eq:10}
+	E(\#FPs)<M(1-(1-\frac{1}{K})^{HM})^H + T\\
+	T=min\{((\frac{f_S(e_m)}{\lfloor sN\rfloor})^\alpha-(\frac{f_S(e_m)}{\lfloor sN\rfloor+\lfloor \epsilon N\rfloor})^\alpha)M,\lfloor\frac{1}{s}\rfloor\}\label{eq:10}
 \end{eqnarray}
 \setlength{\arraycolsep}{5pt}
 \end{theorem}
 
 \begin{IEEEproof}
-The Pareto distribution\footnote{https://en.wikipedia.org/wiki/Pareto\_distribution} has the following property: If $X$ is a random variable with a Pareto distribution, then the probability that $X$ is greater than some number $x$, i.e. the survival function, is given by:
+The Pareto distribution\footnote{https://en.wikipedia.org/wiki/Pareto\_distribution} has the following property: If $X$ is a random variable with a Pareto distribution, then the probability that $X$ is greater than some number $x$, i.e. the tail function, is given by:
 $$Pr(X>x)=
 \begin{cases}
 (\frac{x_m}{x})^\alpha & x\geq x_m\\
 1 & x<x_m
 \end{cases}$$
-where $x_m$ is the minimum possible value of $X$, and $\alpha$ is a positive parameter. So In such a case, the expected value of the number of the elements with $\lfloor \phi N\rfloor<f_S(e)\leq 2\lfloor\phi N\rfloor$ is $(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M'$.
+where $x_m$ is the minimum possible value of $X$, and $\alpha$ is a positive parameter. In such case, the expected value of the number of the items with $\lfloor sN\rfloor<f_S(e)\leq \lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ is $((\frac{f_S(e_m)}{\lfloor sN\rfloor})^\alpha-(\frac{f_S(e_m)}{\lfloor sN\rfloor+\lfloor \epsilon N\rfloor})^\alpha)n$.
 \end{IEEEproof}
-We may not calculate the exact value of $T$ because we can't get the exact value of $f_S(e_m)$, however, once a query comes, the parameters are confirmed and so is the value of $T$, furthermore, the upper bound of the value of $E(\#FPs)$ is confirmed as well. In this sense, it is meaningful to give the expression of $T$.\par
-From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, and our goal is to minimize the value of  $E(\#FPs)$ by choosing the appropriate values. In addtion, the value of $K$ directly influence the space complexity of \emph{BFSS}, so we will make some analysis of the values of $K$ and $H$ then.
+From Inequation \ref{eq:7}, we observe that the upper bound of $E(\#FPs)$ is related with the values of $H$ and $K$, in addtion, the value of $K$ directly influence the space consumption of \emph{BFSS}, and the value of $H$ directly influence the update time of \emph{BFSS}, so it is of great significance to choose the appropriate values of $K$ and $H$ to keep a good balance of the precision, the space consumption and the update time of \emph{BFSS} .
 
 
 \subsubsection{\textbf{Space complexity}}\label{sec:space}
-In this section, we will give some analysis of the space complexity of \emph{BFSS} including how to choose the appropriate values of $H$ and $K$.
+In this section, we will analyze the space complexity of \emph{BFSS} including how to choose the appropriate values of $H$ and $K$.
 
-\textbf{Choosing the appropriate values of $H$ and $K$}. Our goal is to minimize $E(\#FPs)$, and from Algorithm \ref{alg:bfss}, we see that the values of $M$ and $\phi$ are confirmed at the very beginning before our algorithm. In this way, our task is to minimize the value of $(1-(1-\frac{1}{K})^{HM})^H$, denoted as $F$, by calculating the appropriate values of $H$ and $K$, and we have:
+\textbf{Choosing the appropriate values of $H$ and $K$.}
+Our goal is to choose the appropriate values of $H$ and $K$ to keep $\#FPs$ as small as possible, meanwhile, we have to take the space consumption and update time into consideration as well. However, we can only get the upper bound of the value of $E(\#FPs)$, which is not equivalent to $\#FPs$. In fact, from the Chernoff bound, we know that there is a high probability that an independent random variable hovers near its expected value, which means we can approximately treat $E(\#FPs)$ as $\#FPs$.\par
+Obviously, the upper bound of $E(\#FPs)$ given in Inequation \ref{eq:7} is not so tight, and the upper bound of $E(\#FPs)$ given in Inequation \ref{eq:8} is much tighter. However, it is difficult for us to choose the appropriate values of $H$ and $K$ to minimize the upper bound given in Inequation \ref{eq:8} because the value of $n$ is variable, and the task will be much easier for the bound given in Inequation \ref{eq:7}, besides, the values of $M$ and $s$ are confirmed at the very beginning, therefore our task is to minimize the value of $(1-(1-\frac{1}{K})^{HM})^H$, denoted as $F$, and we have:
 \begin{equation}\label{eq:11}
 F\approx(1-e^{-\frac{HM}{K}})^H=e^{H\ln (1-e^{-\frac{HM}{K}})}
 \end{equation}
@@ -838,35 +814,84 @@ From the above derivation, we know that once the value of $\frac{K}{M}$ is confi
    \end{tabular}
     	\label{tab:2}
 \end{table}
-From Equation \ref{eq:15}, we notice that the larger the value of $H$ is, the smaller the value of $F$ is. However, the value of $K$ increases monotonically with the increasing value of $H$ once the value of $M$ is confirmed which can be observed from Equation \ref{eq:14}, in other words, in order to decrease the value of $E(\#FPs)$, we have to increase the size of \emph{BF}, i.e. $K$.\par 
+From Equation \ref{eq:15}, we notice that the larger the value of $H$ is, the smaller the value of $F$ is. However, the value of $K$ increases monotonically with the increasing value of $H$ once the value of $M$ is confirmed, which can be observed from Equation \ref{eq:14}, in other words, in order to decrease the value of $E(\#FPs)$, we have to increase the size of \emph{BF}, i.e. $K$.\par 
 
-For example, if the value of $M$ is 1M and the value of $\phi$ is 0.001. From Table \ref{tab:2}, we see that if the value of $K$ is 16M, the appropriate value of $H$ should be $11$, therefore the value of $F$ is 0.000459, and the upper bound of the value of $E(\#FPs)$ ,calculated by Inequation \ref{eq:7}, is $1M\times0.000459+1/0.001=1459$. Meanwhile, if the value of $K$ is 17M, the corresponding values of $H$ and $F$ are 12 and 0.000284, therefore the upper bound of the value of $E(\#FPs)$ is 1284. From the proof of Theorem \ref{thm:2}, we know that in order to caculate the exact upper bound of the value of $E(\#FPs)$, the bound given in Inequation \ref{eq:7} is not so tight, in fact, the experimental results indicate a much better performence.\par
+For example, if $M=1M$ and $s=0.001$, then from Table \ref{tab:2}, we see that if $K=16M$, the value of $H$ should be $11$, therefore $F\approx0.000459$, and the upper bound of $E(\#FPs)$ ,calculated by Inequation \ref{eq:7}, is $1M\times0.000459+1/0.001=1459$. If $K=17M$, the corresponding values of $H$ and $F$ are 12 and 0.000284, therefore $E(\#FPs)=1284$. In fact, a much tighter bound of $E(\#FPs)$ can be derived from Inequation \ref{eq:8} once the value of $K$ and $H$ are confirmed.\par
+
+\textbf{Analysis of $E(\#FPs)$.}
+Our goal is to calculate the maximum value of $E(\#FPs)$ for different values of $n$ when the values of $H$ and $K$ are confirmed. Let $F'=(M-n)(1-(1-\frac{1}{K})^{Hn})^H$, and from Inequation \ref{eq:8}, we have $E(\#FPs)\leq F'+\lfloor\frac{1}{s}\rfloor$, in which the value of $\lfloor\frac{1}{s}\rfloor$ is confirmed once the value of $s$ is confirmed, therefore our task is to calculate the maximum value of $F'$.
+
 
 \begin{theorem}\label{thm:4}
-The space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\phi}\rceil,M))$, where $\lambda\in N^*$, the value of which is discussed detaily above. 
+The space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\epsilon}\rceil,M))$, where $\lambda\in N^*$, the value of which is discussed detaily above. 
 \end{theorem}
 
 \begin{IEEEproof}
-The space complexity of \emph{BFSS} includes two part: i) the size of \emph{BF}, i.e. $K$. ii) the number of counters used in $D$, i.e. $m$. In order to get the minimum value of $E(\#FPs)$, the value of $K$ should be multiple times of the value of $M$, i.e. $K=\lambda M(\lambda\in N^*)$. From Algorithm \ref{alg:output}, we have $m\leq min(\lceil\frac{1}{\phi}\rceil,M)$. So the space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\phi}\rceil,M))$.
+The space complexity of \emph{BFSS} includes two part: i) the size of \emph{BF}, i.e. $K$. ii) the number of counters used in $D$, i.e. $m$. In order to get the minimum value of $E(\#FPs)$, the value of $K$ should be multiple times of the value of $M$, i.e. $K=\lambda M(\lambda\in N^*)$. From Algorithm \ref{alg:output}, we have $m\leq min(\lceil\frac{1}{\epsilon}\rceil,M)$. So the space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\epsilon}\rceil,M))$.
 \end{IEEEproof}
-
-In conclusion, there exists a trade off between the number of \emph{FPs} and the space consumption of \emph{BFSS}. Theoretically, once the value of $M$ is confirmed, the larger the value of $\lambda$, the smaller the number of \emph{FPs} should be, and the larger the value of $K$ should be.\par
-Furthermore, consider a naive method to solve $\phi$\emph{-Bounded Low-Frequency Elements}: we simply allocate each element in $A$ a counter, and update the corresponding counter for each element in $S$, when a query comes, we just output the elements with $f_S(e)\leq\lfloor \phi N\rfloor$. Obviously the method can maintain the low-frequency elements precisely, and the space complexity of the method is $O(M)$. \emph{BFSS} has no advantage over the naive method in space complexity considering big O though, \emph{BFSS} needs not to store the exact value or the fingerprint of each element which may consume much space in total especially when the value is long string, URL etc. The experimental results indicate \emph{BFSS} is much more space efficient too.
+In conclusion, there exists a trade off between the number of \emph{FPs} and the space consumption of \emph{BFSS}. Theoretically, once $M$ is confirmed, the larger the value of $\lambda$ is, the larger the value of $K$ will be, and the smaller the value of $E(\#FPs)$ will be.\par
+Furthermore, consider a naive method to solve $s$\emph{-BLFE}: we simply allocate each item in $A$ a counter, and update the corresponding counter for each item in $S$, when a query comes, we just output the items with $f_S(e)\leq\lfloor sN\rfloor$. Obviously the method can maintain the low-frequency items precisely, and the space complexity of the method is $O(M)$. \emph{BFSS} has no advantage over the naive method in space complexity considering big O though, \emph{BFSS} needs not to store the exact value or the fingerprint of each item which may consume much space especially when the value is long string, like URL. The experimental results indicate \emph{BFSS} is much more space efficient.
 \subsubsection{\textbf{Time complexity}}
 In this section, we will discuss the time complexity of \emph{BFSS}.
 
 \begin{theorem}\label{thm:5}
-Processing each data stream element needs $O(1)$ time, independent of the size of the stream.
+Processing each item needs $O(1)$ time, independent of $N$.
 \end{theorem}
 
 \begin{IEEEproof}
-From Algorithm \ref{alg:bfss}, we know the processing time for each element consists two parts: i) the time spent hasing each element into \emph{BF}. ii) the time spent updating the corresponding counter in $D$. Due to $H$ is constant, time spent hashing each element into \emph{BF} is constant too. Consider two cases in updating the corresponding counter in $D$: i) element $e$ is monitored in $D$, and we only have to update the corresponding counter. ii) element $e$ is not monitored in $D$, and we need to first locate the counter with the minimum $f(e)$, then update it. Obviously, the time spent for any case is constant because $\lceil \frac{1}{\phi}\rceil$ is constant. Therefore, processing each element needs only $O(1)$ time in total.
+From Algorithm \ref{alg:bfss}, we know the processing time for each item has two parts: i) the time spent hasing each item into \emph{BF}. ii) the time spent updating the corresponding counter in $D$. Obviously, the time spent hashing each item into \emph{BF} is constant because $H$ is constant. Consider two cases in updating the corresponding counter in $D$: i) item $e$ is monitored in $D$, and we only have to update the corresponding counter. ii) item $e$ is not monitored in $D$, and we have to locate the counter with the minimum $f(e)$ first, then update it. Obviously, the time spent for any case is constant because $\lceil \frac{1}{\epsilon}\rceil$ is constant. Therefore, processing each item needs $O(1)$ time.
 \end{IEEEproof}
 
-\subsubsection{\textbf{The challenges to BFSS}}
+\subsubsection{\textbf{Challenges to BFSS}}
 In this section, we will identify the existing problems in \emph{BFSS}.\par
 From the analysis in section \ref{sec:space}, we observe that $K$ should increase monotonically with $M$ in order to keep a low rate of \emph{FPs}, however, what if the space available is limited and small? The precision of \emph{BFSS} will be very low in this case.\par
-Inspired by the algorithm proposed in \cite{IEEEexample:sbf}, we present the \emph{SBFSS} algorithm, which can find low-frequency elements over data streams in limited and small space with few \emph{FPs} together with theoretically bounded \emph{FNs}.\par
+Inspired by the algorithm proposed in \cite{IEEEexample:sbf}, we present the \emph{SBFSS} algorithm, which can find low-frequency items over data streams in limited and small space with a few \emph{FPs} together with theoretically bounded number of \emph{FNs}.\par
+
+\subsection{The BFSS* Algorithm}
+In this section, we will introduce \emph{BFSS*}, which approximately estimates the distribution of a data stream.\par
+The goal of \emph{BFSS*} is to estimate the percentage of the number of the items whose frequency is above a user-specified support, denoted as $p_1$, and the percentage of the total frequencies of these items, denoted as $p_2$.\par 
+\emph{BFSS*} and \emph{BFSS} share the same update process, and the query process of \emph{BFSS*} is described in Algorithm \ref{alg:bfss*}. For each item $e$ in $A$, we first check whether it is in \emph{BF}, if the item is in \emph{BF}, we increment the counter $n$, and if the item appears in $D$ and $f(e)>\lfloor sN\rfloor+\Delta(A[i])$, we increment $n'$ and add $f(e)-\Delta(e)$ to $f$. At last, we set $p_1'=n_s'/n'$ as the approximate value of $p_1$ and $p_2'=f'/N$ as the approximate value of $p_2$.
+
+\begin{algorithm}[h]
+	\caption{BFSS* Query Algorithm}
+	\label{alg:bfss*}
+	\begin{algorithmic}[1]
+		\REQUIRE \emph{BF}, $D$, $s$, $A$, $N$, $M$
+		\ENSURE The percentage of the items whose frequency is above $\lfloor s
+		N\rfloor$ and the percentage of the total frequencies of these items
+	    \STATE $flag=true,n_s'=0,n'=0,f_s'=0,p_1'=0,p_2'=0$;\COMMENT{\emph{flag}: indicate whether an item is in \emph{BF}, $n$: the number of distinct items in $S$, $n_s'$: the estimated number of the items whose frequency is above $\lfloor sN\rfloor$, $f_s'$: the estimated total frequencies of the items whose frequency is above $\lfloor sN\rfloor$, $p_1'$: the estimated percentage of the items whose frequency is above $\lfloor sN\rfloor$, $p_2'$: the estimated percentage of the total frequencies of these items.}
+	    \FOR{$i=0$ to $M-1$}
+    	\STATE $flag=true;$
+    	\FOR{$j=1$ to $H$}
+	    \IF{$BF[h_j(A[i])]==0$}
+	    \STATE $flag=false;$
+	    \STATE break;
+	    \ENDIF
+	    \ENDFOR
+	    \IF{$flag==true$}
+	    \STATE $n'=n'+1;$
+	    \IF{$A[i]$ is monitored in $D$}
+	    \IF{$f(A[i])> \lfloor s N\rfloor+\Delta(A[i])$}
+	    \STATE $n_s'=n_s'+1;$
+	    \STATE $f_s'=f_s'+(f(A[i])-\Delta(A[i]));$
+	    \ENDIF
+	    \ENDIF
+	    \ENDIF
+	    \ENDFOR
+	    \STATE $p_1'=n_s'/n',p_2'=f_s'/N;$
+	    \STATE Output $p_1',p_2';$
+	\end{algorithmic}
+\end{algorithm}
+
+\subsection{Analysis of BFSS*}
+In this section, we will give theoretical analysis of $p_1$ and $p_2$. Obviously, the time and space complexity of \emph{BFSS*} are the same as \emph{BFSS}, and we don't discuss here.
+\subsubsection{\textbf{Analysis of $p_1$}}
+From the defination of $p_1$, we know that $p_1=\frac{n_s}{n}$, in which $n_s$ denotes the exact number of the items whose frequency is above $s$. From Lemma \ref{lem:3} and Lemma \ref{lem:5}, we observe two facts: i) any item with $f_s(e)>\lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ must satisfy $f(e)>\lfloor sN\rfloor+\Delta(e)$. ii) any item with $f_s(e)\leq\lfloor sN\rfloor$ must satisfy $f(e)\leq\lfloor sN\rfloor+\Delta(e)$. From the two facts, we know that only items with $\lfloor sN\rfloor<f_s(e)\leq \lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ are likely to be neglected, which means $n_s\geq n_s'$. Let $\Delta(n_s)=n_s-n_s'$, and the maximum value of $\Delta(n_s)$  is the number of the items with $\lfloor sN\rfloor<f_s(e)\leq \lfloor sN\rfloor+\lfloor \epsilon N\rfloor$. Obviously, for any data stream, $\Delta(n_s)\leq\lfloor\frac{1}{s}\rfloor$, which is a very loose bound, and for data streams under Pareto distributions, we have $E(\Delta(n_s))\leq((\frac{f_S(e_m)}{\lfloor sN\rfloor})^\alpha-(\frac{f_S(e_m)}{\lfloor sN\rfloor+\lfloor \epsilon N\rfloor})^\alpha)n$, the proof of which can be found in the proof of Theorem \ref{thm:3}.\par
+From Algorithm \ref{alg:bfss*}, we can get $n'\geq n$ because \emph{BF} causes no false negatives but only false positives. Let $\Delta(n)=n'-n$, and the value of $\Delta(n)$ equals to the number of the false positives caused by \emph{BF}. Therefore, we have $E(\Delta(n))=(M-n)(1-(1-\frac{1}{K})^{Hn})^H<M(1-(1-\frac{1}{K})^{HM})^H$, the proof of which can be found in the proof of Theorem \ref{thm:2}.\par
+From above, $p_1'=\frac{n_s-\Delta(n_s)}{n+\Delta(n)}\leq p_1$, and we can theoretically get the upper bound of $E(\Delta(n_s))$ for data streams under Pareto distributions and the upper bound of $E(\Delta(n))$ for any data streams. Furthermore, we can minimum $E(\Delta(n))$ by selecting appropriate parameters, which has been discussed before. Experimental results in \cite{IEEEexample:overview,IEEEexample:overview_vldbj} show that \emph{Space Saving} has a very high precision (almost 1), which means the number of the items with $\lfloor sN\rfloor-\lfloor \epsilon N\rfloor<f_s(e)\leq\lfloor sN\rfloor$ wrongly output is very small, and if we set $s=s+\epsilon$, then the number of the items with $\lfloor sN\rfloor<f_s(e)\leq\lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ wrongly output is vary small too, in other words, the value of $\Delta(n_s)$ is very small. In fact, the experimental results also show that $p_1'$ is nearly the same as $p_1$.
+\subsubsection{\textbf{Analysis of $p_2$}}
+From the defination of $p_2$, we can get $p_2=\frac{f_s}{N}$, in which $f_s$ denotes the exact total frequencies of the items whose frequency is above $\lfloor sN\rfloor$. Obviously, $f_s\geq f_s'$ because we may neglect some items with $\lfloor sN\rfloor<f_s(e)\leq\lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ just like the analysis of $p_1$, besides, for the items with $f(e)>\lfloor sN\rfloor+\Delta(e)$, we just add $(f(e)-\Delta(e))(\leq f_s(e))$ to $f_s'$. Let $\Delta(f_s)=f_s-f_s'$, from above, $\Delta(f_s)$ consists of two parts: i) the total frequencies of the items with $\lfloor sN\rfloor<f_s(e)\leq\lfloor sN\rfloor+\lfloor \epsilon N\rfloor$ wrongly neglected, denoted as $\Delta_1(f_s)$. ii) the total missing frequencies of the items with $f(e)>\lfloor sN\rfloor+\Delta(e)$, denoted as $\Delta_2(f_s)$. For $\Delta_1(f_s)$, obviously, we have $\Delta_1(f_s)\leq\Delta(n_s)\times(\lfloor sN\rfloor+\lfloor \epsilon N\rfloor)$, in which $\Delta(n_s)$, for \emph{Space Saving}, is very small (nearly 0). For $\Delta_2(f_s)$, we have $\Delta_2(f_s)\leq\lceil\frac{1}{s}\rceil\times\lfloor\epsilon N\rfloor$ because there are at most $\lceil\frac{1}{s}\rceil$ items with $f(e)>\lfloor sN\rfloor+\Delta(e)$, then from Lemma \ref{lem:5} and Lemma \ref{lem:3}, we have $f_s(e)-(f(e)-\Delta(e))\leq\Delta(e)\leq\lfloor\epsilon N\rfloor$.\par
+From above, $p_2'=\frac{f_s-(\Delta_1(f_s)+\Delta_2(f_s))}{N}\leq p_2$. Let $\Delta(p_2)=p_2-p_2'$, and we have $\Delta(p_2)\leq\frac{\Delta(n_s)\times(\lfloor sN\rfloor+\lfloor \epsilon N\rfloor)+\lceil\frac{1}{s}\rceil\times\lfloor\epsilon N\rfloor}{N}$. In fact, the experimental results show that $p_2'$ is a little smaller than $p_2$.
 
 \subsection{The SBFSS Algorithm}\label{sec:sbfss}
 In this section, we will introduce \emph{SBFSS}, which modifies \emph{BFSS} and can find low-frequency items in data streams using limited and small space.\par
@@ -874,7 +899,7 @@ The major difference between \emph{BFSS} and \emph{SBFSS} is the Bloom filter we
 
 \newtheorem{defn}{Definition}
 \begin{defn}\label{def:1}
-\emph{SBF} is defined as an array of integer $SBF[1],SBF[2],...,SBF[k]$ whose minimum value is 0 and maximum value is $max$. Each element of the array is allocated $d$ bits. The relation between $max$ and $d$ is then $max=2^d-1$. Compared to bits in a regular Bloom ﬁlter, each element of the \emph{SBF} is called a cell.
+\emph{SBF} is defined as an array of integer $SBF[1],SBF[2],...,SBF[k]$ whose minimum value is 0 and maximum value is $max$. Each item of the array is allocated $d$ bits. The relation between $max$ and $d$ is then $max=2^d-1$. Compared to bits in a regular Bloom ﬁlter, each item of the \emph{SBF} is called a cell.
 \end{defn}
 
 Like \emph{BFSS}, \emph{SBFSS} consists of two phases: updating and quering. Algorithm \ref{alg:sbfss} and Algorithm \ref{alg:soutput} give the detailed descriptions of them. Due to the length limit, no more tautology here.
@@ -884,7 +909,7 @@ Like \emph{BFSS}, \emph{SBFSS} consists of two phases: updating and quering. Alg
 	\caption{SBFSS Update Algorithm}
 	\label{alg:sbfss}
 	\begin{algorithmic}[1]
-		\REQUIRE Stream $S$, support threshold $\phi$
+		\REQUIRE Stream $S$, support threshold $s$
 		\STATE The form of the counters in $D$ is $(e,f(e),\Delta(e))$
 		\FOR{$i=0$ to $k-1$}
 		\STATE $SBF[i]=0$
@@ -905,7 +930,7 @@ Like \emph{BFSS}, \emph{SBFSS} consists of two phases: updating and quering. Alg
 		\STATE Assign a new counter $(e,1,0)$ to it
 		\STATE $m=m+1$
 		\ELSE
-		\STATE Let $e_m$ be the element with least hits, $min$
+		\STATE Let $e_m$ be the item with least hits, $min$
 		\STATE Replace $e_m$ with $e$ in $D$
 		\STATE $f(e)=min+1,\Delta(e)=min$
 		\ENDIF
@@ -918,9 +943,9 @@ Like \emph{BFSS}, \emph{SBFSS} consists of two phases: updating and quering. Alg
 	\caption{SBFSS Query Algorithm}
 	\label{alg:soutput}
 	\begin{algorithmic}[1]
-		\REQUIRE \emph{SBF}, $D$, $\phi$, $A$, $N$, $M$
-		\ENSURE low-frequency elements with threshold $\phi$
-		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an element is in \emph{SBF} or not}
+		\REQUIRE \emph{SBF}, $D$, $s$, $A$, $N$, $M$
+		\ENSURE low-frequency items with threshold $s$
+		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an item is in \emph{SBF} or not}
 		\FOR{$i=0$ to $M-1$}
 		\STATE $flag=true$
 		\FOR{$j=1$ to $H$}
@@ -931,25 +956,24 @@ Like \emph{BFSS}, \emph{SBFSS} consists of two phases: updating and quering. Alg
 		\ENDFOR
 		\IF{$flag==true$}
 		\IF{$A[i]$ is monitored in $D$}
-		\IF{$f(A[i])\leq\lfloor \phi N\rfloor+\Delta(A[i])$}
-		\STATE output $A[i]$ as a low-frequency element
+		\IF{$f(A[i])\leq\lfloor sN\rfloor+\Delta(A[i])$}
+		\STATE output $A[i]$ as a low-frequency item
 		\ENDIF
 		\ELSE
-		\STATE output $A[i]$ as a low-frequency element
+		\STATE output $A[i]$ as a low-frequency item
 		\ENDIF
 		\ENDIF
 		\ENDFOR
 	\end{algorithmic}
 \end{algorithm}
 
-From Algorithm \ref{alg:sbfss}, we observe that there are two kinds of operation on \emph{SBF}. First randomly decrement $P$ cells by 1 so as to make room for fresh elements
-; then set the same $H$ cells as in the update process to $max$.\par 
+From Algorithm \ref{alg:sbfss}, we observe that there are two kinds of operation on \emph{SBF}. First randomly decrement $P$ cells by 1 so as to make room for fresh items; then set the same $H$ cells as in the update process to $max$.\par 
 Intuitively, due to the random deletion operation, \emph{SBF} does not exceed its capacity in a data stream scenario, however, false negatives may come up as well.
 
 \subsection{Analysis of SBFSS}
 Like \emph{BFSS}, we will give theoretical analysis of \emph{SBFSS} in this section, including the equivalence of \emph{SBF'} (the \emph{SBF} used in \cite{IEEEexample:sbf}) and \emph{SBF}, \emph{FNs}, \emph{FPs}, parameters setting, and time complexity.\par
 \subsubsection{\textbf{Analysis of the equivalence of SBF' and SBF}}
-\emph{SBF'} is used to detect duplicates over data streams, in fact, from Algorithm \ref{alg:sbfss} and Algorithm \ref{alg:soutput}, we can observe that \emph{SBF} is used to filter out the elements that never appeared in $S$, and we check whether the element in $A$ is duplicated one by one, if the element is a duplicate, we just claim it appeared in $S$, in this sense, \emph{SBF'} and \emph{SBF} share the same function. So the properties of \emph{SBF'}, including the probability of a false positive and a false negative of \emph{SBF'}, are fully applicable to \emph{SBF}.\par
+\emph{SBF'} is used to detect duplicates over data streams, in fact, from Algorithm \ref{alg:sbfss} and Algorithm \ref{alg:soutput}, we can observe that \emph{SBF} is used to filter out the items that never appeared in $S$, and we check whether the item in $A$ is duplicated one by one, if the item is a duplicate, we just claim it appeared in $S$, in this sense, \emph{SBF'} and \emph{SBF} share the same function. So the properties of \emph{SBF'}, including the probability of a false positive and a false negative of \emph{SBF'}, are fully applicable to \emph{SBF}.\par
 
 \subsubsection{\textbf{Analysis of FPs}}
 In this section, we will give a theoretically upper bound of the expectation of the number of \emph{FPs} in the ouput of \emph{SBFSS}.\par
@@ -965,27 +989,27 @@ The probability of a false positive (FP) of \emph{SBF} is no greater than :
 Assuming no specific data distribution, the expectation of the number of \emph{FPs} in the output of \emph{SBFSS}, denoted as $E'(\#FPs)$, satisfies:
 \begin{eqnarray}\label{eq:17}
 E'(\#FPs)<M \min \{(1-(\frac{1}{1+\frac{1}{P(1/H-1/m)}})^{max})^H,\\\nonumber
-	(1-(1-\frac{1}{k})^{HM})^H\} + \lceil\frac{1}{\phi}\rceil
+	(1-(1-\frac{1}{k})^{HM})^H\} + \lceil\frac{1}{s}\rceil
 \end{eqnarray}
 \end{theorem}
 
 \begin{IEEEproof}
-From Fig. \ref{fig:sbfss}, we notice that the \emph{FPs} of \emph{SBFSS} has two parts: i) the false positives of \emph{SBF}, i.e. $II$; ii) the elements with $f_S(e)>\lfloor\phi N\rfloor$ wrongly output, i.e. $VI$. In fact, $V$ is the only difference between the \emph{FPs} of \emph{SBFSS} and the \emph{FPs} of \emph{BFSS}, for \emph{BFSS}, the elements in $V$ will be output, however, due to the false negatives of \emph{SBF} in \emph{SBFSS}, i.e. $IV+V+VIII$, the elements in $V$ will be neglected by \emph{SBFSS}, in this sense, the false negatives of \emph{SBF} inversely reduce the number of \emph{FPs} of \emph{SBFSS}. \par
-In fact, the posibility of a false positive of \emph{SBF} must be smaller than that of \emph{BF} under the same conditions because \emph{SBF} brings in decrement operation. For the first case, we can get the upper bound of the expectation of the number of the false positives of \emph{SBF} through Lemma \ref{lem:7} and Lemma \ref{lem:8}. For the second case, it is clearly to see from Fig. \ref{fig:sbfss} that the maximum of the area of $VI$ is $\lceil\frac{1}{\phi}\rceil$, which is the area of the square surrounded by dotted lines, and obviously it is a loose bound. The residual derivation is obvious and exactly the same as Theorem \ref{thm:2}, and no more tautology here.
+From Fig. \ref{fig:sbfss}, we notice that the \emph{FPs} of \emph{SBFSS} has two parts: i) the false positives of \emph{SBF}, i.e. $II$; ii) the items with $f_S(e)>\lfloor sN\rfloor$ wrongly output, i.e. $VI$. In fact, $V$ is the only difference between the \emph{FPs} of \emph{SBFSS} and the \emph{FPs} of \emph{BFSS}, for \emph{BFSS}, the items in $V$ will be output, however, due to the false negatives of \emph{SBF} in \emph{SBFSS}, i.e. $IV+V+VIII$, the items in $V$ will be neglected by \emph{SBFSS}, in this sense, the false negatives of \emph{SBF} inversely reduce the number of \emph{FPs} of \emph{SBFSS}. \par
+In fact, the posibility of a false positive of \emph{SBF} must be smaller than that of \emph{BF} under the same conditions because \emph{SBF} brings in decrement operation. For the first case, we can get the upper bound of the expectation of the number of the false positives of \emph{SBF} through Lemma \ref{lem:7} and Lemma \ref{lem:8}. For the second case, it is clearly to see from Fig. \ref{fig:sbfss} that the maximum of the area of $VI$ is $\lceil\frac{1}{s}\rceil$, which is the area of the square surrounded by dotted lines, and obviously it is a loose bound. The residual derivation is obvious and exactly the same as Theorem \ref{thm:2}, and no more tautology here.
 \end{IEEEproof}
-Like \emph{BFSS}, a tighter bound of the area of $VI$ can be obtained if we assume the distribution of $S$, and the bound is $(\frac{f_S(e_m)}{\lfloor \phi N\rfloor})^\alpha(1-\frac{1}{2^\alpha})M$, the derivation of which is exactly the same as E.q. \ref{eq:10}, if the distribution is Pareto. In addition, due to the exsitence of $V$, the number of the elemens with $f_S(e)>\lfloor\phi N\rfloor$ wrongly output is smaller than that of \emph{BFSS} regardless of the data distribution of $S$. 
+Like \emph{BFSS}, a tighter bound of the area of $VI$ can be obtained if we assume the distribution of $S$, and the bound is $(\frac{f_S(e_m)}{\lfloor sN\rfloor})^\alpha(1-\frac{1}{2^\alpha})M$, the derivation of which is exactly the same as E.q. \ref{eq:10}, if the distribution is Pareto. In addition, due to the exsitence of $V$, the number of the elemens with $f_S(e)>\lfloor sN\rfloor$ wrongly output is smaller than that of \emph{BFSS} regardless of the data distribution of $S$. 
 \begin{figure}
 	\centering
-	\includegraphics[width=2.8in]{png/sbfss.png}
-	\caption{The shematic diagram of the analysis of \emph{SBFSS}}
+	\includegraphics[width=3.5in]{png/sbfss.png}
+	\caption{The schematic diagram of the analysis of \emph{SBFSS}}
 	\label{fig:sbfss}
 \end{figure}
 
 \subsubsection{\textbf{Analysis of FNs}}
 In this section, unlike \emph{BFSS}, we will give a theoretically upper bound of the expectation of the number of \emph{FNs} in the ouput of \emph{SBFSS}. \par
 From Fig. \ref{alg:sbfss}, we can see that the \emph{FNs} of \emph{SBFSS}, $IV$, is a portion of the false negatives of \emph{SBF}, $IV+V+VIII$. Therefore the upper bound of the number of \emph{FNs} in the output of \emph{SBFSS} is the number of the false negatives of \emph{SBF}.\par
-First, let us consider the probability of a false negative of \emph{SBF} which is an error when an element in $S$ wrongly filtered out by \emph{SBF}. Therefore only the elements in $S$ can generate false negatives, obviously the number of false negatives is related to the input data distribution.\par
-Suppose an element $A[i]$ appearing in $S$ whose last appearence in $S$ before a query comes is $e_{i-\delta_i}$, where $\delta_i$ represents the number of elements in $S$ during the time between the last appearance of $A[i]$ and a query, is hashed into $H$ cells, $SBF[C_{i1}],...,SBF[C_{iH}]$. A false negative happens if any of those $H$ cells is decremented to 0 during the $\delta_i$ iterations when a query comes. Let $PR_0(\delta_i,p'_{ij})$ be the probability that cell $C_{ij} (j = 1...H)$ is decremented to 0 within the $\delta_i$ iterations, and $A_l$ denotes the event that within the $N$ iterations the most recent setting operation applied to the cell occurs at iteration $N-l$, and $A'_N$ denotes the event that cell has never been set within the whole $N$ iterations. $PR_0(\delta_i,p'_{ij})$ can be computed as:
+First, let us consider the probability of a false negative of \emph{SBF} which is an error when an item in $S$ wrongly filtered out by \emph{SBF}. Therefore only the items in $S$ can generate false negatives, obviously the number of false negatives is related to the input data distribution.\par
+Suppose an item $A[i]$ appearing in $S$ whose last appearence in $S$ before a query comes is $e_{i-\delta_i}$, where $\delta_i$ represents the number of items in $S$ during the time between the last appearance of $A[i]$ and a query, is hashed into $H$ cells, $SBF[C_{i1}],...,SBF[C_{iH}]$. A false negative happens if any of those $H$ cells is decremented to 0 during the $\delta_i$ iterations when a query comes. Let $PR_0(\delta_i,p'_{ij})$ be the probability that cell $C_{ij} (j = 1...H)$ is decremented to 0 within the $\delta_i$ iterations, and $A_l$ denotes the event that within the $N$ iterations the most recent setting operation applied to the cell occurs at iteration $N-l$, and $A'_N$ denotes the event that cell has never been set within the whole $N$ iterations. $PR_0(\delta_i,p'_{ij})$ can be computed as:
 \begin{equation}\label{eq:18}
 \begin{split}
 PR_0(\delta_i,p'_{ij})=\sum_{l=max}^{\delta_i-1}[Pr(SBF_{\delta_i}=0|A_l)Pr(A_l)]\\
@@ -1006,7 +1030,7 @@ Based on E.q \ref{eq:18}, the expected value of the false negatives of \emph{SBF
 \begin{lemma}\label{lem:9}
 There must be an "average" $\widehat{\delta}$ and an "average" $\widehat{p'}$ such that: 
 \begin{equation}\label{eq:20}
-E(\#FN)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
+E(\#FN)=n[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
 \end{equation}
 \end{lemma}
 
@@ -1018,13 +1042,13 @@ E(\#FN)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]
 \end{theorem}
 
 \begin{IEEEproof}
-Like \emph{FPs}, two kinds of elements contribute to \emph{FNs}: i) the elemtents with $0<f_S(e)\leq\lfloor \phi N\rfloor$ wrongly filtered out by \emph{SBF}; ii) the elemtents with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. In fact, elements with $f_S(e)\leq\lfloor \phi N\rfloor$ must satisfy $f(e)\leq\lfloor \phi N\rfloor+\Delta(e)$, which means no elements with $f_S(e)\leq\lfloor \phi N\rfloor$ monitored in $D$ wrongly neglected. For the first case, we assume that the false negatives are all elements with $0<f_S(e)\leq\lfloor \phi N\rfloor$, i.e. neglecting $V+VIII$ in Fig. \ref{fig:sbfss}, which is the worst case, and in this way we have $E(\#FN)=E(\#FNs)=M'[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]\leq M[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]$.
+Like \emph{FPs}, two kinds of items contribute to \emph{FNs}: i) the elemtents with $0<f_S(e)\leq\lfloor sN\rfloor$ wrongly filtered out by \emph{SBF}; ii) the elemtents with $f_S(e)\leq\lfloor sN\rfloor$ monitored in $D$ wrongly neglected. In fact, the items with $f_S(e)\leq\lfloor sN\rfloor$ must satisfy $f(e)\leq\lfloor sN\rfloor+\Delta(e)$, which means no items with $f_S(e)\leq\lfloor sN\rfloor$ monitored in $D$ wrongly neglected. For the first case, we assume that the false negatives are all items with $0<f_S(e)\leq\lfloor sN\rfloor$, i.e. neglecting $V+VIII$ in Fig. \ref{fig:sbfss}, which is the worst case, and in this way we have $E(\#FN)=E(\#FNs)=n[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]\leq M[1-(1-PR_0(\widehat{\delta},\widehat{p'}))^H]$.
 \end{IEEEproof}
-From E.q \ref{eq:17}, we observe that the upper bound of $E'(\#FPs)$ is completely related to \emph{SBF} once the parameter $\phi$ is confirmed, and the upper bound of $E'(\#FNs)$ is totally related to \emph{SBF} which can be observed from E.q \ref{eq:24}. In this way, we will give some analysis of how to choose appropriate parameters of \emph{SBF} next.
+From E.q \ref{eq:17}, we observe that the upper bound of $E'(\#FPs)$ is completely related to \emph{SBF} once the parameter $s$ is confirmed, and the upper bound of $E'(\#FNs)$ is totally related to \emph{SBF} which can be observed from E.q \ref{eq:24}. In this way, we will give some analysis of how to choose appropriate parameters of \emph{SBF} next.
 
 \subsubsection{\textbf{Parameters setting}}
 In this section, we will discuss how to choose appropriate parameters of \emph{SBF} in \emph{SBFSS}.\par 
-For \emph{SBFSS}, users will specify $\phi$, $\#FPs$ and memory limit $L$. The memory consumption of \emph{SBFSS} mainly contains two parts: \emph{SBF} and $D$. From Algorithm \ref{alg:sbfss}, we know that there are at most $\lceil\frac{1}{\phi}\rceil$ counters in $D$, and in this way we can estimate the memory available for \emph{SBF}, and through E.q \ref{eq:17}, we can estimate the FP rate, in fact, the FP rate can be a little larger than the caculated one beacause only a part of elements cause false positives. Therefore our goal is to choose a combination of $max,H$ and $P$ that minimizes the number of FNs under the condition that the FP rate is within a confirmed threshold and a fix amount of space.\par
+For \emph{SBFSS}, users will specify $s$, $\#FPs$ and memory limit $L$. The memory consumption of \emph{SBFSS} mainly contains two parts: \emph{SBF} and $D$. From Algorithm \ref{alg:sbfss}, we know that there are at most $\lceil\frac{1}{s}\rceil$ counters in $D$, and in this way we can estimate the memory available for \emph{SBF}, and through E.q \ref{eq:17}, we can estimate the FP rate, in fact, the FP rate can be a little larger than the caculated one beacause only a part of items cause false positives. Therefore our goal is to choose a combination of $max,H$ and $P$ that minimizes the number of FNs under the condition that the FP rate is within a confirmed threshold and a fix amount of space.\par
 In fact, a detailed discussion of how to choose these parameters has been given in \cite{IEEEexample:sbf}, which can concluded as: A formula can be obtained to compute the value of $P$ from other parameters provided that $max$ and $H$ have been chosen already; then find the optimal values of $H$ for each case of $max(1,3,7)$ by trying limited number$(\leq 10)$ of values of $H$ on the FN rate formulas; Last, $max$ can be set empirically, and specially in the case that no prior knowledge of the input data is available, $max$ was suggested to be 1; 
 
 \subsubsection{\textbf{Time complexity}}
@@ -1032,55 +1056,93 @@ In this section, we will analyze the time complexity of \emph{SBFSS}.\par
 For \emph{SBFSS}, the amount of space has been confirmed, so we just focus on time complexity.
 
 \begin{theorem}\label{thm:8}
-For \emph{SBFSS}, Processing each data stream element needs $O(1)$ time, independent of the size of space and the stream.
+For \emph{SBFSS}, Processing each data stream item needs $O(1)$ time, independent of the size of space and the stream.
 \end{theorem}
 
 \begin{IEEEproof}
-Like \emph{BFSS}, the processing time for each element also consists two parts: i) the time spent updating \emph{SBF}; ii) the time spent updating $D$. In fact, from Algorithm \ref{alg:bfss} and Algorithm \ref{alg:sbfss}, we can see that \emph{BFSS} and \emph{SBFSS} share the same operations on $D$, so for \emph{SBFSS}, the time spent updating $D$ is constant once $\phi$ is confirmed, which means the size of space has no impact on it. For the first part, a detailed explaination has been given in \cite{IEEEexample:sbf} to prove that the time spent updating \emph{SBF} is O(1), independent of the size of space and the stream. Therefore the time complexity of \emph{SBFSS} is O(1).
+Like \emph{BFSS}, the processing time for each item also consists two parts: i) the time spent updating \emph{SBF}; ii) the time spent updating $D$. In fact, from Algorithm \ref{alg:bfss} and Algorithm \ref{alg:sbfss}, we can see that \emph{BFSS} and \emph{SBFSS} share the same operations on $D$, so for \emph{SBFSS}, the time spent updating $D$ is constant once $s$ is confirmed, which means the size of space has no impact on it. For the first part, a detailed explaination has been given in \cite{IEEEexample:sbf} to prove that the time spent updating \emph{SBF} is O(1), independent of the size of space and the stream. Therefore the time complexity of \emph{SBFSS} is O(1).
 \end{IEEEproof}
 
 
 \section{Experiments}
-In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct elements found as a percentage of the number of correct elements, and the \emph{precision}, the number of correct elements found as a percentage of the entire output, then we calculated $F_1$. We also measured the space used by \emph{BFSS}, \emph{nCount} and \emph{rCount}, which is essential to handle data streams, however, due to the page limit, we can not show the results of synthetic data here. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} on real data in different size of limited space. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
+In this section, we first describe our data sets and the implementation details of \emph{BFSS} and \emph{SBFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct items found as a percentage of the number of correct items, and the \emph{precision}, the number of correct items found as a percentage of the entire output, then we calculated $F_1$. We also measured the space used by \emph{BFSS}, \emph{nCount} and \emph{rCount}, which is essential to handle data streams, however, due to the page limit, we can not show the results of synthetic data here. For \emph{SBFSS}, we compared the recall and precision against the method \emph{lCount} on real data in different size of limited space. The detailed implementations of \emph{nCount}, \emph{rCount} and \emph{lCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
 \begin{figure*}[!t]
 \centering
-	\begin{minipage}{0.4\linewidth}
-	   \centering
-	   \subfloat[Recall for 0.001-BLFE]{\includegraphics[width=2.8in]{png/recall.png}\label{subfig:recall}}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[Recall for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_recall.png}\label{subfig:001_recall}}
 	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
-	   \centering
-	   \subfloat[Precision for 0.001-BLFE]{\includegraphics[width=2.8in]{png/precision.png}\label{subfig:precison}}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[Precision for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_precision.png}\label{subfig:001_precison}}
 	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
-	   \centering
-	   \subfloat[$F_1$ for 0.001-BLFE]{\includegraphics[width=2.8in]{png/f1.png}\label{subfig:f1}}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[$F_1$ for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_f1.png}\label{subfig:001_f1}}
 	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
-	   \centering
-	   \subfloat[Space for 0.001-BLFE]{\includegraphics[width=2.8in]{png/space.png}\label{subfig:space}}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[Space for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_space.png}\label{subfig:001_space}}
 	\end{minipage}
-	\caption{ Performance Comparison between \emph{BFSS}, \emph{nCount} and \emph{rCount} Using Real Data - Varying $N$ }
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[Recall for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_recall.png}\label{subfig:0002_recall}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[Precision for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_precision.png}\label{subfig:0002_precison}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[$F_1$ for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_f1.png}\label{subfig:0002_f1}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+		\centering
+		\subfloat[Space for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_space.png}\label{subfig:0002_space}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+	   \centering
+	   \subfloat[Recall for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/recall.png}\label{subfig:recall}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+	   \centering
+	   \subfloat[Precision for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/precision.png}\label{subfig:precison}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+	   \centering
+	   \subfloat[$F_1$ for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/f1.png}\label{subfig:f1}}
+	\end{minipage}
+	\begin{minipage}{0.23\linewidth}
+	   \centering
+	   \subfloat[Space for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/space.png}\label{subfig:space}}
+	\end{minipage}
+	\caption{ Performance Comparison between \emph{BFSS}, \emph{nCount} and \emph{rCount} Using Real Data - Varying $s,N$ }
 	\label{fig:performance comparison of BFSS}
 \end{figure*}
 
 \begin{table*}[!t] 
 \centering 
-\caption{ Performance of \emph{BFSS} Using Real Data - Varying $\phi$, $K$ and $N$ } 
+\caption{ Performance of \emph{BFSS} Using Real Data - Varying $s$, $K$ and $N$ } 
 \label{tab:bfss} 
 \begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
 \hline
-&&&&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision}&&&\IEEEeqnarraymulticol{7}{t}{Recall}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{$K$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
+&&&&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision}&&&\IEEEeqnarraymulticol{7}{t}{Recall}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$s$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{$K$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
 \IEEEeqnarraystrutsize{0pt}{0pt}\\ 
 &&&&&&&&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
 \IEEEeqnarraydblrulerowcut\\ 
-&\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
+&\hfill\raisebox{-13pt}[0pt][0pt]{$1\%$}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
 &&&&270000&&&49KB&&&0.970&&0.959&&0.949&&0.944&&&1&&1&&1&&1&\\ 
 &&&&400000&&&66KB&&&0.984&&0.979&&0.974&&0.972&&&1&&1&&1&&1&\\ 
 &&&&800000&&&116KB&&&0.996&&0.994&&0.992&&0.992&&&1&&1&&1&&1&\\ 
 \hline
-&\hfill\raisebox{-13pt}[0pt][0pt]{0.001}\hfill
+&\hfill\raisebox{-13pt}[0pt][0pt]{$0.2\%$}\hfill
+\IEEEeqnarraystrutsize{0pt}{0pt}\\
+&&&&270000&&&103KB&&&0.969&&0.959&&0.949&&0.943&&&1&&1&&1&&1&\\ 
+&&&&400000&&&120KB&&&0.984&&0.979&&0.974&&0.972&&&1&&1&&1&&1&\\ 
+&&&&800000&&&170KB&&&0.996&&0.994&&0.993&&0.992&&&1&&1&&1&&1&\\ 
+\hline
+&\hfill\raisebox{-13pt}[0pt][0pt]{$0.1\%$}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
 &&&&270000&&&193KB&&&0.969&&0.958&&0.948&&0.943&&&1&&1&&1&&1&\\ 
 &&&&400000&&&210KB&&&0.984&&0.978&&0.974&&0.972&&&1&&1&&1&&1&\\ 
@@ -1091,67 +1153,96 @@ In this section, we first describe our data sets and the implementation details 
 
 \begin{table*}[!t] 
 \centering 
-\caption{ Performance Comparison between \emph{SBFSS} and \emph{lCount} Using Real Data in Limited Space - Varying $\phi$, $N$ } 
+\caption{ Performance Comparison between \emph{SBFSS} and \emph{lCount} Using Real Data in Limited Space - Varying $s,N$ } 
 \label{tab:sbfss} 
 \begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
 \hline
-&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision (SBFSS / lCount)}&&&\IEEEeqnarraymulticol{7}{t}{Recall (SBFSS / lCount)}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$\phi$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
+&&&&&&&\IEEEeqnarraymulticol{7}{t}{Precision (SBFSS / lCount)}&&&\IEEEeqnarraymulticol{7}{t}{Recall (SBFSS / lCount)}&\\ &\hfill\raisebox{-2pt}[0pt][0pt]{$s$}\hfill&&&\hfill\raisebox{-2pt}[0pt][0pt]{Space}\hfill&&\IEEEeqnarraymulticol{18}{h}{}%
 \IEEEeqnarraystrutsize{0pt}{0pt}\\ 
 &&&&&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&&&\hfill N=10^7\hfill&&\hfill N=3\times 10^7\hfill&&\hfill N=5\times 10^7\hfill&&\hfill N=7\times 10^7\hfill&\IEEEeqnarraystrutsizeadd{0pt}{2pt}\\ 
 \IEEEeqnarraydblrulerowcut\\ 
-&\hfill\raisebox{-13pt}[0pt][0pt]{0.01}\hfill
+&\hfill\raisebox{-13pt}[0pt][0pt]{$1\%$}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
-&&&&72KB&&&1/0.920&&1/0.930&&0.999/0.940&&1/0.959&&&0.432/0.315&&0.288/0.202&&0.208/0.153&&0.178/0.126&\\ 
-&&&&108KB&&&1/0.919&&1/0.932&&1/0.942&&1/0.960&&&0.473/0.476&&0.310/0.307&&0.236/0.230&&0.200/0.195&\\ 
+&&&&54KB&&&0.999/0.916&&1/0.919&&0.999/0.926&&0.999/0.949&&&0.386/0.242&&0.268/0.155&&0.190/0.115&&0.165/0.095&\\ 
+&&&&72KB&&&1/0.920&&1/0.930&&0.999/0.940&&0.999/0.959&&&0.419/0.315&&0.287/0.202&&0.209/0.153&&0.177/0.126&\\ 
 \hline
-&\hfill\raisebox{-13pt}[0pt][0pt]{0.001}\hfill
+&\hfill\raisebox{-13pt}[0pt][0pt]{$0.2\%$}\hfill
 \IEEEeqnarraystrutsize{0pt}{0pt}\\
-&&&&72KB&&&0.995/0.886&&0.980/0.906&&0.982/0.922&&0.990/0.907&&&0.328/0.294&&0.225/0.186&&0.159/0.141&&0.144/0.117&\\ 
-&&&&108KB&&&0.997/0.897&&0.987/0.904&&0.987/0.926&&0.994/0.952&&&0.406/0.459&&0.276/0.294&&0.200/0.220&&0.171/0.186&\\
+&&&&54KB&&&0.981/0.828&&0.982/0.842&&0.984/0.855&&0.983/0.859&&&0.279/0.220&&0.189/0.137&&0.137/0.103&&0.127/0.086&\\ 
+&&&&72KB&&&0.997/0.886&&0.996/0.906&&0.999/0.922&&0.998/0.907&&&0.334/0.294&&0.232/0.186&&0.163/0.141&&0.145/0.117&\\
+\hline
+&\hfill\raisebox{-13pt}[0pt][0pt]{$0.1\%$}\hfill
+\IEEEeqnarraystrutsize{0pt}{0pt}\\
+&&&&54KB&&&0.981/0.828&&0.982/0.842&&0.984/0.855&&0.983/0.859&&&0.279/0.220&&0.189/0.137&&0.137/0.103&&0.127/0.086&\\ 
+&&&&72KB&&&0.997/0.886&&0.996/0.906&&0.999/0.922&&0.998/0.907&&&0.334/0.294&&0.232/0.186&&0.163/0.141&&0.145/0.117&\\
 \IEEEeqnarrayrulerow
 \end{IEEEeqnarraybox} 
 \end{table*} 
 \begin{figure*}[!t]
 	\centering
-	\begin{minipage}{0.4\linewidth}
+	\begin{minipage}{0.23\linewidth}
 		\centering
-		\subfloat[$\phi$=0.01, Space=72KB]{\includegraphics[width=2.8in]{png/001_72KB.png}}
+		\subfloat[$s$=0.01, Space=54KB]{\includegraphics[width=1.95in]{png/001_54KB.png}}
 	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
+	\begin{minipage}{0.23\linewidth}
 		\centering
-		\subfloat[$\phi$=0.01, Space=108KB]{\includegraphics[width=2.8in]{png/001_108KB.png}}
+		\subfloat[$s$=0.01, Space=72KB]{\includegraphics[width=1.95in]{png/001_72KB.png}}
 	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
+	\begin{minipage}{0.23\linewidth}
 		\centering
-		\subfloat[$\phi$=0.001, Space=72KB]{\includegraphics[width=2.8in]{png/0001_72KB.png}}
+		\subfloat[$s$=0.001, Space=54KB]{\includegraphics[width=1.95in]{png/0001_54KB.png}}
 	\end{minipage}
-	\begin{minipage}{0.4\linewidth}
+	\begin{minipage}{0.23\linewidth}
 		\centering
-		\subfloat[$\phi$=0.001, Space=108KB]{\includegraphics[width=2.8in]{png/0001_108KB.png}\label{subfig:f1_4}}
+		\subfloat[$s$=0.001, Space=72KB]{\includegraphics[width=1.95in]{png/0001_72KB.png}\label{subfig:f1_4}}
 	\end{minipage}
-	\caption{Performance Comparison of $F_1$ between \emph{SBFSS} and \emph{lCount} - Varying $\phi$ and Space }
+	\caption{Performance Comparison of $F_1$ between \emph{SBFSS} and \emph{lCount} - Varying $s$ and Space }
 	\label{fig:F1}
 \end{figure*}
 \subsection{Data Sets}
 \textbf{Real Data.} For real data experiments, we used the dataset\footnote{http://ita.ee.lbl.gov/html/contrib/WorldCup.html} which consists of all the requests made to the 1998 World Cup Web site between April 30, 1998 and July 26, 1998. We extracted $7\times10^7$ URLs in total.\par
 \textbf{Synthetic Data.} We generated several synthetic Zipﬁan data sets with the Zipf parameter varying from 0.5, which is very slightly uniform, to 3.0, which is highly skewed, with a fixed increment of 0.5. The size of each data set, N, is $10^7$, and the alphabet was of size $10^6$.
 \subsection{Implementation Issues}
-\textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream element into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+\textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream item into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+Now the key point is how to choose the appropriate values of $H$ and $K$. The
 
-\textbf{\emph{SBFSS} Implementation.} The only difference between \emph{BFSS} implementation and \emph{SBFSS} implementation is the implementation of \emph{BF} and \emph{SBF}. For \emph{SBF}, we generate a random number in each iteration, decrement the corresponding cell and $(P-1)$ cells adjacent to it by 1; this process is faster than generating $P$ random numbers for each element; although the processes of picking the $P$ cells are not independent, each cell has a probability of $P/k$ for being picked at each iteration. Our analysis still holds. Then we hash each incoming stream element to $H$ numbers, and set the corresponding $H$ cells to max. Taking the number of \emph{FNs}, the number of \emph{FPs}, updating time and limited space we can use into consideration, we set $max=3, H=4$ and $P=1$.\par
+\textbf{\emph{SBFSS} Implementation.} The only difference between \emph{BFSS} implementation and \emph{SBFSS} implementation is the implementation of \emph{BF} and \emph{SBF}. For \emph{SBF}, we generate a random number in each iteration, decrement the corresponding cell and $(P-1)$ cells adjacent to it by 1; this process is faster than generating $P$ random numbers for each item; although the processes of picking the $P$ cells are not independent, each cell has a probability of $P/k$ for being picked at each iteration. Our analysis still holds. Then we hash each incoming stream item to $H$ numbers, and set the corresponding $H$ cells to max. Taking the number of \emph{FNs}, the number of \emph{FPs}, update time and limited space we can use into consideration, we set $max=3, H=4$ and $P=1$.\par
 
-\textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct element in $S$ a counter, we use a hash table to index these counters to speedup updating, and it is time consuming if we use a linked list or an array. When an element comes, we increment the corresponding counter using hash table. When a query comes, we traverse the hash table and output the low-frequency elements. \par
+\textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct item in $S$ a counter, we use a hash table to index these counters to speedup updating, and it is time consuming if we use a linked list or an array. When an item comes, we increment the corresponding counter using hash table. When a query comes, we traverse the hash table and output the low-frequency items. \par
 
-\textbf{\emph{rCount} Implementation.} \emph{rCount} shares a similar idea with \emph{nCount}, however, unlike \emph{nCount}, \emph{rCount} uses Rabin's method [] to hash each element in $S$ to a 64-bit fingerprint, or it will consume too much space especially when the elements are URLs. With this fingerprinting technique, there is a small chance that two diﬀerent URLs are mapped to the same fingerprint. When an element comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check the corresponding counter and output it if it is a low-frequency element.\par
+\textbf{\emph{rCount} Implementation.} \emph{rCount} shares a similar idea with \emph{nCount}, however, unlike \emph{nCount}, \emph{rCount} uses Rabin's method \cite{rabin1981fingerprinting} to hash each item in $S$ to a 64-bit fingerprint, or it will consume too much space especially when the items are URLs. With this fingerprinting technique, there is a small chance that two diﬀerent URLs are mapped to the same fingerprint. When an item comes, we first calculate its fingerprint and then increment the corresponding counter using hash table. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each item in $A$, then we check the corresponding counter and output it if it is a low-frequency item.\par
 
-\textbf{\emph{lCount} Implementation.} \emph{lCount} maintains a limited and fixed space, like \emph{rCount}, \emph{lCount} uses Rabin's method in order to adjust the space consumption through the maximum number of counters \emph{lCount} can maintain. In addition, we use a max heap to index the counters in \emph{lCount}. When an element comes, if there exists an empty counter, we insert a new counter into the heap, otherwise we replace the top counter of the heap, i.e. the counter with the maximum value, and set the value of the new counter to 1, at last we readjust the heap. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each element in $A$, then we check if the corresponding counter exists in the heap and output it if it is a low-frequency element.\par
+\textbf{\emph{lCount} Implementation.} \emph{lCount} maintains a limited and fixed space, like \emph{rCount}, \emph{lCount} uses Rabin's method in order to adjust the space consumption through the maximum number of counters \emph{lCount} can maintain. In addition, we use a max heap to index the counters in \emph{lCount}. When an item comes, if there exists an empty counter, we insert a new counter into the heap, otherwise we replace the top counter of the heap, i.e. the counter with the maximum value, and set the value of the new counter to 1, at last we readjust the heap. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each item in $A$, then we check if the corresponding counter exists in the heap and output it if it is a low-frequency item.\par
 
 \subsection{Performance of BFSS}
-The query issued for \emph{BFSS}, \emph{nCount} and \emph{rCount} was to find all elements, with frequency no more than $\frac{N}{10^3}$. The results comparing the recall, precision, $F_1$ and space used by the algorithms are summarized in Fig. \ref{fig:performance comparison of BFSS}. $N$ was varied from $10^7$ to $7\times 10^7$, and $\phi=0.001$.\par
-The recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$, as is clear from Fig. \ref{subfig:recall}, however, due to the existence of hash collisions, \emph{rCount} may neglect a few low-frequency items, and the recall of \emph{rCount} remained above 0.95. From Fig. \ref{subfig:precison}, with the increasing of $N$, the precision of \emph{BFSS} decreased ranging from 0.969 to 0.943 since the false positive rate of \emph{BF} increased with the increasing of $N$, and the precision of \emph{rCount} increased ranging from 0.931 to 0.978 because only the elements not appearing in $S$ might cause false positives which can be observed from the detailed implementation of \emph{rCount}, and the number of these elements decreased with the increasing of $N$, in this way the precision of \emph{rCount} would increase with the increasing of $N$, in addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each element in $S$. Being concerned with both precision and recall, we calculated the values of $F_1$ of these algorithms based on the precisions and recalls as Fig. \ref{subfig:f1} shows, and we can find that \emph{BFSS} outperformed \emph{rCount} for all values of $N$. The advantage of \emph{BFSS} is evident in Fig. \ref{subfig:space}, which shows that \emph{BFSS} achieved a reduction in the space used by a factor ranging from 6 when $N$ was $10^7$ up to 16 when $N$ was $7\times 10^7$, and it is interesting to note that with the increasing of $N$, the space used by \emph{nCount} and \emph{rCount} increased rapidly since more counters were needed with the increasing of $N$, however, the space used by \emph{BFSS} was stable and even decreased a little with the increasing of $N$ because the space complexity is not related to $N$ which can be seen from the analysis of the space complexity of \emph{BFSS}, and the minor difference between the space used by \emph{BFSS} of different $N$ existed in the space used by $D$.\par
-Table \ref{tab:bfss} shows the performance of \emph{BFSS} with different parameter settings. We can see that the precision increased with the increasing of $K$, and once $K$ and $N$ were confirmed the precision was almost confirmed too, which means $\phi$ had little affection on the precison of \emph{BFSS} and the most \emph{FPs} were caused by \emph{BF}.
+The query issued for \emph{BFSS}, \emph{nCount} and \emph{rCount} was to find all items whose frequency is no more than $\frac{N}{s}(s=1\%,0.2\%,0.1\%)$. The results comparing the recall, precision, $F_1$ and space used by the algorithms are summarized in Fig. \ref{fig:performance comparison of BFSS}. $N$ varied from $10^7$ to $7\times 10^7$.\par
+The recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$, as is clear from Fig. \ref{subfig:recall}, however, due to the existence of hash collisions, \emph{rCount} may neglect a few low-frequency items, and the recall of \emph{rCount} remained above 0.95. From Fig. \ref{subfig:precison}, with the increasing of $N$, the precision of \emph{BFSS} decreased ranging from 0.969 to 0.943 since the false positive rate of \emph{BF} increased with the increasing of $N$, and the precision of \emph{rCount} increased ranging from 0.931 to 0.978 because only the items not appearing in $S$ might cause false positives which can be observed from the detailed implementation of \emph{rCount}, and the number of these items decreased with the increasing of $N$, in this way the precision of \emph{rCount} would increase with the increasing of $N$, in addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each item in $S$. Being concerned with both precision and recall, we calculated the values of $F_1$ of these algorithms based on the precisions and recalls as Fig. \ref{subfig:f1} shows, and we can find that \emph{BFSS} outperformed \emph{rCount} for all values of $N$. The advantage of \emph{BFSS} is evident in Fig. \ref{subfig:space}, which shows that \emph{BFSS} achieved a reduction in the space used by a factor ranging from 6 when $N$ was $10^7$ up to 16 when $N$ was $7\times 10^7$, and it is interesting to note that with the increasing of $N$, the space used by \emph{nCount} and \emph{rCount} increased rapidly since more counters were needed with the increasing of $N$, however, the space used by \emph{BFSS} was stable and even decreased a little with the increasing of $N$ because the space complexity is not related to $N$ which can be seen from the analysis of the space complexity of \emph{BFSS}, and the minor difference between the space used by \emph{BFSS} of different $N$ existed in the space used by $D$.\par
+Table \ref{tab:bfss} shows the performance of \emph{BFSS} with different parameter settings. We neglect the minor difference of the space between the different $N$ with the same $s$ and $K$. We can see that the precision increased with the increasing of $K$, and once $K$ and $N$ were confirmed the precision was almost confirmed too, which means $s$ had little affection on the precison of \emph{BFSS} and the most \emph{FPs} were caused by \emph{BF}.
+\subsection{Distribution estimation}
+Table \ref{tab:distribution} shows the estimation of the distribution of the real data when $N$ was $7\times10^7$, and we have two observations. First, the estimated results given by our method is precise enough, and nearly no difference exists between the estimated results and the real results, as is clear from the table. Another interesting obervation is that the most frequent one percent of the items in $W$ occupied more than seventy percent of the number of the items in $W$, which means most people were interested in a few webpages and most webpages were browsed only a few times, and from table \ref{tab:distribution}, we can see that ninety-nine percent of the items in $W$ occupied no more than thirty percent of the number of the items in $W$, in fact, thirty-two percent of the items in $W$ were browsed only once, which is realy a ``long tail''.
+
+\begin{table}
+	\caption{Distribution Estimation of Real Data.}
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+    \hline
+    $s$&$>1\%$&$>0.55\%$&$>0.1\%$\\
+    \hline
+    estimated percentage of the items&0.027\%&0.22\%&1.1\%\\
+    \hline
+    estimated percentage of the frequencies&6.0\%&36\%&72\%\\
+    \hline
+    true percentage of the items&0.028\%&0.23\%&1.1\%\\
+    
+    \hline
+    true percentage of the frequencies&6.0\%&36\%&72\%\\
+    \hline
+	\end{tabular}
+	\label{tab:distribution}
+\end{table}
+
 \subsection{Performance of SBFSS}
-As mentioned before, when the total space is limited, the space left for the Bloom filter is limited as well, and it may cause many \emph{FPs} when the space is small. Table \ref{tab:sbfss} shows the performance comparison between \emph{SBFSS} and \emph{lCount} when the space was limited. When $\phi$ was 0.01, \emph{SBFSS} outperformed \emph{lCount} in both precision and recall, and we can see that the precision of \emph{SBFSS} was stable and constant at 1 for most values of $N$, and the precision of \emph{lCount} increased with the increasing of $N$ the reason of which is much like \emph{rCount}. In addition, the recalls of \emph{SBFSS} and \emph{lCount} decreased with $N$ since the space was limited and the information we could maintain was limited too, which directly caused the decreasing of the recalls. When $\phi$ was 0.001, the rules of how the precisons and recalls changed was similar to the case when $\phi$ was 0.01, and we can find that \emph{SBFSS} still maintained high accuracy, however, the general performance of \emph{SBFSS} was not as good as the case when $\phi$ was 0.01 because much more space could be allocated to \emph{SBF} when $\phi$ was smaller and the total space was limited. Another interesting observation is that \emph{SBFSS} performed better when the limited space is small, which can be clearly seen from Fig. \ref{fig:F1}, which shows the comparison of $F_1$ between \emph{SBFSS} and \emph{lCount}, especially when $\phi$ was 0.001 and space was 108KB, the performance of \emph{lCount} was even better than \emph{BFSS}, as is clear from Fig. \ref{subfig:f1_4}, however, \emph{SBFSS} mainly applies to the case when the space is limited and small or \emph{BFSS} will perform better. 
+As mentioned before, when the total space is limited, the space left for the Bloom filter is limited as well, and it may cause many \emph{FPs} when the space is small. Table \ref{tab:sbfss} shows the performance comparison between \emph{SBFSS} and \emph{lCount} when the space was limited. When $s$ was 0.01, \emph{SBFSS} outperformed \emph{lCount} in both precision and recall, and we can see that the precision of \emph{SBFSS} was stable and constant at 1 for most values of $N$, and the precision of \emph{lCount} increased with the increasing of $N$ the reason of which is much like \emph{rCount}. In addition, the recalls of \emph{SBFSS} and \emph{lCount} decreased with $N$ since the space was limited and the information we could maintain was limited too, which directly caused the decreasing of the recalls. When $s$ was 0.001, the rules of how the precisons and recalls changed was similar to the case when $s$ was 0.01, and we can find that \emph{SBFSS} still maintained high accuracy, however, the general performance of \emph{SBFSS} was not as good as the case when $s$ was 0.01 because much more space could be allocated to \emph{SBF} when $s$ was smaller. Another interesting observation is that \emph{SBFSS} performed better when the limited space is small, which can be clearly seen from Fig. \ref{fig:F1}, which shows the comparison of the $F_1$ between \emph{SBFSS} and \emph{lCount}. We can observe that when $s$ was confirmed, the smaller the space available was, the larger the gap between the $F_1$ was, and this obervation proves the efficiency of \emph{SBFSS}.
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
@@ -1236,8 +1327,8 @@ As mentioned before, when the total space is limited, the space left for the Blo
 
 
 \section{Conclusion}
-Low-frequency items in data streams contain much useful information which can be widely used in commercial decision-making, data analysis, etc., and locating them is the first step. We present \emph{BFSS}, an effective and space efficient algorithm that aims to solve the problem \emph{$\phi$-Bounded Low-Frequency Elements} approximately. \emph{BFSS} can output all low-frequency items, i.e. no \emph{FNs}, and only a few frequent items, the number of which can be theoretically bounded. The experimental results show the recall of \emph{BFSS} is 1 and the precision can be above 0.9 using a small space. When the memory is limited and \emph{BFSS} can not guarantee high precision, we propose \emph{SBFSS} which can guarantee high precision and theoretically bounded recall. \par
-The future directions of our work can be, but are not limited to: 1) output low-frequency items along with their approximate frequencies. 2) handle sliding window queries. 3) support both insertion and deletion of elements. 4) find low-frequency item sets. In fact, like frequent elements, there are many work can be done towards low-frequency elements, however, due to the special features of them, we still have a long and tough way to go and we just take a small step forward.
+Low-frequency items in data streams contain much useful information which can be widely used in commercial decision-making, data analysis, etc., and locating them is the first step. We present \emph{BFSS}, an effective and space efficient algorithm that aims to solve the problem \emph{$s$-BLFE} approximately. \emph{BFSS} can output all low-frequency items and a few frequent items, the number of which can be theoretically bounded. The experimental results show the recall of \emph{BFSS} was constant at 1 and the precision was above 0.95 using a small space. When the memory is limited and small, in which case \emph{BFSS} can not guarantee high precision, we propose \emph{SBFSS} which can guarantee . \par
+The future directions of our work can be, but are not limited to: 1) output low-frequency items along with their approximate frequencies. 2) handle sliding window queries. 3) support both insertion and deletion of items. 4) find low-frequency item sets. In fact, like frequent items, there are many work can be done towards low-frequency items, however, due to the special features of them, we still have a long and tough way to go and we just take a small step forward.
 
 
 

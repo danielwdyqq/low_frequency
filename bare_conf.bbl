@@ -23,131 +23,106 @@
 
 \bibitem{IEEEexample:webdata}
 S.~Gunduz and M.~Ozsu, ``A web page prediction model based on click-stream tree
-  representation of user behavior,'' in \emph{Proceedings of the 9th ACM SIGKDD
-  International Conference on Knowledge Discovery and Data Mining}, 2003, pp.
-  535--540.
+  representation of user behavior,'' in \emph{SIGKDD}, 2003, pp. 535--540.
 
 \bibitem{IEEEexample:stockticker}
 J.~Chen, D.~DeWitt, F.~Tian, and Y.~Wang, ``Niagaracq: A scalable continuous
-  query system for internet databases,'' in \emph{Proceedings of the 19th ACM
-  SIGMOD International Conference on Management of Data}, 2000, pp. 379--390.
+  query system for internet databases,'' in \emph{SIGMOD}, 2000, pp. 379--390.
 
 \bibitem{IEEEexample:stockticker2}
 Y.~Zhu and D.~Shasha, ``Statstream: Statistical monitoring of thousands of data
-  streams in real time,'' in \emph{Proceedings of the 28th ACM VLDB
-  International Conference on Very Large Data Bases}, 2002, pp. 358--369.
+  streams in real time,'' in \emph{PVLDB}, 2002, pp. 358--369.
 
 \bibitem{IEEEexample:sensor}
 P.~Bonnet, J.~Gehrke, and P.~Seshadri, ``Towards sensor database systems,'' in
-  \emph{Proceedings of the 2nd IEEE MDM International Conference on Mobile Data
-  Management}, 2001, pp. 3--14.
+  \emph{MDM}, 2001, pp. 3--14.
 
 \bibitem{IEEEexample:phonecall}
 C.~Cortes, K.~Fisher, D.~Pregibon, A.~Rogers, and F.~Smith, ``Hancock: A
-  language for extracting signatures fromdata streams,'' in \emph{Proceedings
-  of the 6th ACM SIGKDD International Conference on Knowledge Discovery and
-  Data Mining}, 2000, pp. 9--17.
+  language for extracting signatures fromdata streams,'' in \emph{SIGKDD},
+  2000, pp. 9--17.
 
 \bibitem{IEEEexample:packet}
 E.~Demaine, A.~L´opez-Ortiz, and J.~Munro, ``Frequency estimation of internet
-  packet streams with limited space,'' in \emph{Proceedings of the 10th ESA
-  Annual European Symposium on Algorithms}, 2002, pp. 348--360.
+  packet streams with limited space,'' in \emph{ESA}, 2002, pp. 348--360.
 
 \bibitem{IEEEexample:frequencymoments}
 N.~Alon, Y.~Matias, and M.~Szegedy, ``The space complexity of approximating the
-  frequency moments,'' in \emph{Proceedings of the 28th ACM STOC Symposium on
-  the Theory of Computing}, 1996, pp. 20--29.
+  frequency moments,'' in \emph{STOC}, 1996, pp. 20--29.
 
 \bibitem{IEEEexample:distinctestimation}
 P.~Haas, J.~Naughton, S.~Sehadri, and L.~Stokes, ``Sampling-based estimation of
-  the number of distinct values of an attribute,'' in \emph{Proceedings of the
-  21st ACM VLDB International Conference on Very Large Data Bases}, 1995, pp.
+  the number of distinct values of an attribute,'' in \emph{PVLDB}, 1995, pp.
   311--322.
 
 \bibitem{IEEEexample:distinctvalues}
 D.~M. Kane, J.~Nelson, and D.~P. Woodruff, ``An optimal algorithm for the
-  distinct elements problem,'' in \emph{Proceedings of the 29th ACM PODS
-  Symposium on Principles of Database Systems}, 2010, pp. 41--52.
+  distinct elements problem,'' in \emph{PODS}, 2010, pp. 41--52.
 
 \bibitem{IEEEexample:bitcounting}
 M.~Datar, A.~Gionis, P.~Indyk, and R.~Motwani, ``Maintaining stream statistics
-  over sliding windows,'' in \emph{Proceedings of the 13th ACM SIAM Symposium
-  on Discrete Algorithms}, 2002, pp. 635--644.
+  over sliding windows,'' in \emph{SIAM}, 2002, pp. 635--644.
 
 \bibitem{IEEEexample:sbf}
 F.~Deng and D.~Rafiei, ``Approximately detecting duplicates for streaming data
-  using stable bloom filters,'' in \emph{Proceedings of ACM SIGMOD
-  International Conference on Management of Data}, 2006, pp. 25--36.
+  using stable bloom filters,'' in \emph{SIGMOD}, 2006, pp. 25--36.
 
 \bibitem{IEEEexample:duplicatedetec}
 A.~Metwally, D.~Agrawal, and A.~E. Abbadi, ``Duplicate detection in click
-  streams,'' in \emph{Proceedings of the 14th WWW International World Wide Web
-  Conference}, 2005, pp. 12--21.
+  streams,'' in \emph{WWW}, 2005, pp. 12--21.
 
 \bibitem{IEEEexample:quantile}
 X.~Lin, H.~Lu, J.~Xu, and J.~Yu, ``Continuously maintaining quantile summaries
-  of the most recent n elements over a data stream,'' in \emph{Proceedings of
-  the 20th IEEE ICDE International Conference on Data Engineering}, 2004, pp.
+  of the most recent n elements over a data stream,'' in \emph{ICDE}, 2004, pp.
   362--374.
 
 \bibitem{IEEEexample:wavelet}
 A.~Gilbert, Y.~Kotidis, S.~Muthukrishnan, and M.~Strauss, ``Surﬁng wavelets
   on streams: One-pass summaries for approximate aggregate queries,'' in
-  \emph{Proceedings of the 27th ACM VLDB International Conference on Very Large
-  Data Bases}, 2001, pp. 79--88.
+  \emph{PVLDB}, 2001, pp. 79--88.
 
 \bibitem{IEEEexample:correlated}
 J.~Gehrke, F.~Korn, and D.~Srivastava, ``On computing correlated aggregates
-  over continual data streams,'' in \emph{Proceedings of the 20th ACM SIGMOD
-  International Conference on Management of Data}, 2001, pp. 13--24.
+  over continual data streams,'' in \emph{SIGMOD}, 2001, pp. 13--24.
 
 \bibitem{IEEEexample:frequent1}
 P.Bose, E.Kranakis, P.Morin, and Y.Tang, ``Bounds for frequency estimation of
-  packet streams,'' in \emph{Proceedings of the 10th SIROCCO International
-  Colloquium on Structural Information and Communication Complexity}, 2003, pp.
-  33--42.
+  packet streams,'' in \emph{SIROCCO}, 2003, pp. 33--42.
 
 \bibitem{IEEEexample:frequent2}
 G.Cormode, F.Korn, S.Muthukrishnan, and D.Srivastava, ``Diamond in the rough:
   Finding hierarchical heavy hitters in multi-dimensional data,'' in
-  \emph{Proceedings of the 23rd ACM SIGMOD International Conference on
-  Management of Data}, 2004, pp. 155--166.
+  \emph{SIGMOD}, 2004, pp. 155--166.
 
 \bibitem{IEEEexample:frequent3}
 S.~G.Cormode, F.Korn, ``What’s hot and what’s not:
-  Trackingmostfrequentitems dynamically,'' in \emph{Proceedings of the 22nd ACM
-  PODS Symposium on Principles of Database Systems}, 2003, pp. 296--306.
+  Trackingmostfrequentitems dynamically,'' in \emph{PODS}, 2003, pp. 296--306.
 
 \bibitem{IEEEexample:ldsketch}
 Q.~Huang and P.~P.~C. Lee, ``Ld-sketch: A distributed sketching design for
   accurate and scalable anomaly detection in network data streams,'' in
-  \emph{Proceedings of the 33rd IEEE INFOCOM International Conference on
-  Computer Communications}, 2014, pp. 1420--1428.
+  \emph{INFOCOM}, 2014, pp. 1420--1428.
 
 \bibitem{IEEEexample:spacesaving}
 A.~Metwally, D.~Agrawal, and A.~E. Abbadi, ``Efficient computation of frequent
-  and top-k elements in data streams,'' in \emph{Proceedings of the 10th
-  International Conference on Database Theory ({ICDT}'05)}, Jan 2005, pp.
-  398--412.
+  and top-k elements in data streams,'' in \emph{ICDT}, Jan 2005, pp. 398--412.
 
 \bibitem{IEEEexample:top-k1}
-Q.~Huang and P.~P.~C. Lee, ``Distributed top-k monitoring,'' in
-  \emph{Proceedings of the 22nd ACM SIGMOD International Conference on
-  Management of Data}, 2003, pp. 28--39.
+Q.~Huang and P.~P.~C. Lee, ``Distributed top-k monitoring,'' in \emph{SIGMOD},
+  2003, pp. 28--39.
 
 \bibitem{IEEEexample:metropy}
 A.~Lall, V.~Sekara, M.~Ogihara, J.~Xu, and H.~Zhang, ``Data streaming
-  algorithms for estimating entropy of network traffic,'' in \emph{ACM
-  SIGMETRICS}, Jun 2006.
+  algorithms for estimating entropy of network traffic,'' in \emph{SIGMETRICS},
+  Jun 2006.
 
 \bibitem{IEEEexample:sticky}
 G.~S. Manku and R.~Motwani, ``Approximate frequency counts over data streams,''
-  in \emph{Proceedings of the 28th International Conference on Very Large Data
-  Bases ({VLDB}'02)}, Aug 2002.
+  in \emph{PVLDB}, Aug 2002.
 
 \bibitem{IEEEexample:overview_vldbj}
 G.~Cormode and M.~Hadjieleftheriou, ``Methods for finding frequent items in
-  data streams,'' \emph{The VLDB Journal}, vol.~19, no.~1, pp. 3--20, 2010.
+  data streams,'' \emph{VLDB J.}, vol.~19, no.~1, pp. 3--20, 2010.
 
 \bibitem{IEEEexample:overview}
 H.~Liu, Y.~Lin, and J.~Han, ``Methods for mining frequent items in data
@@ -156,14 +131,12 @@ H.~Liu, Y.~Lin, and J.~Han, ``Methods for mining frequent items in data
 
 \bibitem{IEEEexample:count-min}
 G.~Cormode and S.Muthukrishnan, ``An improved data stream summary: the
-  count-min sketch and its applications,'' \emph{Journal of Algorithms},
-  vol.~55, no.~1, pp. 58--75, 2005.
+  count-min sketch and its applications,'' \emph{J. Algorithms}, vol.~55,
+  no.~1, pp. 58--75, 2005.
 
 \bibitem{IEEEexample:hcount}
 C.~Jin, W.~Qian, C.~Sha, J.~X. Yu, and A.~Zhou, ``Dynamically maintaining
-  frequent items over a data stream,'' in \emph{Proceedings of the 12th
-  International Conference on Information and Knowledge Management}, 2003, pp.
-  287--294.
+  frequent items over a data stream,'' in \emph{CIKM}, 2003, pp. 287--294.
 
 \bibitem{IEEEexample:pareto}
 \BIBentryALTinterwordspacing
@@ -171,5 +144,10 @@ L.~Adamic. Zipf, power-laws, and pareto - a ranking tutorial. [Online].
   Available: \url{http://www.hpl.hp.com/research/idl/papers/ranking/ran
   king.html}
 \BIBentrySTDinterwordspacing
+
+\bibitem{rabin1981fingerprinting}
+M.~O. Rabin \emph{et~al.}, \emph{Fingerprinting by random polynomials}.\hskip
+  1em plus 0.5em minus 0.4em\relax Center for Research in Computing Techn.,
+  Aiken Computation Laboratory, Univ., 1981.
 
 \end{thebibliography}

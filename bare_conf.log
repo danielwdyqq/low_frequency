@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  1 JUL 2016 17:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.28)  28 JUL 2016 17:11
 entering extended mode
 **./bare_conf.tex
 (bare_conf.tex
@@ -353,31 +353,33 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
+
+
+LaTeX Warning: No \author given.
+
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 454.
+(Font)              <7> on input line 438.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 454.
- <png/zipf.png, id=1, 421.575pt x 316.18124pt>
+(Font)              <5> on input line 438.
+<png/zipf.png, id=1, 421.575pt x 316.18124pt>
 File: png/zipf.png Graphic file (type png)
  <use png/zipf.png>
-Package pdftex.def Info: png/zipf.png used on input line 463.
+Package pdftex.def Info: png/zipf.png used on input line 444.
 (pdftex.def)             Requested size: 180.67499pt x 135.50659pt.
-
-[1{C:/Users/dayan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
-
-
- <./png/zipf.png (PNG copy)>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 474.
+(Font)              <8> on input line 453.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 474.
+(Font)              <6> on input line 453.
 
-Underfull \hbox (badness 10000) in paragraph at lines 474--474
+Underfull \hbox (badness 10000) in paragraph at lines 453--453
 [][][]\OT1/ptm/m/n/8 http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-
 the-Long-
  []
 
-[2]
+[1{C:/Users/dayan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
+
+
+ <./png/zipf.png (PNG copy)>] [2]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
@@ -387,38 +389,45 @@ Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
- [3]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 587.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 565.
 
 
 ("D:\Users\dayan\AppData\Local\Programs\MiKTeX 2.9\tex\latex\psnfss\omsptm.fd"
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 587.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 565.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 \c@lemma=\count124
-[4]
+[3] [4]
 \c@theorem=\count125
- <png/bfss.png, id=28, 676.929pt x 345.6915pt>
+ <png/bfss.png, id=29, 676.929pt x 345.6915pt>
 File: png/bfss.png Graphic file (type png)
  <use png/bfss.png>
-Package pdftex.def Info: png/bfss.png used on input line 724.
-(pdftex.def)             Requested size: 202.35622pt x 103.339pt.
- [5 <./png/bfss.png>] [6]
+Package pdftex.def Info: png/bfss.png used on input line 700.
+(pdftex.def)             Requested size: 252.94499pt x 129.1698pt.
+
+[5 <./png/bfss.png>] [6]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[7]
 \c@defn=\count126
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
 
-Underfull \hbox (badness 2181) in paragraph at lines 877--878
+Underfull \hbox (badness 2181) in paragraph at lines 902--903
 []\OT1/ptm/m/it/10 SBF \OT1/ptm/m/n/10 is de-fined as an ar-ray of in-te-ger
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 893--894
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
 [] []\OT1/ptm/m/n/10 Select $\OML/cmm/m/it/10 P$ \OT1/ptm/m/n/10 dif-fer-ent ce
 lls uni-formly at ran-dom
  []
@@ -426,84 +435,210 @@ lls uni-formly at ran-dom
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7] <png/sbfss.png, id=39, 747.39224pt x 339.06676pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] <png/sbfss.png, id=43, 747.39224pt x 339.06676pt>
 File: png/sbfss.png Graphic file (type png)
  <use png/sbfss.png>
-Package pdftex.def Info: png/sbfss.png used on input line 979.
-(pdftex.def)             Requested size: 202.35622pt x 91.80275pt.
+Package pdftex.def Info: png/sbfss.png used on input line 1003.
+(pdftex.def)             Requested size: 252.94499pt x 114.75345pt.
 
-[8 <./png/sbfss.png>]
-Underfull \hbox (badness 1509) in paragraph at lines 1023--1024
+[9 <./png/sbfss.png>]
+Underfull \hbox (badness 1509) in paragraph at lines 1047--1048
 []\OT1/ptm/m/n/10 From E.q 17[], we ob-serve that the up-per bound of
  []
 
-[9] <png/recall.png, id=46, 939.51pt x 722.7pt>
+<png/001_recall.png, id=47, 939.51pt x 722.7pt>
+File: png/001_recall.png Graphic file (type png)
+ <use png/001_recall.png>
+Package pdftex.def Info: png/001_recall.png used on input line 1073.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1073--1074
+ [][] 
+ []
+
+<png/001_precision.png, id=48, 939.51pt x 722.7pt>
+File: png/001_precision.png Graphic file (type png)
+ <use png/001_precision.png>
+Package pdftex.def Info: png/001_precision.png used on input line 1077.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1077--1078
+ [][] 
+ []
+
+<png/001_f1.png, id=49, 939.51pt x 722.7pt>
+File: png/001_f1.png Graphic file (type png)
+ <use png/001_f1.png>
+Package pdftex.def Info: png/001_f1.png used on input line 1081.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1081--1082
+ [][] 
+ []
+
+<png/001_space.png, id=50, 939.51pt x 722.7pt>
+File: png/001_space.png Graphic file (type png)
+ <use png/001_space.png>
+Package pdftex.def Info: png/001_space.png used on input line 1085.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1085--1086
+ [][] 
+ []
+
+<png/0002_recall.png, id=51, 939.51pt x 722.7pt>
+File: png/0002_recall.png Graphic file (type png)
+ <use png/0002_recall.png>
+Package pdftex.def Info: png/0002_recall.png used on input line 1089.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1089--1090
+ [][] 
+ []
+
+<png/0002_precision.png, id=52, 939.51pt x 722.7pt>
+File: png/0002_precision.png Graphic file (type png)
+
+<use png/0002_precision.png>
+Package pdftex.def Info: png/0002_precision.png used on input line 1093.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1093--1094
+ [][] 
+ []
+
+<png/0002_f1.png, id=53, 939.51pt x 722.7pt>
+File: png/0002_f1.png Graphic file (type png)
+ <use png/0002_f1.png>
+Package pdftex.def Info: png/0002_f1.png used on input line 1097.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1097--1098
+ [][] 
+ []
+
+<png/0002_space.png, id=54, 939.51pt x 722.7pt>
+File: png/0002_space.png Graphic file (type png)
+ <use png/0002_space.png>
+Package pdftex.def Info: png/0002_space.png used on input line 1101.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1101--1102
+ [][] 
+ []
+
+<png/recall.png, id=55, 939.51pt x 722.7pt>
 File: png/recall.png Graphic file (type png)
  <use png/recall.png>
-Package pdftex.def Info: png/recall.png used on input line 1049.
-(pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
+Package pdftex.def Info: png/recall.png used on input line 1105.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
 
-<png/precision.png, id=47, 939.51pt x 722.7pt>
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1105--1106
+ [][] 
+ []
+
+<png/precision.png, id=56, 939.51pt x 722.7pt>
 File: png/precision.png Graphic file (type png)
  <use png/precision.png>
-Package pdftex.def Info: png/precision.png used on input line 1053.
-(pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
+Package pdftex.def Info: png/precision.png used on input line 1109.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
 
-<png/f1.png, id=48, 939.51pt x 722.7pt>
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1109--1110
+ [][] 
+ []
+
+<png/f1.png, id=57, 939.51pt x 722.7pt>
 File: png/f1.png Graphic file (type png)
  <use png/f1.png>
-Package pdftex.def Info: png/f1.png used on input line 1057.
-(pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
+Package pdftex.def Info: png/f1.png used on input line 1113.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
 
-<png/space.png, id=49, 939.51pt x 722.7pt>
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1113--1114
+ [][] 
+ []
+
+<png/space.png, id=58, 939.51pt x 722.7pt>
 File: png/space.png Graphic file (type png)
  <use png/space.png>
-Package pdftex.def Info: png/space.png used on input line 1061.
-(pdftex.def)             Requested size: 202.35622pt x 155.65315pt.
+Package pdftex.def Info: png/space.png used on input line 1117.
+(pdftex.def)             Requested size: 140.92627pt x 108.40031pt.
 
-<png/001_72KB.png, id=50, 816.651pt x 573.1011pt>
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1117--1118
+ [][] 
+ []
+
+<png/001_54KB.png, id=59, 722.7pt x 578.16pt>
+File: png/001_54KB.png Graphic file (type png)
+ <use png/001_54KB.png>
+Package pdftex.def Info: png/001_54KB.png used on input line 1185.
+(pdftex.def)             Requested size: 140.92627pt x 112.73633pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1185--1186
+ [][] 
+ []
+
+<png/001_72KB.png, id=60, 722.7pt x 578.16pt>
 File: png/001_72KB.png Graphic file (type png)
  <use png/001_72KB.png>
-Package pdftex.def Info: png/001_72KB.png used on input line 1118.
-(pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
+Package pdftex.def Info: png/001_72KB.png used on input line 1189.
+(pdftex.def)             Requested size: 140.92627pt x 112.73633pt.
 
-<png/001_108KB.png, id=51, 816.651pt x 573.1011pt>
-File: png/001_108KB.png Graphic file (type png)
- <use png/001_108KB.png>
-Package pdftex.def Info: png/001_108KB.png used on input line 1122.
-(pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1189--1190
+ [][] 
+ []
 
-<png/0001_72KB.png, id=52, 816.651pt x 573.1011pt>
+<png/0001_54KB.png, id=61, 722.7pt x 578.16pt>
+File: png/0001_54KB.png Graphic file (type png)
+ <use png/0001_54KB.png>
+Package pdftex.def Info: png/0001_54KB.png used on input line 1193.
+(pdftex.def)             Requested size: 140.92627pt x 112.73633pt.
+
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1193--1194
+ [][] 
+ []
+
+<png/0001_72KB.png, id=62, 722.7pt x 578.16pt>
 File: png/0001_72KB.png Graphic file (type png)
  <use png/0001_72KB.png>
-Package pdftex.def Info: png/0001_72KB.png used on input line 1126.
-(pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
+Package pdftex.def Info: png/0001_72KB.png used on input line 1197.
+(pdftex.def)             Requested size: 140.92627pt x 112.73633pt.
 
-<png/0001_108KB.png, id=53, 816.651pt x 573.1011pt>
-File: png/0001_108KB.png Graphic file (type png)
- <use png/0001_108KB.png>
-Package pdftex.def Info: png/0001_108KB.png used on input line 1130.
-(pdftex.def)             Requested size: 202.35622pt x 142.00693pt.
+Overfull \hbox (20.38557pt too wide) in paragraph at lines 1197--1198
+ [][] 
+ []
+
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
+[10]
+
+LaTeX Warning: Text page 11 contains only floats.
+
+
+Overfull \vbox (16.70062pt too high) has occurred while \output is active []
+
+
+
+LaTeX Warning: Text page 11 contains only floats.
+
+
+Overfull \vbox (16.70062pt too high) has occurred while \output is active []
+
+
+[11 <./png/001_recall.png> <./png/001_precision.png> <./png/001_f1.png> <./png/
+001_space.png> <./png/0002_recall.png> <./png/0002_precision.png> <./png/0002_f
+1.png> <./png/0002_space.png> <./png/recall.png> <./png/precision.png> <./png/f
+1.png> <./png/space.png>]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
-
-[10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11 <./png/recall.png> <./png/precision.png> <./png/f1.png> <./png/space.png>]
-
-(bare_conf.bbl
+ [12 <./png/001_54KB.png> <./png/001_72KB.png> <./png/0001_54KB.png> <./png/000
+1_72KB.png>] (bare_conf.bbl
 Missing character: There is no ¬ in font ptmr7t!
 Missing character: There is no ¥ in font ptmr7t!
- [12 <./png/001_72KB.png> <./png/001_108KB.png> <./png/0001_72KB.png> <./png/00
-01_108KB.png>]
 Missing character: There is no Ô in font ptmr7t!
 Missing character: There is no ¨ in font ptmr7t!
 Missing character: There is no Å in font ptmr7t!
@@ -513,7 +648,7 @@ Missing character: There is no ô in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
-)
+ [13])
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -525,38 +660,41 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[13] (bare_conf.aux) ) 
+[14
+
+] (bare_conf.aux) ) 
 Here is how much of TeX's memory you used:
- 4541 strings out of 493335
- 70819 string characters out of 3130230
- 163256 words of memory out of 3000000
- 8009 multiletter control sequences out of 15000+200000
- 41968 words of font info for 75 fonts, out of 3000000 for 9000
+ 4601 strings out of 493335
+ 72061 string characters out of 3130230
+ 170457 words of memory out of 3000000
+ 8061 multiletter control sequences out of 15000+200000
+ 42026 words of font info for 75 fonts, out of 3000000 for 9000
  1144 hyphenation exceptions out of 8191
- 38i,15n,49p,2066b,682s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/e
-nc/dvips/fontname/8r.enc}<D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/font
-s/type1/public/amsfonts/cm/cmex10.pfb><D:/Users/dayan/AppData/Local/Programs/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Users/dayan/AppData/Loca
-l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/Users/dayan/
-AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/
-Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
-mi8.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmr10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmr5.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.
-9/fonts/type1/public/amsfonts/cm/cmr6.pfb><D:/Users/dayan/AppData/Local/Program
-s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Users/dayan/AppData/Lo
-cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Users/day
-an/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy5.pfb><
-D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmsy7.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/urw/ti
-mes/utmb8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/ur
-w/times/utmbi8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
-e1/urw/times/utmr8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts
-/type1/urw/times/utmri8a.pfb>
-Output written on bare_conf.pdf (13 pages, 809212 bytes).
+ 38i,15n,49p,2057b,684s stack positions out of 5000i,500n,10000p,200000b,50000s
+{D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/
+dvips/fontname/8r.enc}<D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Users/dayan/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/Users/dayan/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/Use
+rs/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8
+.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr10.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr5.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr6.pfb><D:/Users/dayan/AppData/Local/Programs/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/Users/dayan/AppData/Local
+/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Users/dayan/Ap
+pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/U
+sers/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cms
+y5.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/urw/times/utmb8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/urw/times/utmbi8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2.9/f
+onts/type1/urw/times/utmr8a.pfb><D:/Users/dayan/AppData/Local/Programs/MiKTeX 2
+.9/fonts/type1/urw/times/utmri8a.pfb>
+Output written on bare_conf.pdf (14 pages, 1349879 bytes).
 PDF statistics:
- 129 PDF objects out of 1000 (max. 8388607)
+ 152 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
