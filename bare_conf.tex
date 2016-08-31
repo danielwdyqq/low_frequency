@@ -448,10 +448,15 @@ data \cite{IEEEexample:stockticker,IEEEexample:stockticker2}, sensor network dat
 
 
 \subsection{Motivating Examples}
-\subsubsection{Individualized demands mining}
-With the rapid development of internet, we can shop and search whatever we are interested in online. Our demands, for example, buying a regular water glass online or searching the information about a tourist attraction etc, are popular most of the time and these demands can be easily satisfied. However, we are no longer satisfied with just popular demands nowadays. For example, it is not so easy for us to buy embroidery stitches or find the information about a nameless village in China online, because they are individualized demands.\par
-Microsoft lags so far behind Google in the search engine market because it focused a lot on the head of the queries and didn't acknowledge the long tail, said Yusuf Mehdi, senior vice president of the Online Audience Group for Microsoft Bing, at Search Engine Strategies\footnote{http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-the-Long-Tail-in-Search-Bing-Boss-Says-396023}. For Microsoft, focusing on the head instead of the ``long tail'' meant that it returned popular queries but failed to satisfy less common queries. The long tail of queries, or the individualized demands, ended up yielding more sizable traffic and therefore more money for Google over the last 11-plus years.\par
-From above, we can see that individualized demands, in some sense, are more important than popular demands, and finding individualized demands requires the algorithms finding low-frequency items in data streams.
+\subsubsection{Long-Tail Keywords mining}
+Long-tail keywords are longer and more specific keyword phrases that visitors are more likely to use when they're closer to a point-of-purchase, the searching frequencies of which are much lower than normal keywords. They're a little bit counter-intuitive, at first, but they can be hugely valuable if you know how to use them.\par
+Take this example: if you're a company that sells classic furniture, the chances are that your pages are never going to appear near the top of an organic search for ``furniture'' because there's too much competition (this is particularly true if you're a smaller company or a startup). But if you specialize in, say, contemporary art-deco furniture, then keywords like ``contemporary Art Deco-influenced semi-circle lounge'' are going to reliably find those consumers looking for exactly that product.\par
+Long-tail keywords are valuable for businesses who want their content to rank in organic Google searches, but they're potentially even more valuable for advertisers running paid search marketing campaigns. That's because when you bid on long-tailed keywords, the cost per click is inevitably lower, since there's less competition. By targeting longer, more specific long-tail keywords in your AdWords campaigns, you can get higher ad rankings on relevant searches without having to pay a premium for every click. The trick is to find a reliable, renewable source of long-tail keywords that are right for you and for your niche, and a basic premise is their searching frequencies should be low enough to avoid fierce competition, therefore how to effectively find low-frequency items in the related searching streams is necessary.  
+\subsubsection{Rare demands mining}
+With the rapid development of internet, we can shop and search whatever we are interested in online. Our demands, for example, buying a regular water glass online or searching the information about a tourist attraction etc, are popular most of the time and these demands can be easily satisfied. However, we are no longer satisfied with these popular demands nowadays. For example, it is not so easy for us to buy embroidery stitches or to find the information about a nameless village in China online, because they are rare demands.\par
+Microsoft lags so far behind Google in the search engine market because it focused a lot on the head of the queries and didn't acknowledge the long tail, said Yusuf Mehdi, senior vice president of the Online Audience Group for Microsoft Bing, at Search Engine Strategies\footnote{http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-the-Long-Tail-in-Search-Bing-Boss-Says-396023}. For Microsoft, focusing on the head instead of the ``long tail'' means that it returned popular queries but failed to satisfy less common queries, the frequencies of which were very low. The long tail of queries ended up yielding more sizable traffic and therefore more money for Google over the last 11-plus years.\par 
+From above, we can see that rare demands, in some sense, are more important than popular demands. However, it will consume much space and time to find those less common queries if we store all query items, so it is necessary to design an efficient algorithm to find low-frequency items in data streams.
+
 
 \subsubsection{Distribution estimation}\label{distribution estimation}
 Distribution is a basic property of a data stream, therefore it is important to estimate the distribution of a data stream efficiently. Sampling is a simple and fast method to estimate distributions, however, it may cause significant errors sometimes. Fig.\ref{fig:sim} is a power-law graph, being used to demonstrate the ranking of frequencies of items in data streams under power-law distributions\footnote{the distributions of a wide variety of physical, biological, and man-made phenomena are approximately power-law distributions}. From Fig.\ref{fig:sim}, we observe that low-frequency items have a great influence on distributions, and combining the information of both frequent and low-frequency items, we can have a relatively more comprehensive estimation of the distribution of a data stream.\par 
@@ -834,7 +839,7 @@ Obviously, when $0<n<M$, $(n-M)(1-t^{-n})>0$. Let $g(n)=1-t^{-n}+nHlnt-MHlnt$, a
 \begin{equation}
 g'(n)=t^{-n}lnt+Hlnt\quad (0<n<M)
 \end{equation}
-Obviously, $g'(n)<0$, which means as $n$ increases, $g(n)$ decreases. In other words, we can get the value of $n$ which makes the value of $f(n)$ maximum by solving the equation $g(n)=0$.
+Obviously, $g'(n)<0$, which means the value of $g(n)$ decreases as the value of $n$ increases, therefore we can calculate the value of $n$ which makes the value of $f(n)$ maximum by solving the equation $g(n)=0$, and the value of $F(n)$ increases firstly and then decreases.
 \begin{equation}
 t^{-n}-1=nHlnt-MHlnt\quad (0<n<M)
 \end{equation}
@@ -843,24 +848,31 @@ When $M=1M,K=16M$ and $H=11$, we have:
 (1-\frac{1}{16\times 10^6})^{-n}-1=11\times ln((1-\frac{1}{16\times 10^6}))n-\nonumber\\
 10^6\times 11\times ln((1-\frac{1}{16\times 10^6})) (0<n<10^6)
 \end{eqnarray}
-The approximate integer solution of Equation \ref{eq:matlab}, solved by MATLAB, is 888640, and the corresponding value of $F(n)$ is 20, which means the maximum possible expected value of the false positives of \emph{BF} is 20 which is much smaller than the value calculated before, therefore $E(\#FPs)\leq 20+1/0.001=1020$ when $s=0.001$. Fig. \ref{fig:n-F(n)} shows the maximum value of $F(n)$ and the corresponding value of $n$ when $M=1M$ varying the the value of $\frac{K}{M}$, and we set $H=\lfloor \frac{K}{M}\times ln2+\frac{1}{2}\rfloor$ as discussed before. Fig .\ref{subfig:n} shows that the value of $n$ increases as the value of $\frac{K}{M}$ increases. From Fig. \ref{subfig:F(n)}, we observe that the value of $F(n)$ decreases rapidly as the value of $\frac{K}{M}$ increases, however, the larger the values of $K$ and $H$ are, the more space and update time \emph{BFSS} will consume. Taking the number of \emph{FPs}, update time and space available into consideration, we can choose the appropriate values of $K$ and $H$.
+The approximate integer solution of Equation \ref{eq:matlab}, solved by MATLAB, is 888640, and the corresponding value of $F(n)$ is 20, which means the maximum possible expected value of the false positives of \emph{BF} is 20 which is much smaller than the value calculated before, therefore $E(\#FPs)\leq 20+1/0.001=1020$ when $s=0.1\%$. Fig. \ref{fig:F(n)-16000000} shows the value of $F(n)$ when $M=1M,K=16M$ and $H=11$ from which we can observe that the value of $F(n)$ increases firstly and decreases at last just as we have theoretically proved before, and when $n<400000$, the value of $F(n)$ is nearly 0. Fig. \ref{fig:n-F(n)} shows the maximum value of $F(n)$ and the corresponding value of $n$ when $M=1M$ varying the the value of $\frac{K}{M}$, and we set $H=\lfloor \frac{K}{M}\times ln2+\frac{1}{2}\rfloor$ as discussed before. Fig .\ref{subfig:n} shows that the value of $n$ increases as the value of $\frac{K}{M}$ increases. From Fig. \ref{subfig:F(n)}, we observe that the value of $F(n)$ decreases rapidly as the value of $\frac{K}{M}$ increases, however, the larger the values of $K$ and $H$ are, the more space and update time \emph{BFSS} will consume. Taking the number of \emph{FPs}, update time and space available into consideration, we can choose the appropriate values of $K$ and $H$.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=3in]{png/F(n)-16000000.png}
+	\caption{The value of $F(n)$ when $M=1M,K=16M$ and $H=11$}
+	\label{fig:F(n)-16000000}
+\end{figure}
 
 \begin{figure}[!t]
 	\centering
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}{0.47\linewidth}
 		\centering
-		\subfloat[]{\includegraphics[width=1.84in]{png/n.png}\label{subfig:n}}
+		\subfloat[]{\includegraphics[width=1.9in]{png/n.png}\label{subfig:n}}
 	\end{minipage}
-	\begin{minipage}{0.45\linewidth}
+	\begin{minipage}{0.47\linewidth}
 		\centering
-		\subfloat[]{\includegraphics[width=1.84in]{png/F(n).png}\label{subfig:F(n)}}
+		\subfloat[]{\includegraphics[width=1.9in]{png/F(n).png}\label{subfig:F(n)}}
 	\end{minipage}
 	\caption{The maximum value of $F(n)$ and the corresponding value of $n$ when $M=1M$ - Varying $\frac{K}{M}$.}
 	\label{fig:n-F(n)}
 \end{figure}
 
 \begin{theorem}\label{thm:4}
-The space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\epsilon}\rceil,M))$, where $\lambda\in N^*$, the value of which is discussed detaily above. 
+The space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\epsilon}\rceil,M))$, where $\lambda\in N^*$, the value of which has been discussed above. 
 \end{theorem}
 \begin{IEEEproof}
 The space complexity of \emph{BFSS} includes two part: i) the size of \emph{BF}, i.e. $K$. ii) the number of counters used in $D$, i.e. $m$. In order to get the minimum value of $E(\#FPs)$, the value of $K$ should be multiple times of the value of $M$, i.e. $K=\lambda M(\lambda\in N^*)$. From Algorithm \ref{alg:output}, we have $m\leq min(\lceil\frac{1}{\epsilon}\rceil,M)$. So the space complexity of \emph{BFSS} is $O(\lambda M+ min(\lceil\frac{1}{\epsilon}\rceil,M))$.
@@ -1130,55 +1142,58 @@ In this section, we first describe our data sets and the implementation details 
 
 \begin{figure*}[!t]
 \centering
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[Recall for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_recall.png}\label{subfig:001_recall}}
+		\subfloat[Recall for $1\%$-BLFE]{\includegraphics[width=2.6in]{png/001_recall.png}\label{subfig:001_recall}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[Precision for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_precision.png}\label{subfig:001_precison}}
+		\subfloat[Recall for $0.2\%$-BLFE]{\includegraphics[width=2.6in]{png/0002_recall.png}\label{subfig:0002_recall}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[$F_1$ for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_f1.png}\label{subfig:001_f1}}
+		\subfloat[Recall for $0.1\%$-BLFE]{\includegraphics[width=2.6in]{png/recall.png}\label{subfig:0001_recall}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[Space for $1\%$-BLFE]{\includegraphics[width=1.95in]{png/001_space.png}\label{subfig:001_space}}
+		\subfloat[Precision for $1\%$-BLFE]{\includegraphics[width=2.6in]{png/001_precision.png}\label{subfig:001_precison}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[Recall for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_recall.png}\label{subfig:0002_recall}}
+		\subfloat[Precision for $0.2\%$-BLFE]{\includegraphics[width=2.6in]{png/0002_precision.png}\label{subfig:0002_precison}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[Precision for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_precision.png}\label{subfig:0002_precison}}
+		\subfloat[Precision for $0.1\%$-BLFE]{\includegraphics[width=2.6in]{png/precision.png}\label{subfig:0001_precison}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[$F_1$ for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_f1.png}\label{subfig:0002_f1}}
+		\subfloat[$F_1$ for $1\%$-BLFE]{\includegraphics[width=2.6in]{png/001_f1.png}\label{subfig:001_f1}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
 		\centering
-		\subfloat[Space for $0.2\%$-BLFE]{\includegraphics[width=1.95in]{png/0002_space.png}\label{subfig:0002_space}}
+		\subfloat[$F_1$ for $0.2\%$-BLFE]{\includegraphics[width=2.6in]{png/0002_f1.png}\label{subfig:0002_f1}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
+	\begin{minipage}{0.31\linewidth}
+		\centering
+		\subfloat[$F_1$ for $0.1\%$-BLFE]{\includegraphics[width=2.6in]{png/f1.png}\label{subfig:0001_f1}}
+	\end{minipage}
+	
+	\begin{minipage}{0.31\linewidth}
+		\centering
+		\subfloat[Space for $1\%$-BLFE]{\includegraphics[width=2.6in]{png/001_space.png}\label{subfig:001_space}}
+	\end{minipage}
+	\begin{minipage}{0.31\linewidth}
+		\centering
+		\subfloat[Space for $0.2\%$-BLFE]{\includegraphics[width=2.6in]{png/0002_space.png}\label{subfig:0002_space}}
+	\end{minipage}
+	\begin{minipage}{0.31\linewidth}
 	   \centering
-	   \subfloat[Recall for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/recall.png}\label{subfig:0001_recall}}
+	   \subfloat[Space for $0.1\%$-BLFE]{\includegraphics[width=2.6in]{png/space.png}\label{subfig:0001_space}}
 	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
-	   \centering
-	   \subfloat[Precision for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/precision.png}\label{subfig:0001_precison}}
-	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
-	   \centering
-	   \subfloat[$F_1$ for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/f1.png}\label{subfig:0001_f1}}
-	\end{minipage}
-	\begin{minipage}{0.23\linewidth}
-	   \centering
-	   \subfloat[Space for $0.1\%$-BLFE]{\includegraphics[width=1.95in]{png/space.png}\label{subfig:0001_space}}
-	\end{minipage}
-	\caption{ Performance Comparison between \emph{BFSS}, \emph{nCount} and \emph{rCount} Using Real Data - Varying $s,\epsilon$ and $N$ }
+	\caption{ Performance Comparison between \emph{BFSS}, \emph{nCount} and \emph{rCount} on $W$ - Varying $s,\epsilon$ and $N$ }
 	\label{fig:performance comparison of BFSS}
 \end{figure*}
 
@@ -1232,7 +1247,7 @@ In this section, we first describe our data sets and the implementation details 
 
 \begin{table*}[!t] 
 \centering 
-\caption{ Performance Comparison between \emph{SBFSS} and \emph{lCount} Using Real Data in Limited Space - Varying $s,N$ } 
+\caption{ Performance Comparison between \emph{SBFSS} and \emph{lCount} on $W$ in Limited Space - Varying $s,N$ } 
 \label{tab:sbfss} 
 \begin{IEEEeqnarraybox}[\IEEEeqnarraystrutmode\IEEEeqnarraystrutsizeadd{2pt}{0pt}]{v/c/Vx/c/Vx/c/v/c/v/c/v/c/Vx/c/v/c/v/c/v/c/v}
 \hline
@@ -1275,15 +1290,17 @@ In this section, we first describe our data sets and the implementation details 
 		\centering
 		\subfloat[$s$=0.001, Space=72KB]{\includegraphics[width=1.95in]{png/0001_72KB.png}\label{subfig:f1_4}}
 	\end{minipage}
-	\caption{Performance Comparison of $F_1$ between \emph{SBFSS} and \emph{lCount} - Varying $s$ and Space }
+	\caption{Performance Comparison of $F_1$ between \emph{SBFSS} and \emph{lCount} - Varying $s$ and Space}
 	\label{fig:F1}
 \end{figure*}
 \subsection{Data Sets}
-\textbf{Real Data.} For real data experiments, we used the dataset\footnote{http://ita.ee.lbl.gov/html/contrib/WorldCup.html} which consists of all the requests made to the 1998 World Cup Web site between April 30, 1998 and July 26, 1998. We extracted $7\times10^7$ URLs in total, and the size of the alphabet is 89753.\par
+\textbf{Real Data.} For real data experiments, we used the dataset\footnote{http://ita.ee.lbl.gov/html/contrib/WorldCup.html}, denoted as $W$, which consists of all the requests made to the 1998 World Cup Web site between April 30, 1998 and July 26, 1998. We extracted $7\times10^7$ URLs in total, and the size of the alphabet is 89753.\par
 \textbf{Synthetic Data.} We generated several synthetic Zipfian data sets with the Zipf parameter varying from 0.5, which is very slightly uniform, to 3.0, which is highly skewed, with a fixed increment of 0.5. The size of each data set, N, is $10^7$, and the size of the alphabet is $10^6$.
 \subsection{Implementation Issues}
-\textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each incoming stream item into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if there exists an empty counter, we just insert a new counter into the heap, otherwise we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+\textbf{\emph{BFSS} Implementation.} It is simple and straight forward to implement \emph{BFSS}: 1) hash each item into $H$ numbers, and set the corresponding $H$ bits to 1. 2) we maintain a min heap to index each counter in $D$, if the item is monitored, we simply increment its counter, otherwise if there exists an empty counter, we just insert a new counter into the heap, or we replace the top counter of the heap, at last we readjust the heap. 3) when a query comes, we just do as Algorithm \ref{alg:output} indicates.\par
+
 Table \ref{tab:89753} lists the maximum value of $F(n)$ and the corresponding value of $n$ under various $K$ and $H$ combinations when $M$=89753, in which $H=\lfloor\frac{K}{M}\times ln2+\frac{1}{2}\rfloor$. The maximum value of $F(n)$ is 3909 when $\frac{K}{M}=3(K=269259)$ and $H=2$, and the upper bound of $E(\#FPs)$ can be confirmed once the value of $s$ is confirmed, which can be observed from Inequation \ref{eq:8}, for example $E(\#FPs)\leq 4909$ when $s=0.001$. Taking $E(\#FPs)$, update time and space consumption into consideration, we set $K=270000,400000,800000$ separately and $H=2$, and the corresponding maximum value of $F(n)$ is 3892, 2014 and 579 which decreases as $K$ increases, and this can be easily observed from the expression of $F(n)$.\par
+
 \textbf{\emph{SBFSS} Implementation.} The only difference between \emph{BFSS} implementation and \emph{SBFSS} implementation is the implementation of \emph{BF} and \emph{SBF}. For \emph{SBF}, we generate a random number in each iteration, decrement the corresponding cell and $(P-1)$ cells adjacent to it by 1; this process is faster than generating $P$ random numbers for each item; although the processes of picking the $P$ cells are not independent, each cell has a probability of $P/k$ for being picked at each iteration. Our analysis still holds. Then we hash each incoming stream item to $H$ numbers, and set the corresponding $H$ cells to max. Taking the number of \emph{FNs}, the number of \emph{FPs}, update time and limited space we can use into consideration, we set $max=3, H=4$ and $P=1$.\par
 
 \textbf{\emph{nCount} Implementation.} The basic idea of \emph{nCount} is to allocate each distinct item in $S$ a counter, we use a hash table to index these counters to speedup updating, and it is time consuming if we use a linked list or an array. When an item comes, we increment the corresponding counter using hash table. When a query comes, we traverse the hash table and output the low-frequency items. \par
@@ -1292,15 +1309,24 @@ Table \ref{tab:89753} lists the maximum value of $F(n)$ and the corresponding va
 
 \textbf{\emph{lCount} Implementation.} \emph{lCount} maintains a limited and fixed space, like \emph{rCount}, \emph{lCount} uses Rabin's method in order to adjust the space consumption through the maximum number of counters \emph{lCount} can maintain. In addition, we use a max heap to index the counters in \emph{lCount}. When an item comes, if there exists an empty counter, we insert a new counter into the heap, otherwise we replace the top counter of the heap, i.e. the counter with the maximum value, and set the value of the new counter to 1, at last we readjust the heap. When a query comes, we traverse the alphabet $A$ and calculate the fingerprint of each item in $A$, then we check if the corresponding counter exists in the heap and output it if it is a low-frequency item.\par
 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=3in]{png/F(n)-combine.png}
+	\caption{The value of $F(n)$ when $M=89753$ and $H=2$ - Varying $K$}
+	\label{fig:F(n)}
+\end{figure}
+
 \subsection{Performance of BFSS}
 The query issued for \emph{BFSS}, \emph{nCount} and \emph{rCount} was to find all items whose frequency is no more than $\frac{N}{s}(s=1\%,0.2\%,0.1\%)$.\par
-The results comparing the recall, precision, $F_1$ and space used by \emph{BFSS}, \emph{nCount} and \emph{rCount} are summarized in Fig. \ref{fig:performance comparison of BFSS}. The value of $N$ was varied from $10^7$ to $7\times 10^7$, and we set $\epsilon=s,K=400000,H=2$. Obviously, the recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$ and $s$, however, due to hash collisions, \emph{rCount} may neglect a few low-frequency items, as is clear from Fig. \ref{subfig:0001_recall}. From Fig. \ref{subfig:001_precison}, Fig. \ref{subfig:0002_precison} and Fig, \ref{subfig:0001_precison}, we observe that the precision of \emph{BFSS} decreased as the value of $N$ increased, in fact, as we discussed before, the value of $F(n)$ increases as the value of $n$ increases unitil $F(n)$ reaches its maximum value then the value of $F(n)$ decreases as the value of $n$ increases, which means the precision of \emph{BFSS} showed a trend from decline to rise as the value of $N$ increased with high probability. The precision of \emph{rCount} increased as the value of $N$ increased because only the items not appearing in $S$ may become false positives, and the number of these items decreased with the increasing of $N$. In addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each item in $S$. Being concerned with both precision and recall, we calculated the values of $F_1$ of these algorithms based on the precisions and recalls as Fig. \ref{subfig:001_f1}, Fig. \ref{subfig:0002_f1} and Fig. \ref{subfig:0001_f1} show, and \emph{BFSS} outperformed \emph{rCount} except when $N=7\times 10^7$. The advantage of \emph{BFSS} is evident in Fig. \ref{subfig:001_space}, Fig. \ref{subfig:0002_space} and Fig. \ref{subfig:0001_space}, which show that \emph{BFSS} achieved a greate reduction in space consumption, more specifically, when $s=0.1\%$, \emph{BFSS} achieved a space reduction by a factor of 5.7 to 14.2 compared with \emph{nCount} and a space reduction by a factor of 2.2 to 5.5 compared with \emph{rCount}, when $s=0.2\%$, \emph{BFSS} achieved a space reduction by a factor of 10.0 to 24.9 compared with \emph{nCount} and a space reduction by a factor of 3.9 to 9.6 compared with \emph{rCount}, when $s=1\%$, \emph{BFSS} achieved a space reduction by a factor of 18.2 to 45.2 compared with \emph{nCount} and a space reduction by a factor of 7.0 to 17.4 compared with \emph{rCount}. In addition, the space used by \emph{nCount} and \emph{rCount} increased rapidly as the value of $N$ increased since more counters were needed, however, the space used by \emph{BFSS} was stable because the space complexity of \emph{BFSS} is not ralated to the value of $N$, and the minor difference between the space used by \emph{BFSS} as the value of $N$ increased existed in the space used by $D$.\par
-Table \ref{tab:bfss} shows the precision of \emph{BFSS} with different parameter settings, and the recall of \emph{BFSS} was constant at 1, which has been proved theoretically and practically, so we don't list here. We neglect the minor difference between the space used by \emph{BFSS} as the value of $N$ increased. The precision increased as the value of $K$ increased, and once the values of $K$ and $N$ were confirmed the precision was almost confirmed too, which means the values of $s$ and $\epsilon$ had little affection on the precison and most of \emph{FPs} were caused by \emph{BF}.
+The results comparing the recall, precision, $F_1$ and space used by \emph{BFSS}, \emph{nCount} and \emph{rCount} are summarized in Fig. \ref{fig:performance comparison of BFSS}. The value of $N$ was varied from $10^7$ to $7\times 10^7$, and we set $K=400000,H=2$, in addition, we set the error parameter $\epsilon=s$, since our results showed that this was sufficient to give high accuracy in practice. Obviously, the recalls achieved by \emph{BFSS} and \emph{nCount} were constant at 1 for all values of $N$ and $s$, however, due to hash collisions, \emph{rCount} may neglect a few low-frequency items, as is clear from Fig. \ref{subfig:0001_recall}. From Fig. \ref{subfig:001_precison}, Fig. \ref{subfig:0002_precison} and Fig, \ref{subfig:0001_precison}, we observe that the precision of \emph{BFSS} decreased as the value of $N$ increased, in fact, as we discussed before, the value of $F(n)$ increases as the value of $n$ increases unitil $F(n)$ reaches its maximum value then the value of $F(n)$ decreases as the value of $n$ increases, which means the precision of \emph{BFSS} presented ealier decrease and later increase trend as the value of $N$ increased with high probability. Fig. \ref{fig:F(n)} shows the value of $F(n)$ when $M=89753$ and $H=2$ varying the value of $K$ from which we can observe that the value of $F(n)$ increases firstly and reduces at last, when $K=400000$, the maximum value of $F(n)$ is 2014 and the corresponding value of $n$ is 56866, therefore the maximum value of $E(\#FPs)$ is $2014+\frac{1}{s}$. The precision of \emph{rCount} increased as the value of $N$ increased because only the items not appearing in $S$ may become false positives, and the number of these items decreased with the increasing of $N$. In addition, the precision of \emph{nCount} remained unchanged at 1 because \emph{nCount} just kept a counter for each item in $S$. Being concerned with both precision and recall, we calculated the values of $F_1$ of these algorithms based on the precisions and recalls as Fig. \ref{subfig:001_f1}, Fig. \ref{subfig:0002_f1} and Fig. \ref{subfig:0001_f1} show, and \emph{BFSS} outperformed \emph{rCount} except when $N=7\times 10^7$. The advantage of \emph{BFSS} is evident in Fig. \ref{subfig:001_space}, Fig. \ref{subfig:0002_space} and Fig. \ref{subfig:0001_space}, which show that \emph{BFSS} achieved a greate reduction in space consumption, more specifically, when $s=0.1\%$, \emph{BFSS} achieved a space reduction by a factor of 5.7 to 14.2 compared with \emph{nCount} and a space reduction by a factor of 2.2 to 5.5 compared with \emph{rCount}, when $s=0.2\%$, \emph{BFSS} achieved a space reduction by a factor of 10.0 to 24.9 compared with \emph{nCount} and a space reduction by a factor of 3.9 to 9.6 compared with \emph{rCount}, when $s=1\%$, \emph{BFSS} achieved a space reduction by a factor of 18.2 to 45.2 compared with \emph{nCount} and a space reduction by a factor of 7.0 to 17.4 compared with \emph{rCount}. In addition, the space used by \emph{nCount} and \emph{rCount} increased rapidly as the value of $N$ increased since more counters were needed, however, the space used by \emph{BFSS} was stable because the space complexity of \emph{BFSS} is not ralated to the value of $N$, and the minor difference between the space used by \emph{BFSS} as the value of $N$ increased existed in the space used by $D$.\par
+Table \ref{tab:bfss} shows the precision of \emph{BFSS} with different parameter settings, and the recall of \emph{BFSS} was constant at 1, which has been proved theoretically and practically, so we don't list here. We neglect the minor difference between the space used by \emph{BFSS} as the value of $N$ increased. The precision increased as the value of $K$ increased, in fact, from Fig. \ref{fig:F(n)}, we notice that the value of $F(n)$ decreases as the value of $K$ increases, therefore the value of $E(\#FPs)$ decreases as the value of $K$ increases too. Besides, once the values of $K$ and $N$ were confirmed the precision was almost confirmed too, which means the values of $s$ and $\epsilon$ had little affection on the precison and most of \emph{FPs} were caused by \emph{BF}.\par
+From above, \emph{BFSS} achieved high precision and one hundred percent recall using much less space compared with \emph{nCount} and \emph{rCount}, in fact, we can give the maximum expected value of $E(\#FPs)$ theoretically. Besides, the space consumed by \emph{BFSS} was stable as the value of $N$ increased while the space consumed by \emph{nCount} and \emph{rCount} increased rapidly, which makes \emph{BFSS} more scalable than \emph{nCount} and \emph{rCount}.
 \subsection{Distribution estimation}
-Table \ref{tab:distribution} shows the estimation of the distribution of the real data when $N$ was $7\times10^7$, and we have two observations. First, the estimated results given by our method is precise enough, and nearly no difference exists between the estimated results and the real results, as is clear from the table. Another interesting obervation is that the most frequent one percent of the items in $W$ occupied more than seventy percent of the number of the items in $W$, which means most people were interested in a few webpages and most webpages were browsed only a few times, and from table \ref{tab:distribution}, we can see that ninety-nine percent of the items in $W$ occupied no more than thirty percent of the number of the items in $W$, in fact, thirty-two percent of the items in $W$ were browsed only once, which is realy a ``long tail''.
+Table \ref{tab:distribution} shows the estimation of the distribution of the real data when $N$ was $7\times10^7$, and we have two observations. First, the estimated results given by our method is precise enough, and nearly no difference exists between the estimated results and the real results, as is clear from the table. Another interesting obervation is that the most frequent one percent of the items in $W$ occupied more than seventy percent of the number of the items in $W$, which means most people were interested in a few webpages and most webpages were browsed only a few times, and from table \ref{tab:distribution}, we can see that ninety-nine percent of the items in $W$ occupied no more than thirty percent of the number of the items in $W$, in fact, about thirty-two percent of the items in $W$ were browsed only once, which is realy a ``long tail''.
 
 \begin{table}
-	\caption{Distribution Estimation of Real Data.}
+	\caption{Distribution Estimation of $W$.}
 	\centering
 	\begin{tabular}{|c|c|c|c|}
     \hline
