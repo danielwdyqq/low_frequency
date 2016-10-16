@@ -362,7 +362,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{\emph{Taking One Small Step Forward:}\\Finding Low-Frequency Items in Data Streams}
+\title{Finding Low-Frequency Items in Data Streams}
 
 
 % author names and affiliations
@@ -406,7 +406,7 @@
 
 \begin{abstract}
 %\boldmath
-Frequent items in data streams attract people's attention all the time, and a variety of algorithms have been proposed to find frequent items in data streams. Low-frequency items are considered unimportant compared with frequent ones. However, with the arrival of the era of big data and the rapid development of information technology, low-frequency items in data streams have attracted more and more attention because the total number of them may be very large and even larger than the total number of frequent ones sometimes, therefore low-frequency items can be hugely valuable if we can take good advantage of them, and finding them is the first step. However, as far as we know, there is no effective method finding low-frequency items in data streams. To address this problem, we propose an one-pass algorithm, called \emph{BFSS}, which can find items in data streams whose frequency is no more than a user-specified support approximately. \emph{BFSS} is simple and has small memory footprints. Although the output is approximate, we can guarantee no false negatives (\emph{FNs}) and only a few false positives (\emph{FPs}) exist in the result. Experimental results on real-world dataset show \emph{BFSS} achieves high performance using much less space compared to \emph{nCount} and \emph{rCount}, which are two naive methods finding low-frequency items in data streams.
+With the rapid development of information technology, low-frequency items in data streams are becoming important in specific areas, and they can be hugely valuable if we can find and take good advantage of them. However, as far as we know, there is no effective algorithm finding low-frequency items in data streams. To address the problem, we propose a one-pass algorithm, called \emph{BFSS}, which can effectively find items in data streams whose frequency is no more than a user-specified support approximately. \emph{BFSS} is simple and has small memory footprints. Although the output is approximate, we can guarantee no false negatives (\emph{FNs}) and only a few false positives (\emph{FPs}) exist in the result. Experimental results show \emph{BFSS} achieves high performance using much less memory space compared with the algorithm \emph{nCount}, which is proposed by us and aims at finding low-frequency items in data streams accurately in a straightforward way. Furthermore, \emph{BFSS} can be extended to \emph{BFSS*} with a little modification, which can estimate the percentage of the total frequencies of a certain proportion of items in data streams.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
@@ -435,43 +435,47 @@ Frequent items in data streams attract people's attention all the time, and a va
 \section{Introduction}
 % no \IEEEPARstart
 In many real-world applications, information such as web click data \cite{IEEEexample:webdata}, stock ticker
-data \cite{IEEEexample:stockticker,IEEEexample:stockticker2}, sensor network data \cite{IEEEexample:sensor}, phone call records \cite{IEEEexample:phonecall}, and network packet traces \cite{IEEEexample:packet} appears in the form of data streams. Motivated by the above applications, researchers started working on novel algorithms for analyzing data streams. Problems studied in this context include approximate frequency moments \cite{IEEEexample:frequencymoments}, distinct values estimation \cite{IEEEexample:distinctestimation,IEEEexample:distinctvalues}, bit counting \cite{IEEEexample:bitcounting}, duplicate detection \cite{IEEEexample:sbf,IEEEexample:duplicatedetec}, approximate quantiles \cite{IEEEexample:quantile}, wavelet based aggregate queries \cite{IEEEexample:wavelet}, correlated aggregate queries \cite{IEEEexample:correlated}, frequent elements \cite{IEEEexample:frequent1,IEEEexample:frequent2,IEEEexample:frequent3,IEEEexample:ldsketch} and top-$k$ queries \cite{IEEEexample:spacesaving,IEEEexample:top-k1}. However, to the best of our knowledge, there is no algorithm finding low-frequency items in data streams. In fact, low-frequency items in data streams have attracted much attention because of the rich information they contain which can be seen through the formulas of entropy of data streams \cite{IEEEexample:metropy}. We take one small step forward to find low-frequency items in data streams approximately in this paper.   
+data \cite{IEEEexample:stockticker,IEEEexample:stockticker2}, sensor network data \cite{IEEEexample:sensor}, phone call records \cite{IEEEexample:phonecall}, and network packet traces \cite{IEEEexample:packet} appears in the form of data streams. Motivated by the above applications, researchers started working on novel algorithms for analyzing data streams. Problems studied in this context include approximate frequency moments \cite{IEEEexample:frequencymoments}, distinct values estimation \cite{IEEEexample:distinctestimation,IEEEexample:distinctvalues}, bit counting \cite{IEEEexample:bitcounting}, duplicate detection \cite{IEEEexample:sbf,IEEEexample:duplicatedetec}, approximate quantiles \cite{IEEEexample:quantile}, wavelet based aggregate queries \cite{IEEEexample:wavelet}, correlated aggregate queries \cite{IEEEexample:correlated}, frequent elements \cite{IEEEexample:frequent1,IEEEexample:frequent2,IEEEexample:frequent3,IEEEexample:ldsketch} and top-$k$ queries \cite{IEEEexample:spacesaving,IEEEexample:top-k1}. However, to the best of our knowledge, there is no problem about how to find low-frequency items in data streams so far, in fact, low-frequency items are becoming important in specific areas, and thay can be extremely valuable if we can find and make good use of them.
 % You must have at least 2 lines in the paragreaph with the drop letter
 % (should never be an issue)
 
 \subsection{Motivating Examples}
-\subsubsection{Long-Tail Keywords mining}
-Long-tail keywords are longer and more specific keyword phrases that visitors are more likely to use when they're closer to a point-of-purchase, the searching frequencies of which are much lower than normal keywords. They're a little bit counter-intuitive, at first, but they can be hugely valuable if you know how to use them.\par
-Take this example: if you're a company that sells classic furniture, the chances are that your pages are never going to appear near the top of an organic search for ``furniture'' because there's too much competition (this is particularly true if you're a smaller company or a startup). But if you specialize in, say, contemporary art-deco furniture, then keywords like ``contemporary Art Deco-influenced semi-circle lounge'' are going to reliably find those consumers looking for exactly that product.\par
-Long-tail keywords are valuable for businesses who want their content to rank in organic Google searches, but they're potentially even more valuable for advertisers running paid search marketing campaigns. That's because when you bid on long-tailed keywords, the cost per click is inevitably lower, since there's less competition. By targeting longer, more specific long-tail keywords in your AdWords campaigns, you can get higher ad rankings on relevant searches without having to pay a premium for every click. The trick is to find a reliable, renewable source of long-tail keywords that are right for you and for your niche, and a basic premise is their searching frequencies should be low enough to avoid fierce competition, therefore how to effectively find low-frequency items in the related searching streams is necessary.  
-\subsubsection{Rare demands mining}
-With the rapid development of internet, we can shop and search whatever we are interested in online. Our demands, for example, buying a regular water glass online or searching the information about a tourist attraction etc, are popular most of the time and these demands can be easily satisfied. However, we are no longer satisfied with these popular demands nowadays. For example, it is not so easy for us to buy embroidery stitches or to find the information about a nameless village in China online, because they are rare demands.\par
-Microsoft lags so far behind Google in the search engine market because it focused a lot on the head of the queries and didn't acknowledge the long tail, said Yusuf Mehdi, senior vice president of the Online Audience Group for Microsoft Bing, at Search Engine Strategies\footnote{http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-the-Long-Tail-in-Search-Bing-Boss-Says-396023}. For Microsoft, focusing on the head instead of the ``long tail'' means that it returned popular queries but failed to satisfy less common queries, the frequencies of which were very low. The long tail of queries ended up yielding more sizable traffic and therefore more money for Google over the last 11-plus years.\par 
-From above, we can see that rare demands, in some sense, are more important than popular demands. However, it will consume much space and time to find those less common queries if we store all query items, so it is necessary to design an efficient algorithm to find low-frequency items in data streams.
 
-\subsubsection{Distribution estimation}\label{distribution estimation}
-Distribution is a basic property of a data stream, therefore it is important to estimate the distribution of a data stream efficiently. Sampling is a simple and fast method to estimate distributions, however, it may cause significant errors sometimes. Fig.\ref{fig:sim} is a power-law graph, being used to demonstrate the ranking of frequencies of items in data streams under power-law distributions\footnote{the distributions of a wide variety of physical, biological, and man-made phenomena are approximately power-law distributions}. From Fig.\ref{fig:sim}, we observe that low-frequency items have a great influence on distributions, and combining the information of both frequent and low-frequency items, we can have a relatively more comprehensive estimation of the distribution of a data stream.\par 
-In fact, \emph{BFSS} can approximately find both frequent and low-frequency items in data streams, given a little modification, \emph{BFSS} can be extended to estimate the percentage of the total frequencies of a certain proportion of items in data streams, for example, we can approximately estimate the percentage of the total frequencies of the most frequent twenty\footnote{``twenty'' is just an example, and the specific value varies and will be explained later} percent of items in a data stream, which is similar to the expression of the famous Pareto principle, also known as the 80-20 rule.
+
+\subsubsection{Mining long-tail keywords}
+Long-tail keywords are longer and more specific keyword phrases that visitors are more likely to use when they're closer to a point-of-purchase, and their searching frequencies are much lower than normal keywords. They're a little bit counter-intuitive at first, but they can be hugely valuable in \emph{Search Engine Optimization (SEO)} if you know how to use them.\par
+Take this example: if you're a company that sells classic furniture, the chances are that your pages are never going to appear near the top of an organic search for ``furniture'' because there's too much competition (this is particularly true if you're a smaller company or a startup). But if you specialize in, say, contemporary art-deco furniture, then keywords like ``contemporary Art Deco-influenced semi-circle lounge'' are going to reliably find those consumers looking for exactly that product.\par
+Long-tail keywords are valuable for businesses who want their content to rank in organic Google searches, but they're potentially even more valuable for advertisers running paid search marketing campaigns. That's because when you bid on long-tailed keywords, the cost per click is inevitably lower, since there's less competition. By targeting longer, more specific long-tail keywords in your AdWords campaigns, you can get higher ad rankings on relevant searches without having to pay a premium for every click. The trick is to find a reliable, renewable source of long-tail keywords that are right for you and for your niche.\par
+There are many tools that can generate long-tail keywords, however, most of them simply expand basic keywords and the chances are that some words are still frequent and competition is fierce as well, or some words never appeared in the past searching sreams, and chances are high that these words bring no traffic in the future, besides, some valuable long-tail keywords may even not be generated. Another problem is the frequencies of those generated long-tail keywords may change overtime, which means frequent words can become low-frequency ones and vice versa. Therefore, if we can find the related low-frequency long-tail keywords in searching streams effectively and dynamically, we can find reliable and renewable long-tail keywords, which motivates solving the problem of finding low-frequency items in data streams.
+
+\subsubsection{Mining rare demands}
+With the rapid development of the internet, we can shop and search whatever we are interested in online. Our demands, for example, buying a regular water glass or searching the information about a tourist attraction, are popular most of the time and they are easily satisfied. However, it is not so easy to buy embroidery stitches or find the information about a nameless village in China online, as they are rare demands.\par
+Yusuf Mehdi, senior vice president of the Online Audience Group for Microsoft Bing, said at Search Engine Strategies\footnote{http://www.eweek.com/c/a/Search-Engines/Microsoft-Ignored-the-Long-Tail-in-Search-Bing-Boss-Says-396023} that Microsoft lags so far behind Google in the search engine market because it focused a lot on the head of the queries and didn't acknowledge the long tail. For Microsoft, focusing on the head instead of the ``long tail'' means that it returned popular queries but failed to satisfy those rare queries, which ended up yielding more sizable traffic and therefore more money for Google over the last 11-plus years.\par 
+From the example above, rare demands, in some sense, are more important than popular demands, and finding them quickly and effectively is the first step to analyzing them, which motivates our work as well.
+
+\subsubsection{Rank-frequency distribution estimation}\label{distribution estimation}
+Rank-frequency laws, such as Zipf’s law and more generally power laws, have been observed in a multitude of domains ranging from the intensity of wars to the populations of major cities. As more rank-frequency laws are observed empirically and rank-frequency distributions are adopted by increasingly diverse fields such as economics and behavioral sciences the importance of practical estimating rank-frequency distributions in general similarly grows.\par
+Fig.\ref{fig:sim} shows rank-frequency distribution obeying a power law form\footnote{Distributions of a wide variety of physical, biological, and man-made phenomena are approximately power-law distributions}. From Fig.\ref{fig:sim}, we observe that low-frequency items form a long tail, which means low-frequency items play a important role in rank-frequency distribution estimation. Combining the information of both frequent and low-frequency items, we can have a more comprehensive estimation of the rank-frequency distribution of a data stream.\par 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=2.5in]{png/zipf.png}
-	\caption{Rank-frequency distribution}
+	\caption{Rank-frequency distribution obeying a power law form}
 	\label{fig:sim}
 \end{figure}
 
 \subsection{Our Contributions}
-We are the first to pose and formally define the problem $s$\emph{-Bounded Low-Frequency Elements ($s$-BLFE)}, the formal definition of which will be given later, and to the best of our knowledge, there is no method solving the problem till now.\par
+We are the first to pose and formally define the problem $s$\emph{-Bounded Low-Frequency Elements ($s$-BLFE)}, the definition of which will be given later.\par
 
-We propose \emph{BFSS}, which extends the classic algorithm \emph{Space Saving} to maintain both frequent and low-frequency items in a data stream approximately. The basic idea of our solution is as follows: each item in a data stream is either a frequent one or a low-frequency one once the threshold $s[\in (0,1)]$ is confirmed, so we can maintain low-frequency items by filtering the frequent items out. A major problem we have to deal with is to maintain an itemset, items in which appear in the data stream, and this can be done approximately using a Bloom filter. \emph{BFSS} gurantees no false negatives and provably few false positives using small memory footprints.\par
+We propose the algorithm \emph{BFSS}, which extends the classic algorithm \emph{Space Saving} and solves the problem \emph{$s$-BLFE}. The basic idea of \emph{BFSS} is as follows: the algorithm \emph{Space Saving} can be used to find items whose frequency is above a user-specified support approximately, and by filtering them out we can find low-frequency items. \emph{BFSS} outputs no false negatives and a few false positives using small memory footprints.\par
 
-However, the size of a Bloom filter must increase with the alphabet's size in order to keep low false positive rate, and here comes a problem: In many embedded devices, such as sensors and routers etc., the storage space is limited and small, in which case \emph{BFSS} will produce many \emph{FPs}. Inspired by the method presented in \cite{IEEEexample:sbf}, we propose \emph{SBFSS} which extends \emph{BFSS} to deal with data streams in limited and small space, and \emph{SBFSS} gurantees a few false positives and theoretically bounded number of false negatives.\par
+Given a little modification, \emph{BFSS} can be extended to the algorithm \emph{BFSS*}, which can estimate the percentage of the total frequencies of a certain proportion of items in data streams, for example, we can approximately estimate the percentage of the total frequencies of the most frequent twenty\footnote{``twenty'' is an example, and the specific value varies} percent of items in a data stream, which is similar to the expression of the famous Pareto principle, also known as the 80-20 rule.
 
 \subsection{Roadmap}
-In Section 2, we present problem statement and some backgrounds on the existing approches which deal with the problem $\epsilon$\emph{-Deficient Frequent Elements}. Our solutions are presented and discussed in Section 3. In Section 4, we experimentally evaluate our methods. Conclusions are given in Section 5.
+In Section 2, we formally define the problem \emph{$s$-BLFE} and highlight the related work. Our algorithms are presented and discussed in Section 3. We report the results of our experimental evaluation in Section 4. Conclusions are given in Section 5.
 
-\section{PRELIMINARIES}
-This section presents problem statement and some representative algorithms solving $\epsilon$\emph{-Deficient Frequent Elements} \cite{IEEEexample:sticky} which will be formally defined below. Table \ref{tab:list} summarizes the major notations in this paper.
+\section{Problem Defination and Related Work}
+This section presents the defination of \emph{$s$-BLFE} and the representative algorithms solving the problem \emph{$\epsilon$-Deficient Frequent Elements} \cite{IEEEexample:sticky}. Table \ref{tab:list} summarizes the major notations in this paper.
 
 \begin{table}
 	
@@ -480,7 +484,6 @@ This section presents problem statement and some representative algorithms solvi
 	\begin{tabular}{ll}
 		\hline	Notation  & Meaning\\ 
 		\hline
-		\emph{BFSS} & Our first algorithm\\	
 		$S$ & The input data stream\\
 		$A$ & The alphabet of $S$\\
 		$M$ & The size of $A$\\
@@ -500,11 +503,9 @@ This section presents problem statement and some representative algorithms solvi
 		$f_S(e)$ & The Frequency of item $e$ in $S$\\ 
 		\emph{FPs} &The items in $S$ with frequency more than $\lfloor sN\rfloor$\\& wrongly output\\
 		\emph{FNs} & The items in $S$ with frequency no more than $\lfloor sN\rfloor$ \\&wrongly neglected\\
-		\emph{BF}  &The Bloom filter used in \emph{BFSS}\\
 		$K$ & The size of \emph{BF}\\
 		$p_1$ & The percentage of the number of the items \\&whose frequency is above $\lfloor sN\rfloor$\\
 		$p_2$ & The percentage of the total frequencies of the items \\&whose frequency is above $\lfloor sN\rfloor$\\
-        $W$ & The real data set we used in our experiments\\
        \hline
 	\end{tabular}
 \label{tab:list}
@@ -513,106 +514,123 @@ This section presents problem statement and some representative algorithms solvi
 
 \subsection{Problem Statement}
 Consider an input stream $S = e_1,e_2,..., e_N$ of current length $N$, which arrives item by item. Let each item $e_i$ belong to a universe set $A=\{a_1,a_2,...,a_M\}$ of size $M$.\par
-The problem $s$-\emph{BLFE} can be stated as follows: given a data stream $S$ along with two user-specified parameters: a support parameter $s[\in (0,1)]$ and an error parameter $\epsilon[\in (0,1)]$ such that $\epsilon\leq s$.\par
-At any point of time, with a small bounded memory, output a list of items with the following guarantees: 
+The problem \emph{$s$-BLFE} can be stated as follows: given a data stream $S$ along with two user-specified parameters: a support parameter $s[\in (0,1)]$ and an error parameter $\epsilon[\in (0,1)]$ such that $\epsilon\leq s$.\par
+At any point of time, with limited memory space, output a list of items with the following guarantees: 
 \begin{enumerate}
 \item[1.] all items whose true frequency is no more than $\lfloor sN\rfloor$ are output.
 \item[2.] no item whose true frequency is no less than $\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ is output.
 \end{enumerate}\par
-Imagine a user who is interested in identifying all items whose frequency is no more than $0.1\%N$. Then $s=0.1\%$. The user is free to set $\epsilon$ to whatever she feels is a comfortable margin of error. As a rule of thumb, she could set $\epsilon$ to one-tenth or one-twentieth the value of $s$ and use our algorithm. Let us assume she chooses $\epsilon=0.01\%$ (one-tenth of $s$). As per Property 1, all items with frequency no more than  $0.1\%N$ will be output, there will be no false negatives. As per Property 2, no element with frequency no less than $\lfloor sN\rfloor+\lfloor\epsilon N\rfloor$ will be output.\par
+Imagine a user who wants to find all items whose frequency is no more than $0.1\%N$, then $s=0.1\%$. The user is free to set $\epsilon$ to whatever she feels is a comfortable margin of error. As a rule of thumb, she could set $\epsilon$ to one-tenth or one-twentieth the value of $s$, and assume she sets $\epsilon=0.01\%$. Therefore the algorithms solving \emph{$s$-BLFE} should output all items with frequency no more than $0.1\%N$ and no item with frequency no less than $\lfloor 0.1\%N\rfloor+\lfloor 0.01\%N\rfloor$.
 
 \subsection{Related Work}
-As far as we know there is no related algorithm addressing $s$-\emph{BLFE}, however, the methods we propose are based on the algorithm solving $\epsilon$\emph{-Deficient Frequent Elements} which can be described as follows: given an input stream $S$ of current length $N$ and a support threshold $s\in(0,1)$, return the items whose frequency is guaranteed to be no smaller than $\lfloor(s-\epsilon)N\rfloor$ deterministically or with a probability of at least $1-\delta$, where $\epsilon\in(0,1)$ is a user-defined error and $\delta\in(0,1)$ is a probability of failure, so we examine several algorithms solving $\epsilon$\emph{-Deficient Frequent Elements}.\par
-Research can be divided into two groups: \emph{counter-based} techniques and \emph{sketch-based} techniques.\par
+As far as we know there is no algorithm solving \emph{$s$-BLFE}, but \emph{BFSS} is based on \emph{Space Saving} which solves \emph{$\epsilon$-Deficient Frequent Elements}, besides, \emph{$s$-BLFE} and \emph{$\epsilon$-Deficient Frequent Elements} can be seen as the two sides of a coin in some sense, so we present the representative algorithms solving \emph{$\epsilon$-Deficient Frequent Elements} here. Researches can be divided into two groups: counter-based techniques and sketch-based techniques.\par
 
-\textbf{Counter-Based Techniques} keep an individual counter for each item in the monitored set, a subset of A. The counter of a monitored item, $e_i$, is updated when $e_i$ occurs in the stream. If there is no counter kept for the observed ID, it is either disregarded, or some algorithm-dependent action is taken.\par
+\textbf{Counter-based techniques} keep an individual counter for each item in the monitored set, a subset of A. The counter of a monitored item, $e_i$, is updated when $e_i$ occurs in the stream. If there is no counter kept for the observed ID, it is either disregarded, or some algorithm-dependent action is taken.\par
 
-Two representative algorithms \emph{Sticky Sampling} and \emph{Lossy Counting} were proposed in \cite{IEEEexample:sticky}. The algorithms cut the stream into rounds, and they prune some potential low-requency items at the edge of each round. Though simple and intuitive, they suffer from zeroing too many counters at rounds’ boundaries, and thus, they free space before it is really needed. In addition, answering a frequent elements query entails scanning all counters.\par
+The algorithms \emph{Sticky Sampling} and \emph{Lossy Counting} were proposed in \cite{IEEEexample:sticky}. The algorithms cut the stream into rounds, and they prune some potential low-requency items at the edge of each round. Though simple and intuitive, they suffer from zeroing too many counters at rounds’ boundaries, and thus, they free space before it is really needed. In addition, answering a frequent elements query entails scanning all counters.\par
 
-The algorithm \emph{Space Saving} , the one we are based at, was proposed in \cite{IEEEexample:spacesaving}. The algorithm maintains a synopsis which keeps all counters in an order according to the value of each counter's monitoring frequency plus maximum possible error. For a non-monitored item, the counter with the smallest counts, \emph{min}, is assigned to monitor it, with the items monitoring frequency $f(e)$ set to 1 and its maximal possible error $\Delta(e)$ set to \emph{min}. Since $min\leq\epsilon N$ (this follows because of the choice of the number of counters), the operation amounts to replacing an old, potentially infrequent item with a new, hopefully frequent item. This strategy keeps the item information until the very end when space is absolutely needed, and it leads to the high accuracy of \emph{Space-Saving}. Experiments done in \cite{IEEEexample:overview_vldbj,IEEEexample:overview} showed \emph{Space-Saving} outperformed other Counter-Based techniques in recall and precision tests.\par
+\emph{Space Saving} , the algorithm we are based at, was proposed in \cite{IEEEexample:spacesaving}. The algorithm maintains a synopsis which keeps all counters in an order according to the value of each counter's monitoring frequency plus maximum possible error. For a non-monitored item, the counter with the smallest counts, \emph{min}, is assigned to monitor it, with the items monitoring frequency $f(e)$ set to 1 and its maximal possible error $\Delta(e)$ set to \emph{min}. Since $min\leq\epsilon N$ (this follows because of the choice of the number of counters), the operation amounts to replacing an old, potentially infrequent item with a new, hopefully frequent item. This strategy keeps the item information until the very end when space is absolutely needed, and it leads to the high accuracy of \emph{Space-Saving}. Experiments done in \cite{IEEEexample:overview_vldbj,IEEEexample:overview} showed \emph{Space-Saving} outperformed other counter-based techniques in recall and precision tests.\par
 
-\textbf{Sketch-Based Techniques} do not monitor a subset of items, rather provide, with less stringent guarantees, frequency estimation for all items using bitmaps of counters. Usually, each item is hashed into the space of counters using a family of hash functions, and the hashed-to counters are updated for every hit of this item. Those “representative” counters are then queried for the item frequency with less accuracy, due to hashing collisions.\par
+\textbf{Sketch-based techniques} do not monitor a subset of items, rather provide, with less stringent guarantees, frequency estimation for all items using bitmaps of counters. Usually, each item is hashed into the space of counters using a family of hash functions, and the hashed-to counters are updated for every hit of this item. Those “representative” counters are then queried for the item frequency with less accuracy, due to hashing collisions.\par
 
-The \emph{Count-Min Sketch} algorithm of Cormode and Muthukrishnan \cite{IEEEexample:count-min} maintains an array of $d\times w$ counters, and pairwise independent hash functions $h_j$ map items onto $[w]$ for each row. Each update is mapped onto $d$ entries in the array, each of which is incremented. The Markov inequality is used to show that the estimate for each $j$ overestimates by less than $n/w$, and repeating $d$ times reduces the probability of error exponentially.\par
+The algorithm \emph{Count-Min Sketch} of Cormode and Muthukrishnan \cite{IEEEexample:count-min} maintains an array of $d\times w$ counters, and pairwise independent hash functions $h_j$ map items onto $[w]$ for each row. Each update is mapped onto $d$ entries in the array, each of which is incremented. The Markov inequality is used to show that the estimate for each $j$ overestimates by less than $n/w$, and repeating $d$ times reduces the probability of error exponentially.\par
 
-The \emph{hCount} algorithm was proposed in \cite{IEEEexample:hcount}. The data structure and algorithms used in \emph{Count-Min Sketch} and \emph{hCount} shared the similarity, but were simultaneously and independently investigated with different focuses.
+The algorithm \emph{hCount} was proposed in \cite{IEEEexample:hcount}. The data structure and algorithms used in \emph{Count-Min Sketch} and \emph{hCount} are similar, but their focuses are different.
 
-\section{OUR ALGORITHMS}
-In this section, we will discuss \emph{BFSS} in detail.
-\subsection{Challenges of $s$-BLFE}
-$s$\emph{-BLFE} has two main challenges due to the different features between frequent items and low-frequency items over data streams.\par
 
-\textbf{The Long Tails in data streams}. It can be easily proved that there are at most $\lceil1/s\rceil$ frequent items whose frequency is more than $\lfloor sN\rfloor$ in any data stream, however, there is no upper bound of the number of the low-frequency items whose frequency is no more than $\lfloor sN\rfloor$. In fact, our experiments show that the low-frequency items occupy most of the distinct items in data streams, and it is almost impossible to maintain all of them in memory. Another observation is their frequencies are very low and close as well, and it may consume much space to separate low-frequency items from frequent items especially when $s$ is very small.\par
+\subsection{The challenges of $s$-BLFE}
+There are two main challenges of \emph{$s$-BLFE} due to the different features between frequent items and low-frequency ones in data streams.\par
 
-\textbf{Unpredictability}. A basic and common idea of \emph{Counter-Based Techniques} is to discard potential infrequent items dynamically, and it is based on the fact that potential infrequent items will never become frequent items if they don't appear afterwards, however, this fact no longer applies to low-frequency items in data streams because frequent items will possibly become low-frequency items if they don't appear afterwards. The unpredictability of low-frequency items makes it difficult to maintain them directly.
+\textbf{Long tail}: There are at most $\lceil1/s\rceil$ frequent items whose frequency is more than $\lfloor sN\rfloor$ in any data stream while there is no upper bound of the number of the low-frequency items whose frequency is no more than $\lfloor sN\rfloor$. In fact, our experiments show that the number of low-frequency items are much larger than that of frequent ones, and it's impossible to maintain them in memory. Another interesting observation is their frequencies are very low and close as well, and it will consume much memory space to separate low-frequency items from other items especially when $s$ is very small.\par
+
+\textbf{Unpredictability}: The basic idea of counter-based techniques is to discard potential infrequent items dynamically, which is based on the fact that potential infrequent items will never turn into frequent ones if they don't appear anymore, however, this no longer applies to low-frequency items because frequent items will possibly become low-frequency ones if they don't appear afterwards, which makes it difficult to find low-frequency items directly.
+\section{\emph{BFSS} and \emph{BFSS*}}
+In this section, we present and discuss \emph{BFSS} and \emph{BFSS*} in detail.
+
+
+\begin{figure*}[!t]
+	\centering
+	\begin{minipage}{0.31\linewidth}
+		\centering
+		\subfloat[the element is monitored]{\includegraphics[width=2.2in]{png/bloomss1.png}\label{subfig:the element is monitored}}
+	\end{minipage}
+	\begin{minipage}{0.31\linewidth}
+		\centering
+		\subfloat[$D$ is full \& the element is not monitored]{\includegraphics[width=2.2in]{png/bloomss2.png}\label{subfig:D is full}}
+	\end{minipage}
+	\begin{minipage}{0.31\linewidth}
+		\centering
+		\subfloat[$D$ is not full \& the element is not monitored]{\includegraphics[width=2.2in]{png/bloomss3.png}\label{subfig:D is not full}}
+	\end{minipage}
+	\caption{The detailed execution process of \emph{BFSS}}
+	\label{fig:the detailed execution process of BFSS}
+\end{figure*}
 
 \subsection{The BFSS Algorithm}\label{sec:bfss}
-In consideration of the challenges in $s$\emph{-BLFE}, we tried to solve the problem indirectly by filtering frequent items out which is the underlying idea of \emph{BFSS}.\par
-Two algorithms are proposed for updating and outputting results separately. Algorithm \ref{alg:bfss} maintains a Bloom filter $BF$ of size $K$ with $H$ uniformly independent hash functions $\{h_1(x),...,h_H(x)\}$ and a synopsis $D$ with $C$ counters. Each of these $H$ hash function maps an item from $A$ to $[0,...,K-1]$. Initially each bit of BF is set to 0 and $D$ has $C$ empty counters. Each newly arrived item in the stream is mapped to $H$ bits in BF by the $H$ hash functions and we set the $H$ bits to 1. Then if we observe an item that is monitored in $D$, we just increment $f(e)$. If we observe an item, $e_{new}$, that is not monitored in $D$, handle it depending on whether there is an empty counter in $D$. If there is one, we just allocate it to $e_{new}$ and set $f(e_{new})$ to 1 and set $\Delta(e_{new})$ to 0. Otherwise, we just replace the item that currently has the least hits, $min$, with $e_{new}$. Assign $f(e_{new})$ the value $min+1$ and assign $\Delta(e_{new})$ the value $min$.\par
+Considering the challenges of $s$\emph{-BLFE}, we solve the problem indirectly by filtering unsatisfactory items out.\par
+Algorithm \ref{alg:bfss} and Algorithm \ref{alg:output} are proposed for updating and outputting results separately. Algorithm \ref{alg:bfss} maintains a Bloom Filter (\emph{BF}) of size $K$ with $H$ uniformly independent hash functions $\{h_1(x),...,h_H(x)\}$ and a synopsis $D$ with $m$ counters, the form of which is $(e, f(e), \Delta(e))$. Each hash function maps an item from $A$ to $[0,...,K-1]$. Initially each bit of \emph{BF} is set to 0 and all counters in $D$ are empty. Fig. \ref{fig:the detailed execution process of BFSS} shows the detailed execution process. We use a min heap to implement $D$. For each item $e$ in $S$, we first map it to $H$ bits and set the $H$ bits to 1, then we check whether the element has been monitored in $D$, and the third step goes as follows: If the element is monitored, we increment the corresponding counter and then readjust the heap from its position to the bottom as Fig. \ref{subfig:the element is monitored} shows; If the element is not monitored and there is no available counter in $D$, we replace the item on the top of the heap which has the least hits, $min$, and change its counter to $(e, min+1, min)$, then we readjust the heap from the top to the bottom; If there is an available counter in $D$, as Fig. \ref{subfig:D is not full} shows, we assign a new counter $(e, 1, 0)$ to the item and insert the counter into the bottom of the heap and then readjust the heap from the bottom to the top.
 
 \begin{algorithm}[h]
 	\caption{BFSS Update Algorithm}
 	\label{alg:bfss}
 \begin{algorithmic}[1]
-	\REQUIRE Stream $S$, support threshold $s$
-	\STATE $N=0,m=0,C=\lceil 1/\epsilon\rceil,K=\lambda',H=\mu'$; \COMMENT{$N$: the length of the input stream; $m$: the number of counters used in $D$; $C$: the maximum number of counters in $D$; $K$: size of Bloom filter; $H$: the number of hash functions; The value of $\lambda'$ and $\mu'$ will be discussed in detail later.}
-	\STATE The form of the counters in $D$ is $(e,f(e),\Delta(e))$
+	\REQUIRE Stream $S$, error parameter $\epsilon$
+	\STATE $N=0,m=0,C=\lceil 1/\epsilon\rceil$;
 	\FOR{$i=0$ to $K-1$}
-	\STATE $BF[i]=0$
+	\STATE $BF[i]=0$;
 	\ENDFOR
-	\FOR{each item $e$ of stream $S$}
+	\FOR{each item $e$ in stream $S$}
 	\FOR{$i=1$ to $H$}
-	\STATE $BF[h_i(e)]=1$
+	\STATE $BF[h_i(e)]=1$;
 	\ENDFOR
 	\IF{$e$ is monitored in $D$}
 	\STATE $f(e)=f(e)+1$;
 	\ELSIF{$m<C$}
-	\STATE Assign a new counter $(e,1,0)$ to it
-	\STATE $m=m+1$
+	\STATE Assign a new counter $(e,1,0)$ to it;
+	\STATE $m=m+1$;
 	\ELSE
 	\STATE Let $e_m$ be the item with least hits, $min$
-	\STATE Replace $e_m$ with $e$ in $D$
-	\STATE $f(e)=min+1,\Delta(e)=min$
+	\STATE Replace $e_m$ with $e$ in $D$;
+	\STATE $f(e)=min+1,\Delta(e)=min$;
 	\ENDIF
 	\STATE $N=N+1$;
 	\ENDFOR
 \end{algorithmic}
 \end{algorithm}
 
-Algorithm \ref{alg:output} checks and outputs the items whose frequency is no more than $sN$. For each item in $A$, we first check whether it is in $BF$. If the item is not in $BF$, it must not be a low-frequency item. If the item is in $BF$ but not in $D$, we output it as a low-frequency item. If the item appears both in $BF$ and $D$, we identify it as a low-frequency item if $f(e)\leq\lfloor sN\rfloor+\Delta(e)$ with high probability. The time requirement of Algorithm \ref{alg:output} is linear to the range of universe. It is acceptable when the frequency of the requests is not high. 
+Algorithm \ref{alg:output} checks and outputs the items whose frequency is no more than $sN$. For each item in $A$, we first check whether it is in $BF$. If not, it must not be a low-frequency item. If the item is in $BF$ but not monitored $D$, we output it. If the item is in $BF$ and monitored in $D$, we identify it as a low-frequency item if $f(e)\leq\lfloor sN\rfloor+\Delta(e)$ with high probability. The time requirement of Algorithm \ref{alg:output} is linear to the range of universe. It is acceptable when the frequency of the requests is not high. 
 
 \begin{algorithm}[h]
 	\caption{BFSS Query Algorithm}
 	\label{alg:output}
 	\begin{algorithmic}[1]
-		\REQUIRE \emph{BF}, $D$, $s$, $A$, $N$, $M$
-		\ENSURE low-frequency items with threshold $s$
-		\STATE $flag=true$; \COMMENT{ \emph{flag}: indicate whether an item is in \emph{BF}}
+		\REQUIRE support parameter $s$
+		\ENSURE low-frequency items whose frequency is no more than $\lfloor sN\rfloor$ 
 		\FOR{$i=0$ to $M-1$}
-		\STATE $flag=true$
+		\STATE $flag=true$;
 		\FOR{$j=1$ to $H$}
 		\IF{$BF[h_j(A[i])]==0$}
-		\STATE $flag=false$
+		\STATE $flag=false$;
 		\STATE break;
 		\ENDIF
 		\ENDFOR
 		\IF{$flag==true$}
 		\IF{$A[i]$ is monitored in $D$}
 		\IF{$f(A[i])\leq\lfloor sN\rfloor+\Delta(A[i])$}
-		\STATE output $A[i]$ as a low-frequency item
+		\STATE output $A[i]$ as a low-frequency item;
 		\ENDIF
 		\ELSE
-		\STATE output $A[i]$ as a low-frequency item
+		\STATE output $A[i]$ as a low-frequency item;
 		\ENDIF
 		\ENDIF
 		\ENDFOR
 	\end{algorithmic}
 \end{algorithm}
 \subsection{Analysis of BFSS}
-In this section, we present a theoretical analysis of \emph{BFSS} described in Section \ref{sec:bfss}. We analyze \emph{FNs}, \emph{FPs}, space complexity, and time complexity. At last, we will identify the challenges to \emph{BFSS}. \par
+In this section, we present the theoretical analysis of \emph{BFSS}, including \emph{FNs}, \emph{FPs}, space complexity, and time complexity. At last, we will identify the challenges to \emph{BFSS}. \par
 
 \subsubsection{\textbf{Analysis of FNs}}
-In this section, we will prove that there are no \emph{FNs} in the output of \emph{BFSS}. The proof is based on Lemma \ref{lem:1} to Lemma \ref{lem:5}, and the detailed proof of Lemma \ref{lem:1} to Lemma \ref{lem:3} can be found in \cite{IEEEexample:spacesaving}.\par
+In this section, we will prove there are no \emph{FNs} in the output of \emph{BFSS}. The proof is based on Lemma \ref{lem:1} to Lemma \ref{lem:5}.\par
 
 \newtheorem{lemma}{Lemma}
 \begin{lemma}\label{lem:1}
@@ -620,7 +638,7 @@ In this section, we will prove that there are no \emph{FNs} in the output of \em
 \end{lemma}
 
 \begin{IEEEproof}
-Every hit in $S$ increments only one counter by 1 among the $M$ counters which can be easily proved when $D$ has empty counters. It is true even when a replacement happens, i.e., the observed item $e$ was not monitored and $D$ has no empty counters, and it replaces another item $e_m$. This is because we add $f(e_m)$ to $f(e)$ and increment $f(e)$ by 1. Therefore, at any time, the sum of all counters is equal to the length of the stream observed so far.
+Every hit in $S$ increments only one counter when $D$ has available counters, and it is true when a replacement happens because we add $f(e_m)$ to $f(e)$ and then increment $f(e)$. Therefore, at any time, the sum of all counters is equal to the length of the stream observed so far.
 \end{IEEEproof}
 
 
@@ -685,7 +703,7 @@ Since the value of the minimum counter monotonically increases, we have $\Delta(
 \end{theorem}
 
 \begin{IEEEproof}
-We only hava to prove that the items we don't output contain no low-frequency items. Algorithm \ref{alg:output} shows that two kinds of items are not ouput: i) the items filtered out by \emph{BF}. ii) the items monitored in $D$ with $f(e)-\Delta(e)>\lfloor sN\rfloor$. The first kind of items are obviously not low-frequency items because they never appeared in $S$. From Lemma \ref{lem:5}, we know that the items monitored in $D$ with $f(e)-\Delta(e)>\lfloor sN\rfloor$ must satisfy $f_S(e)>\lfloor sN\rfloor$, which means the second kind of items must be frequent items.
+We only hava to prove that the items we don't output contain no low-frequency items. Algorithm \ref{alg:output} shows that two kinds of items are not ouput: i) the items filtered out by \emph{BF}. ii) the items monitored in $D$ with $f(e)-\Delta(e)>\lfloor sN\rfloor$. The first kind of items are obviously not low-frequency items because they never appeared in $S$. From Lemma \ref{lem:5}, we know that the items monitored in $D$ with $f(e)-\Delta(e)>\lfloor sN\rfloor$ must satisfy $f_S(e)>\lfloor sN\rfloor$, which means the second kind of items must not be low-frequency items.
 \end{IEEEproof}
 
 \begin{figure}
@@ -953,7 +971,7 @@ From above, $p_2'=\frac{f_s-(\Delta_1(f_s)+\Delta_2(f_s))}{N}\leq p_2$. Let $\De
 \end{table}
 
 \section{Experiments}
-In this section, we first describe our data sets and the implementation details of \emph{BFSS}, then we tested the performance of \emph{BFSS} under different parameter settings on both real and synthetic data sets, then we compared the results against the method \emph{nCount} and the method \emph{rCount}. We were insterested in the \emph{recall}, the number of correct items found as a percentage of the number of correct items, and the \emph{precision}, the number of correct items found as a percentage of the entire output, then we calculated $F_1$. We also measured the space used by \emph{BFSS}, \emph{nCount} and \emph{rCount}, which is essential to handle data streams, however, due to the page limit, we can not show the results of synthetic data here. The detailed implementations of \emph{nCount} and \emph{rCount} will be given later. Last, we give a summarization of the experimental results. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
+To evaluate the capabilities of \emph{BFSS}, we conducted a comprehensive set of experiments, using both real and synthetic data. We compared the results against \emph{nCount} and \emph{rCount}. We were insterested in the \emph{recall}, the number of correct items found as a percentage of the number of correct items; and the \emph{precision}, the number of correct items found as a percentage of the entire output, lastly we compared $F_1$ as we are concerned with both precision and recall. We also measured the space used by each algorithm, which is essential to handle data streams. Notice that we included the size of the hash tables used in the algorithms for fair comparisons. Lastly, we summarize the experimental results. However, due to the page limit, we can not show the results of synthetic data here. All the algorithms were compiled using the same compiler, and were run on a AMD Opteron(tm) 2.20GHz PC, with 64GB RAM, and 1.8TB Hard disk.\par
 
 \begin{figure*}[!t]
 \centering
@@ -1190,13 +1208,8 @@ Table \ref{tab:distribution} shows the estimation of the distribution of the rea
 
 
 \section{Conclusion}
-Low-frequency items in data streams are a little bit counter-intuitive because they are rare and easy to be ignored, however, they are of great significance in areas like Search Engine Optimization (SEO) and data distribution estimation because their total number is even larger than the total number of frequent items in data streams sometimes, and the first step of making good use of them is to find them. We present \emph{BFSS}, an effective and space efficient algorithm that aims to solve the problem \emph{$s$-BLFE} approximately. \emph{BFSS} can output all low-frequency items and a few \emph{FPs}, the expected number of which can be theoretically bounded. The experimental results show the recall of \emph{BFSS} was constant at 1 and the precision was near 1 consuming a little space.\par
-The future directions of our work can be, but are not limited to: 1) output low-frequency items along with their approximate frequencies, and this can be achieved based on the data structure of the \emph{Count-Min Sketch} algorithm as we discussed before. 2) handle sliding window queries. 3) support both insertion and deletion of items. 4) find low-frequency item sets. In fact, like frequent items, there are many work can be done towards low-frequency items, however, due to the special features of them, we still have a long and tough way to go and we just take a small step forward.
-
-
-
-
-
+Low-frequency items in data streams are of great significance in areas like SEO because the total frequencies of them is even larger than that of frequent ones sometimes, and finding them is the first step to take good advantage of them, however, to the best of our knowledge, there is no algorithm which can effectively find them. We are the first to formally define the problem, named \emph{$s$-BLFE}, and we present \emph{BFSS} which can output all low-frequency items along with a few \emph{FPs} using limited space, and the expected number of \emph{FPs} can be theoretically bounded. The experimental results show \emph{BFSS} achieve much space reductions with a little loss in precision compared with \emph{nCount}.\par
+The future directions of our work can be, but are not limited to: 1) output low-frequency items along with their approximate frequencies, which can be achieved based on the algorithm \emph{Count-Min Sketch}. 2) support sliding window queries. 3) support both insertion and deletion of items. 4) find low-frequency item sets. In fact, many work done towards frequent items can be considered whether they are meaningful towards low-frequency ones, besides, the two main challenges of the problem \emph{$s$-BLFE} mentioned before make it much more difficult to do further analysis on low-frequency items, which means we have a long way to go.
 
 
 % conference papers do not normally have an appendix
@@ -1205,11 +1218,7 @@ The future directions of our work can be, but are not limited to: 1) output low-
 % use section* for acknowledgement
 \section*{Acknowledgment}
 
-
-The authors would like to thank...
-
-
-
+The authors would like to thank Haisu Zhang for his helpful suggestions.
 
 
 % trigger a \newpage just before the given reference

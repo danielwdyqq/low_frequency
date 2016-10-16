@@ -13,23 +13,21 @@
 \citation{IEEEexample:correlated}
 \citation{IEEEexample:frequent1,IEEEexample:frequent2,IEEEexample:frequent3,IEEEexample:ldsketch}
 \citation{IEEEexample:spacesaving,IEEEexample:top-k1}
-\citation{IEEEexample:metropy}
 \@writefile{toc}{\contentsline {section}{\numberline {I}Introduction}{1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-A}}Motivating Examples}{1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {I-A}1}Long-Tail Keywords mining}{1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {I-A}2}Rare demands mining}{1}}
-\citation{IEEEexample:sbf}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {I-A}1}Mining long-tail keywords}{1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {I-A}2}Mining rare demands}{1}}
 \citation{IEEEexample:sticky}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Rank-frequency distribution\relax }}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Rank-frequency distribution obeying a power law form\relax }}{2}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:sim}{{1}{2}}
 \newlabel{distribution estimation}{{\unhbox \voidb@x \hbox {I-A}3}{2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {I-A}3}Distribution estimation}{2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {I-A}3}Rank-frequency distribution estimation}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-B}}Our Contributions}{2}}
 \@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Major Notations Used in the Paper.\relax }}{2}}
 \newlabel{tab:list}{{I}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-C}}Roadmap}{2}}
-\@writefile{toc}{\contentsline {section}{\numberline {II}PRELIMINARIES}{2}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Problem Defination and Related Work}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Problem Statement}{2}}
 \citation{IEEEexample:sticky}
 \citation{IEEEexample:spacesaving}
@@ -37,20 +35,30 @@
 \citation{IEEEexample:count-min}
 \citation{IEEEexample:hcount}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}Related Work}{3}}
-\@writefile{toc}{\contentsline {section}{\numberline {III}OUR ALGORITHMS}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}Challenges of $s$-BLFE}{3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}The BFSS Algorithm}{3}}
-\newlabel{sec:bfss}{{\unhbox \voidb@x \hbox {III-B}}{3}}
-\citation{IEEEexample:spacesaving}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-C}}The challenges of $s$-BLFE}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}\emph  {BFSS} and \emph  {BFSS*}}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-A}}The BFSS Algorithm}{3}}
+\newlabel{sec:bfss}{{\unhbox \voidb@x \hbox {III-A}}{3}}
+\newlabel{subfig:the element is monitored}{{2a}{4}}
+\newlabel{sub@subfig:the element is monitored}{{(a)}{a}}
+\newlabel{subfig:D is full}{{2b}{4}}
+\newlabel{sub@subfig:D is full}{{(b)}{b}}
+\newlabel{subfig:D is not full}{{2c}{4}}
+\newlabel{sub@subfig:D is not full}{{(c)}{c}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The detailed execution process of \emph  {BFSS}\relax }}{4}}
+\newlabel{fig:the detailed execution process of BFSS}{{2}{4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {the element is monitored}}}{4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {$D$ is full \& the element is not monitored}}}{4}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {$D$ is not full \& the element is not monitored}}}{4}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces BFSS Update Algorithm\relax }}{4}}
 \newlabel{alg:bfss}{{1}{4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}Analysis of BFSS}{4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-C}1}\textbf  {Analysis of FNs}}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-B}}Analysis of BFSS}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-B}1}\textbf  {Analysis of FNs}}{4}}
 \newlabel{lem:1}{{1}{4}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces BFSS Query Algorithm\relax }}{4}}
-\newlabel{alg:output}{{2}{4}}
 \newlabel{lem:2}{{2}{4}}
 \newlabel{equa:1}{{1}{4}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces BFSS Query Algorithm\relax }}{4}}
+\newlabel{alg:output}{{2}{4}}
 \newlabel{lem:3}{{3}{4}}
 \newlabel{lem:4}{{4}{4}}
 \citation{IEEEexample:pareto}
@@ -59,18 +67,18 @@
 \newlabel{equa:3}{{4}{5}}
 \newlabel{lem:5}{{5}{5}}
 \newlabel{thm:1}{{1}{5}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-C}2}\textbf  {Analysis of FPs}}{5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-B}2}\textbf  {Analysis of FPs}}{5}}
 \newlabel{lem:6}{{6}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The schematic diagram of the analysis of \emph  {BFSS}\relax }}{5}}
-\newlabel{fig:bfss}{{2}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The schematic diagram of the analysis of \emph  {BFSS}\relax }}{5}}
+\newlabel{fig:bfss}{{3}{5}}
 \newlabel{lem:7}{{7}{5}}
 \newlabel{thm:2}{{2}{5}}
 \newlabel{eq:7}{{7}{5}}
 \newlabel{eq:8}{{8}{6}}
 \newlabel{thm:3}{{3}{6}}
 \newlabel{eq:10}{{10}{6}}
-\newlabel{sec:space}{{\unhbox \voidb@x \hbox {III-C}3}{6}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-C}3}\textbf  {Space complexity}}{6}}
+\newlabel{sec:space}{{\unhbox \voidb@x \hbox {III-B}3}{6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-B}3}\textbf  {Space complexity}}{6}}
 \@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces The value of $F$ under various $\frac  {K}{M}$ and $H$ combinations.\relax }}{6}}
 \newlabel{tab:2}{{II}{6}}
 \newlabel{eq:11}{{11}{6}}
@@ -81,25 +89,25 @@
 \newlabel{eq:16}{{16}{7}}
 \newlabel{eq:matlab}{{22}{7}}
 \newlabel{thm:4}{{4}{7}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces The value of $F(n)$ when $M=1M,K=16M$ and $H=11$\relax }}{7}}
-\newlabel{fig:F(n)-16000000}{{3}{7}}
-\newlabel{subfig:n}{{4a}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The value of $F(n)$ when $M=1M,K=16M$ and $H=11$\relax }}{7}}
+\newlabel{fig:F(n)-16000000}{{4}{7}}
+\newlabel{subfig:n}{{5a}{7}}
 \newlabel{sub@subfig:n}{{(a)}{a}}
-\newlabel{subfig:F(n)}{{4b}{7}}
+\newlabel{subfig:F(n)}{{5b}{7}}
 \newlabel{sub@subfig:F(n)}{{(b)}{b}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces The maximum value of $F(n)$ and the corresponding value of $n$ when $M=1M$ - Varying $\frac  {K}{M}$.\relax }}{7}}
-\newlabel{fig:n-F(n)}{{4}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The maximum value of $F(n)$ and the corresponding value of $n$ when $M=1M$ - Varying $\frac  {K}{M}$.\relax }}{7}}
+\newlabel{fig:n-F(n)}{{5}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {}}}{7}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {}}}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-C}4}\textbf  {Time complexity}}{7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-B}4}\textbf  {Time complexity}}{7}}
 \newlabel{thm:5}{{5}{7}}
 \citation{IEEEexample:overview,IEEEexample:overview_vldbj}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}The BFSS* Algorithm}{8}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-E}}Analysis of BFSS*}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-E}1}\textbf  {Analysis of $p_1$}}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-C}}The BFSS* Algorithm}{8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {III-D}}Analysis of BFSS*}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-D}1}\textbf  {Analysis of $p_1$}}{8}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces BFSS* Query Algorithm\relax }}{8}}
 \newlabel{alg:bfss*}{{3}{8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-E}2}\textbf  {Analysis of $p_2$}}{8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {III-D}2}\textbf  {Analysis of $p_2$}}{8}}
 \citation{rabin1981fingerprinting}
 \@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces The maximum value of $F(n)$ and the corresponding value of $n$ under various $K$ and $H$ combinations when $M$=89753.\relax }}{9}}
 \newlabel{tab:89753}{{III}{9}}
@@ -107,32 +115,32 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-A}}Data Sets}{9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-B}}Implementation Issues}{9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-C}}Performance of BFSS}{9}}
-\newlabel{subfig:001_recall}{{5a}{10}}
+\newlabel{subfig:001_recall}{{6a}{10}}
 \newlabel{sub@subfig:001_recall}{{(a)}{a}}
-\newlabel{subfig:0002_recall}{{5b}{10}}
+\newlabel{subfig:0002_recall}{{6b}{10}}
 \newlabel{sub@subfig:0002_recall}{{(b)}{b}}
-\newlabel{subfig:0001_recall}{{5c}{10}}
+\newlabel{subfig:0001_recall}{{6c}{10}}
 \newlabel{sub@subfig:0001_recall}{{(c)}{c}}
-\newlabel{subfig:001_precison}{{5d}{10}}
+\newlabel{subfig:001_precison}{{6d}{10}}
 \newlabel{sub@subfig:001_precison}{{(d)}{d}}
-\newlabel{subfig:0002_precison}{{5e}{10}}
+\newlabel{subfig:0002_precison}{{6e}{10}}
 \newlabel{sub@subfig:0002_precison}{{(e)}{e}}
-\newlabel{subfig:0001_precison}{{5f}{10}}
+\newlabel{subfig:0001_precison}{{6f}{10}}
 \newlabel{sub@subfig:0001_precison}{{(f)}{f}}
-\newlabel{subfig:001_f1}{{5g}{10}}
+\newlabel{subfig:001_f1}{{6g}{10}}
 \newlabel{sub@subfig:001_f1}{{(g)}{g}}
-\newlabel{subfig:0002_f1}{{5h}{10}}
+\newlabel{subfig:0002_f1}{{6h}{10}}
 \newlabel{sub@subfig:0002_f1}{{(h)}{h}}
-\newlabel{subfig:0001_f1}{{5i}{10}}
+\newlabel{subfig:0001_f1}{{6i}{10}}
 \newlabel{sub@subfig:0001_f1}{{(i)}{i}}
-\newlabel{subfig:001_space}{{5j}{10}}
+\newlabel{subfig:001_space}{{6j}{10}}
 \newlabel{sub@subfig:001_space}{{(j)}{j}}
-\newlabel{subfig:0002_space}{{5k}{10}}
+\newlabel{subfig:0002_space}{{6k}{10}}
 \newlabel{sub@subfig:0002_space}{{(k)}{k}}
-\newlabel{subfig:0001_space}{{5l}{10}}
+\newlabel{subfig:0001_space}{{6l}{10}}
 \newlabel{sub@subfig:0001_space}{{(l)}{l}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  Performance Comparison between \emph  {BFSS}, \emph  {nCount} and \emph  {rCount} on $W$ - Varying $s,\epsilon $ and $N$ \relax }}{10}}
-\newlabel{fig:performance comparison of BFSS}{{5}{10}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  Performance Comparison between \emph  {BFSS}, \emph  {nCount} and \emph  {rCount} on $W$ - Varying $s,\epsilon $ and $N$ \relax }}{10}}
+\newlabel{fig:performance comparison of BFSS}{{6}{10}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Recall for $1\%$-BLFE}}}{10}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Recall for $0.2\%$-BLFE}}}{10}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Recall for $0.1\%$-BLFE}}}{10}}
@@ -147,8 +155,8 @@
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(l)}{\ignorespaces {Space for $0.1\%$-BLFE}}}{10}}
 \@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces  Performance of \emph  {BFSS} Using Real Data - Varying $s$, $\epsilon $, $K$ and $N$ \relax }}{11}}
 \newlabel{tab:bfss}{{IV}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The value of $F(n)$ when $M=89753$ and $H=2$ - Varying $K$\relax }}{11}}
-\newlabel{fig:F(n)}{{6}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces The value of $F(n)$ when $M=89753$ and $H=2$ - Varying $K$\relax }}{11}}
+\newlabel{fig:F(n)}{{7}{11}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {IV-D}}Distribution estimation}{11}}
 \bibstyle{./bibtex/IEEEtran}
 \bibdata{./bibtex/IEEEabrv,./bibtex/IEEEexample}
